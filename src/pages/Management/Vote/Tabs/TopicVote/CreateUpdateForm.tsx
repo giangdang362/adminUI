@@ -1,13 +1,7 @@
-import { formItemRule } from '@/utils/ruleForm';
-import {
-  ProFormDatePicker,
-  ProFormDateRangePicker,
-  ProFormSelect,
-  ProFormText,
-  ProFormUploadButton,
-} from '@ant-design/pro-components';
-import { Form, Modal } from 'antd';
-import { FC, useEffect } from 'react';
+import { ProFormDatePicker, ProFormDateRangePicker, ProFormSelect, ProFormText, ProFormUploadButton } from "@ant-design/pro-components";
+import { Form, Modal } from "antd";
+import { FC, useEffect } from "react";
+import { formItemRule } from "@/utils/ruleForm";
 
 interface CreateUpdateFormProps {
   showModal: boolean;
@@ -15,22 +9,25 @@ interface CreateUpdateFormProps {
   curItem?: API.TopicVoteItem;
 }
 
-const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setShowModal }) => {
+const CreateUpdateForm:FC<CreateUpdateFormProps> = ({showModal,curItem,setShowModal}) => {
+
   const [form] = Form.useForm();
   const handleCloseModal = () => {
     setShowModal(false);
     form?.resetFields();
-  };
-  const handleSubmit = (formItem: API.TopicVoteItem) => {};
+  }
+  const handleSubmit = (formItem: API.TopicVoteItem) => {
 
+  }
+  
   useEffect(() => {
-    form.setFieldValue('topicName', curItem?.topicName);
-    form.setFieldValue('startDate', curItem?.startDate);
-    form.setFieldValue('endDate', curItem?.endDate);
-    form.setFieldValue('idolVote', curItem?.idolVote);
-    form.setFieldValue('status', curItem?.status);
-  }, [curItem]);
-
+    form.setFieldValue("topicName",curItem?.topicName)
+    form.setFieldValue("startDate",curItem?.startDate)
+    form.setFieldValue("endDate",curItem?.endDate)
+    form.setFieldValue("idolVote",curItem?.idolVote)
+    form.setFieldValue("status",curItem?.status)
+  },[curItem]);
+  
   return (
     <Modal
       title="Add Idol"
@@ -45,61 +42,65 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
         name="roleForm"
         onFinish={handleSubmit}
         style={{
-          padding: '12px 0',
+          padding: "12px 0"
         }}
       >
-        <ProFormText label="TopicName" name={'topicName'} rules={[formItemRule.required()]} />
+        <ProFormText
+          label="TopicName"
+          name={"topicName"}
+          rules={[formItemRule.required()]}
+        />
         <ProFormDateRangePicker
-          name={'rangeDate'}
-          placeholder={'Select date'}
+          name={"rangeDate"}
+          placeholder={"Select date"}
           label="Start Date/ End Date"
           rules={[formItemRule.required()]}
         />
         <ProFormSelect
           label="Type"
-          name={'type'}
-          placeholder={'Select type'}
+          name={"type"}
+          placeholder={"Select type"}
           // options={typeSelect}
           rules={[formItemRule.required()]}
-          mode="single"
+          mode='single'
         />
         <ProFormUploadButton
-          label="Avatar"
-          title="Upload"
-          name={'avatar'}
+          label= "Avatar"
+          title= "Upload"
+          name={"avatar"}
           rules={[formItemRule.required()]}
         />
         <ProFormUploadButton
-          label="Banner"
-          title="Upload"
-          name={'banner'}
+          label= "Banner"
+          title= "Upload"
+          name={"banner"}
           rules={[formItemRule.required()]}
         />
         <ProFormText
-          label="Idol Name"
-          placeholder={''}
-          name={'idolName'}
+          label= "Idol Name"
+          placeholder={""}
+          name={"idolName"}
           rules={[formItemRule.required()]}
         />
         <ProFormDatePicker
-          name={'birthday'}
-          placeholder={'Select date'}
+          name={"birthday"}
+          placeholder={"Select date"}
           label="Birthday/Estalisday"
           rules={[formItemRule.required()]}
         />
-        {curItem && (
+        {curItem && 
           <ProFormSelect
             label="Members"
-            name={'members'}
-            placeholder={'Select member'}
+            name={"members"}
+            placeholder={"Select member"}
             // options={typeSelect}
             rules={[formItemRule.required()]}
-            mode="tags"
+            mode='tags'
           />
-        )}
+        }
       </Form>
     </Modal>
   );
-};
+}
 
 export default CreateUpdateForm;
