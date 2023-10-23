@@ -5,6 +5,7 @@ import type { Settings as LayoutSettings } from '@ant-design/pro-components';
 import { SettingDrawer } from '@ant-design/pro-components';
 import type { RunTimeLayoutConfig } from '@umijs/max';
 import { Link, history } from '@umijs/max';
+import { ConfigProvider } from 'antd';
 import { Provider } from 'react-redux';
 import defaultSettings from '../config/defaultSettings';
 import { errorConfig } from './requestErrorConfig';
@@ -59,9 +60,9 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
         return <AvatarDropdown>{avatarChildren}</AvatarDropdown>;
       },
     },
-    waterMarkProps: {
-      content: initialState?.currentUser?.name,
-    },
+    // waterMarkProps: {
+    //   content: initialState?.currentUser?.name,
+    // },
     footerRender: () => <Footer />,
     onPageChange: () => {
       const { location } = history;
@@ -104,24 +105,62 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
     // 增加一个 loading 的状态
     childrenRender: (children) => {
       // if (initialState?.loading) return <PageLoading />;
+      type ThemeData = {
+        borderRadius: number;
+        colorPrimary: string;
+        Button?: {
+          colorPrimary: string;
+          algorithm?: boolean;
+        };
+      };
+
+      // Customize primary_color
+      const defaultData: ThemeData = {
+        borderRadius: 6,
+        colorPrimary: '#EF488E',
+        Button: {
+          colorPrimary: '#EF488E',
+        },
+      };
       return (
         <>
-          <Provider store={store}>
-            {children}
-            {isDev && (
-              <SettingDrawer
-                disableUrlParams
-                enableDarkTheme
-                settings={initialState?.settings}
-                onSettingChange={(settings) => {
-                  setInitialState((preInitialState) => ({
-                    ...preInitialState,
-                    settings,
-                  }));
-                }}
-              />
-            )}
-          </Provider>
+          {/* Add ConfigProvider to override css default of Antd */}
+          <ConfigProvider
+            theme={{
+              token: {
+                colorPrimary: defaultData.colorPrimary,
+                borderRadius: defaultData.borderRadius,
+              },
+              components: {
+                Button: {
+                  colorPrimary: defaultData.Button?.colorPrimary,
+                  algorithm: defaultData.Button?.algorithm,
+                },
+                Progress: {
+                  // can not apply primary color of progress
+                  colorPrimaryBg: defaultData.Button?.colorPrimary,
+                },
+              },
+            }}
+          >
+            {/* Add Provider to use store of redux */}
+            <Provider store={store}>
+              {children}
+              {isDev && (
+                <SettingDrawer
+                  disableUrlParams
+                  enableDarkTheme
+                  settings={initialState?.settings}
+                  onSettingChange={(settings) => {
+                    setInitialState((preInitialState) => ({
+                      ...preInitialState,
+                      settings,
+                    }));
+                  }}
+                />
+              )}
+            </Provider>
+          </ConfigProvider>
         </>
       );
     },

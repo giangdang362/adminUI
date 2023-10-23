@@ -23,27 +23,64 @@ export default [
     ],
   },
   {
+    path: '/dasboard',
+    name: 'Dasboard',
+    icon: 'home',
+    component: './Dasboard/index',
+  },
+  {
     path: '/welcome',
     name: 'welcome',
     icon: 'smile',
     component: './Welcome',
   },
   {
-    path: '/admin',
-    name: 'admin',
+    path: '/management',
+    name: 'Management',
     icon: 'crown',
-    access: 'canAdmin',
+    // access: 'canAdmin',
     routes: [
       {
-        path: '/admin',
-        redirect: '/admin/sub-page',
+        path: '/management',
+        redirect: '/management/main-page',
       },
       {
-        path: '/admin/sub-page',
-        name: 'sub-page',
-        component: './Admin',
+        path: '/management/main-page',
+        name: 'Main Page Management',
+        component: './Management/MainPageManagement/index',
+      },
+      {
+        path: '/management/chart-top-idol',
+        name: 'Chart Top Idol',
+        component: './Management/ChartTopIdol/index',
+      },
+      {
+        path: '/management/idols',
+        name: 'Idols',
+        component: './Management/Idols/index',
+      },
+      {
+        path: '/management/vote',
+        name: 'Vote',
+        component: './Management/Vote/index',
+      },
+      {
+        path: '/management/community',
+        name: 'Community',
+        component: './Management/Community/index',
+      },
+      {
+        path: '/management/user',
+        name: 'User',
+        component: './Management/User/index',
       },
     ],
+  },
+  {
+    path: '/setting',
+    name: 'Setting',
+    icon: 'setting',
+    component: './Setting/index',
   },
   {
     name: 'list.table-list',
