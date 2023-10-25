@@ -2,10 +2,11 @@ import { theme } from 'antd';
 import { FC } from 'react';
 
 interface TitleCurrentPageProps {
-  title: string;
+  title?: string;
+  header?: React.JSX.Element;
 }
 
-const TitleCurrentPage: FC<TitleCurrentPageProps> = ({ title }) => {
+const TitleCurrentPage: FC<TitleCurrentPageProps> = ({ title, header }) => {
   const { useToken } = theme;
   const { token } = useToken();
   return (
@@ -16,6 +17,7 @@ const TitleCurrentPage: FC<TitleCurrentPageProps> = ({ title }) => {
       }}
     >
       {title}
+      {header}
     </div>
   );
 };
