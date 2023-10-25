@@ -1,3 +1,4 @@
+import { FormatDateTime } from '@/constants/datetime';
 import { DeleteOutlined, EditOutlined, ExclamationCircleFilled } from '@ant-design/icons';
 import { Button, Drawer, Modal, Table } from 'antd';
 import { FC, useState } from 'react';
@@ -51,10 +52,13 @@ const DataNotifiTable: FC<DataNotifiTableProps> = ({
             alignItems: 'center',
             border: '1px solid white',
           }}
-          // onClick={() => setShowModal(true)}
+          onClick={(e) => {
+            e.stopPropagation();
+            showDeleteConfirm();
+          }}
         >
-          <DeleteOutlined />
-          <span>Delete</span>
+          <DeleteOutlined style={{ color: 'red' }} />
+          <span style={{ color: 'red' }}>Delete</span>
         </Button>
         <Button
           type="primary"
@@ -103,7 +107,7 @@ const DataNotifiTable: FC<DataNotifiTableProps> = ({
           <div style={{ display: 'flex' }}>
             <div style={{ width: '100px' }}>Update on</div>
             <div style={{ fontSize: '15px', color: '#242424', maxWidth: '332px' }}>
-              {curNotifi?.updatedDate}
+              {FormatDateTime(curNotifi?.updatedDate ?? '')}
             </div>
           </div>
           <div style={{ display: 'flex' }}>

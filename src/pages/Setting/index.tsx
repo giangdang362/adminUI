@@ -33,7 +33,7 @@ const Setting = () => {
   ];
   return (
     <div>
-      <Title level={3}>Setting</Title>
+      <Title level={3}>Settings</Title>
       <Tabs
         tabPosition="left"
         items={listTabsSetting.map((item, index) => {
@@ -47,7 +47,7 @@ const Setting = () => {
                   header={
                     item.label === 'Point' ? (
                       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <p>Point Setting</p>
+                        <p style={{ color: '#C8467C', fontWeight: '600' }}>Point Setting</p>
                         <div style={{ display: 'flex', gap: '10px' }}>
                           <ButtonForm
                             onCancel={() => form.resetFields()}
@@ -57,7 +57,7 @@ const Setting = () => {
                       </div>
                     ) : (
                       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <p>Notification</p>
+                        <p style={{ color: '#C8467C', fontWeight: '600' }}>Notification</p>
                         <Button
                           type="primary"
                           style={{
