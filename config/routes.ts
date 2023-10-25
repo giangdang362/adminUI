@@ -23,7 +23,7 @@ export default [
     ],
   },
   {
-    path: '/dasboard',
+    path: '/',
     name: 'Dasboard',
     icon: 'home',
     component: './Dasboard/index',
@@ -70,6 +70,12 @@ export default [
         component: './Management/Community/index',
       },
       {
+        path: '/management/community/detail',
+        name: 'Community Detail',
+        component: './Management/Community/Detail',
+        hideInMenu:true
+      },
+      {
         path: '/management/user',
         name: 'User',
         component: './Management/User/index',
@@ -82,16 +88,16 @@ export default [
     icon: 'setting',
     component: './Setting/index',
   },
-  {
-    name: 'list.table-list',
-    icon: 'table',
-    path: '/list',
-    component: './TableList',
-  },
-  {
-    path: '/',
-    redirect: '/welcome',
-  },
+  // {
+  //   name: 'list.table-list',
+  //   icon: 'table',
+  //   path: '/list',
+  //   component: './TableList',
+  // },
+  // {
+  //   path: '/',
+  //   redirect: '/welcome',
+  // },
   {
     path: '*',
     layout: false,

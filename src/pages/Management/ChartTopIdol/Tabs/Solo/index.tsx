@@ -43,8 +43,8 @@ const SoloChartTopIdol = () => {
             defaultValue={currentSelect}
           />
         </div>
-        <DataSoloTable />
       </ProForm>
+      <DataSoloTable />
     </div>
   );
 };

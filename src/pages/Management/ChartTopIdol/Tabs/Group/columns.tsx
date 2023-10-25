@@ -1,9 +1,8 @@
-import { GroupType } from '@/services/management/chart-top-idol/group/index.typing';
-import {} from '@/services/management/chart-top-idol/solo/index.typing';
+import idolAvatar from '@/../public/images/idol-avatar.png';
 import { Progress } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 
-export const columns: ColumnsType<GroupType> = [
+export const columns: ColumnsType<API.GroupType> = [
   {
     title: 'ID',
     dataIndex: 'id',
@@ -15,6 +14,25 @@ export const columns: ColumnsType<GroupType> = [
     dataIndex: 'groupName',
     key: 'groupName',
     width: '50%',
+    render: (_, original) => (
+      <div
+        style={{
+          fontSize: '13px',
+          display: 'flex',
+          gap: '4px',
+        }}
+      >
+        <img
+          src={idolAvatar}
+          alt="idolAvatar"
+          style={{
+            width: '20px',
+            height: '20px',
+          }}
+        />
+        <span>{original.groupName}</span>
+      </div>
+    ),
   },
   {
     title: 'Vote',

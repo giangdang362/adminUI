@@ -1,4 +1,3 @@
-import { SoloType } from '@/services/management/chart-top-idol/solo/index.typing';
 import { Table } from 'antd';
 import '../../../styles/styleTable.css';
 import FooterTable from '../FooterTable';
@@ -22,7 +21,7 @@ const DataSoloTable = () => {
   );
 };
 
-const soloData: SoloType[] = [
+const soloData: API.SoloType[] = [
   {
     id: '001',
     soloName: 'Rose',

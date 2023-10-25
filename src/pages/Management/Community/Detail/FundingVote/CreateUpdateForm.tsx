@@ -12,7 +12,7 @@ import { FC, useEffect } from 'react';
 interface CreateUpdateFormProps {
   showModal: boolean;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-  curItem?: API.TopicVoteItem;
+  curItem?: API.FundingVoteItem;
 }
 
 const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setShowModal }) => {
@@ -21,13 +21,16 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
     setShowModal(false);
     form?.resetFields();
   };
-  const handleSubmit = (formItem: API.TopicVoteItem) => {};
+  const handleSubmit = (formItem: API.FundingVoteItem) => {};
 
   useEffect(() => {
-    form.setFieldValue('topicName', curItem?.topicName);
+    form.setFieldValue('voteTitle', curItem?.voteTitle);
     form.setFieldValue('startDate', curItem?.startDate);
     form.setFieldValue('endDate', curItem?.endDate);
+    form.setFieldValue('reward', curItem?.reward);
+    form.setFieldValue('goal', curItem?.goal);
     form.setFieldValue('idolVote', curItem?.idolVote);
+    form.setFieldValue('vote', curItem?.vote);
     form.setFieldValue('status', curItem?.status);
     form.setFieldValue('content', curItem?.content);
   }, [curItem]);
@@ -50,27 +53,46 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
         }}
       >
         <ProFormText
-          label="Topic Name"
-          name={'topicName'}
+          allowClear
+          label="Vote Title"
+          name={'voteTitle'}
           placeholder={''}
           rules={[formItemRule.required()]}
         />
         <ProFormDateRangePicker
+          allowClear
           name={'rangeDate'}
           placeholder={['Start date', 'End date']}
-          label="Start Date/ End Date"
+          label="Start Date - End Date"
           rules={[formItemRule.required()]}
         />
-        {curItem && (
+        <ProFormText
+          label="reward"
+          name={'reward'}
+          placeholder={'Reward'}
+          rules={[formItemRule.required()]}
+        />
+        <div
+          style={{
+            display: 'flex',
+            gap: '16px',
+          }}
+        >
           <ProFormSelect
-            label="Idol vote"
-            name={'idolVote'}
-            placeholder={'Select idol'}
-            options={curItem?.idolVote}
+            label={'Goal (point)'}
+            name={'goal'}
+            placeholder="Select Goal"
+            options={listSelectPoint.map((op) => ({ label: op.label, value: op.value }))}
             rules={[formItemRule.required()]}
-            mode="tags"
           />
-        )}
+          <ProFormSelect
+            label={'Idol Vote'}
+            name={'idolVote'}
+            placeholder="Select Idol Vote"
+            options={listSelectIdol.map((op) => ({ label: op.label, value: op.value }))}
+            rules={[formItemRule.required()]}
+          />
+        </div>
         <ProFormUploadButton
           label="Banner"
           title="Upload"
@@ -89,3 +111,20 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
 };
 
 export default CreateUpdateForm;
+
+type SelectType = {
+  label: string;
+  value: string;
+};
+
+export const listSelectPoint: SelectType[] = [
+  { label: '100.000', value: '100.000' },
+  { label: '200.000', value: '200.000' },
+  { label: '300.000', value: '300.000' },
+];
+
+export const listSelectIdol: SelectType[] = [
+  { label: 'Lisa', value: 'Lisa' },
+  { label: 'Rose', value: 'Rose' },
+  { label: 'Jenny', value: 'Jenny' },
+];
