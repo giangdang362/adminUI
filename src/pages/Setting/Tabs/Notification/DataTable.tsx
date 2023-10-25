@@ -41,7 +41,7 @@ const DataNotifiTable: FC<DataNotifiTableProps> = ({
     });
   };
 
-  const Footer = () => {
+  const FooterDrawerNoti = () => {
     return (
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <Button
@@ -91,7 +91,7 @@ const DataNotifiTable: FC<DataNotifiTableProps> = ({
         onClose={() => setOpenNotiDetail(false)}
         open={openNotiDetail}
         width={500}
-        footer={<Footer />}
+        footer={<FooterDrawerNoti />}
       >
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
           <div style={{ display: 'flex' }}>
