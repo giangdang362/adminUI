@@ -1,4 +1,6 @@
+import ButtonForm from '@/pages/components/ButtonForm/ButtonForm';
 import TitleCurrentPage from '@/pages/components/TitleCurrentPage';
+import { ProForm } from '@ant-design/pro-components';
 import { Tabs, Typography } from 'antd';
 import Banner from './Tabs/Banner';
 import FandomService from './Tabs/FandomService';
@@ -8,6 +10,7 @@ import TopicVote from './Tabs/TopicVote';
 const { Title } = Typography;
 
 const MainPageManagement = () => {
+  const [form] = ProForm.useForm();
   return (
     <div>
       <Title level={3}>Main Page</Title>
@@ -20,7 +23,19 @@ const MainPageManagement = () => {
             key: id,
             children: (
               <>
-                <TitleCurrentPage title={item.label} />
+                <TitleCurrentPage
+                  header={
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                      <p style={{ color: '#C8467C', fontWeight: '600' }}>{item.label}</p>
+                      <div style={{ display: 'flex', gap: '10px' }}>
+                        <ButtonForm
+                          onCancel={() => form.resetFields()}
+                          onSubmit={() => form.submit()}
+                        />
+                      </div>
+                    </div>
+                  }
+                />
                 <div style={{ marginTop: '16px' }}>{item.children}</div>
               </>
             ),

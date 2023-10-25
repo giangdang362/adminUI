@@ -1,4 +1,3 @@
-import ButtonForm from '@/pages/components/ButtonForm/ButtonForm';
 import { ProForm, ProFormSelect } from '@ant-design/pro-components';
 
 type SelectType = {
@@ -75,9 +74,9 @@ const TopicVote = () => {
           placeholder="Please select a status"
           rules={[{ required: true, message: 'Please select your status!' }]}
         />
-        <div style={{ maxWidth: '800px' }}>
+        {/* <div style={{ maxWidth: '800px' }}>
           <ButtonForm onCancel={() => form.resetFields()} onSubmit={() => form.submit()} />
-        </div>
+        </div> */}
       </ProForm>
     </div>
   );

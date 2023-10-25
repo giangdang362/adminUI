@@ -25,9 +25,11 @@ const Point = () => {
             </p>
             <p style={{ color: '#ababab', lineHeight: '22px' }}>{item.desc}</p>
           </div>
-          <div style={{ display: 'flex', gap: '10px' }}>
+          <div
+            style={{ display: 'flex', gap: '10px', justifyContent: 'center', alignItems: 'center' }}
+          >
             <Input value={30} style={{ width: '100px', height: '32px' }} />
-            <p>Points</p>
+            <div>Points</div>
           </div>
         </div>
       ))}

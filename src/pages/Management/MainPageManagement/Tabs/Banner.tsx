@@ -1,4 +1,3 @@
-import ButtonForm from '@/pages/components/ButtonForm/ButtonForm';
 import { ProForm, ProFormText, ProFormUploadButton } from '@ant-design/pro-components';
 
 const Banner = () => {
@@ -61,9 +60,9 @@ const Banner = () => {
             }}
           />
         </div>
-        <div style={{ maxWidth: '800px' }}>
+        {/* <div style={{ maxWidth: '800px' }}>
           <ButtonForm onCancel={() => form.resetFields()} onSubmit={() => form.submit()} />
-        </div>
+        </div> */}
       </ProForm>
     </div>
   );
