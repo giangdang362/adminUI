@@ -5,5 +5,6 @@ declare namespace API {
     endDate?: string;
     idolVote?: MemberItem[];
     status?: number;
+    content?: string;
   };
 }

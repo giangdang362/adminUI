@@ -1,9 +1,9 @@
-import { SoloType } from '@/services/management/chart-top-idol/solo/index.typing';
+import idolAvatar from '@/../public/images/idol-avatar.png';
 import { Progress } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import styled from 'styled-components';
 
-export const columns: ColumnsType<SoloType> = [
+export const columns: ColumnsType<API.SoloType> = [
   {
     title: 'ID',
     dataIndex: 'id',
@@ -15,6 +15,25 @@ export const columns: ColumnsType<SoloType> = [
     dataIndex: 'soloName',
     key: 'soloName',
     width: '50%',
+    render: (_, original) => (
+      <div
+        style={{
+          fontSize: '13px',
+          display: 'flex',
+          gap: '4px',
+        }}
+      >
+        <img
+          src={idolAvatar}
+          alt="idolAvatar"
+          style={{
+            width: '20px',
+            height: '20px',
+          }}
+        />
+        <span>{original.soloName}</span>
+      </div>
+    ),
   },
   {
     title: 'Vote',

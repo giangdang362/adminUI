@@ -1,4 +1,3 @@
-import { GroupType } from '@/services/management/chart-top-idol/group/index.typing';
 import { Table } from 'antd';
 import '../../../styles/styleTable.css';
 import FooterTable from '../FooterTable';
@@ -23,7 +22,7 @@ const DataGroupTable = () => {
   );
 };
 
-const groupData: GroupType[] = [
+const groupData: API.GroupType[] = [
   {
     id: '001',
     groupName: 'Black Pink',

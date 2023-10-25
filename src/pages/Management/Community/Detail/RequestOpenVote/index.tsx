@@ -4,7 +4,7 @@ import { useState } from 'react';
 import CreateUpdateForm from './CreateUpdateForm';
 import DataRequestOpenVoteTable from './DataTable';
 
-const RequestOpenVote = () => {
+const RequestOpenVoteDetail = () => {
   const [curRequestOpenVote, setCurRequestOpenVote] = useState<API.RequestOpenVoteItem>({});
 
   const [showModalForm, setShowModalForm] = useState<boolean>(false);
@@ -101,7 +101,7 @@ const RequestOpenVote = () => {
   );
 };
 
-export default RequestOpenVote;
+export default RequestOpenVoteDetail;
 
 type SelectType = {
   label: string;

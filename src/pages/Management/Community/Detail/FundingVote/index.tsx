@@ -2,24 +2,29 @@ import { PlusOutlined, SearchOutlined } from '@ant-design/icons';
 import { Button, Input, Select } from 'antd';
 import { useState } from 'react';
 import CreateUpdateForm from './CreateUpdateForm';
-import DataTopicVoteTable from './DataTable';
+import DataFundingVoteTable from './DataTable';
 
-const TopicVote = () => {
-  const [curTopicVote, setCurTopicVote] = useState<API.TopicVoteItem>({});
+const FundingVoteDetail = () => {
+  const [curFundingVote, setCurFundingVote] = useState<API.FundingVoteItem>({});
 
   const [showModalForm, setShowModalForm] = useState<boolean>(false);
   const [showDrawer, setShowDrawer] = useState<boolean>(false);
   const [showRankingResult, setShowRankingResult] = useState<boolean>(false);
 
   const [currentStatus, setCurrentStatus] = useState<SelectStatus>();
-
-  const handleSetCurTopicVote = (x: API.TopicVoteItem) => {
-    setCurTopicVote(x);
-    setShowModalForm(true);
-  };
+  const [currentIdol, setCurrentIdol] = useState<SelectStatus>();
 
   const handleStatusChange = (value: SelectStatus) => {
     setCurrentStatus(value);
+  };
+
+  const handleIdolChange = (value: SelectStatus) => {
+    setCurrentIdol(value);
+  };
+
+  const handleSetCurFundingVote = (x: API.FundingVoteItem) => {
+    setCurFundingVote(x);
+    setShowModalForm(true);
   };
   return (
     <div>
@@ -55,6 +60,16 @@ const TopicVote = () => {
             onChange={handleStatusChange}
             value={currentStatus}
           />
+          <Select
+            allowClear
+            placeholder="Select idol vote"
+            style={{
+              width: '20%',
+            }}
+            options={listIdol.map((op) => ({ label: op.label, value: op.value }))}
+            onChange={handleIdolChange}
+            value={currentIdol}
+          />
         </div>
         <Button
           type="primary"
@@ -69,26 +84,24 @@ const TopicVote = () => {
           <span>Add</span>
         </Button>
       </div>
-      <DataTopicVoteTable
-        handleSetCurTopicVote={handleSetCurTopicVote}
-        curTopicVote={curTopicVote}
-        setCurTopicVote={setCurTopicVote}
+      <DataFundingVoteTable
+        curFundingVote={curFundingVote}
+        setCurFundingVote={setCurFundingVote}
+        setShowModalForm={setShowModalForm}
+        handleSetCurFundingVote={handleSetCurFundingVote}
         showDrawer={showDrawer}
         setShowDrawer={setShowDrawer}
-        setShowModalForm={setShowModalForm}
-        showRankingResult={showRankingResult}
-        setShowRankingResult={setShowRankingResult}
       />
       <CreateUpdateForm
         showModal={showModalForm}
         setShowModal={setShowModalForm}
-        curItem={curTopicVote}
+        curItem={curFundingVote}
       />
     </div>
   );
 };
 
-export default TopicVote;
+export default FundingVoteDetail;
 
 type SelectStatus = {
   label: string;
@@ -97,5 +110,13 @@ type SelectStatus = {
 
 export const listSelectStatus: SelectStatus[] = [
   { label: 'On going', value: 'onGoing' },
+  { label: 'Booking', value: 'booking' },
   { label: 'Closed', value: 'closed' },
+];
+
+export const listIdol: SelectStatus[] = [
+  { label: 'Lisa', value: 'Lisa' },
+  { label: 'Jenny', value: 'Jenny' },
+  { label: 'Rose', value: 'Rose' },
+  { label: 'Jiso', value: 'Jiso' },
 ];

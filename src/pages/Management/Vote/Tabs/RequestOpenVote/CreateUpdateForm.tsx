@@ -1,7 +1,6 @@
 import { formItemRule } from '@/utils/ruleForm';
 import {
-  ProFormDateRangePicker,
-  ProFormSelect,
+  ProFormDatePicker,
   ProFormText,
   ProFormTextArea,
   ProFormUploadButton,
@@ -12,7 +11,7 @@ import { FC, useEffect } from 'react';
 interface CreateUpdateFormProps {
   showModal: boolean;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-  curItem?: API.TopicVoteItem;
+  curItem?: API.RequestOpenVoteItem;
 }
 
 const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setShowModal }) => {
@@ -21,13 +20,12 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
     setShowModal(false);
     form?.resetFields();
   };
-  const handleSubmit = (formItem: API.TopicVoteItem) => {};
+  const handleSubmit = (formItem: API.RequestOpenVoteItem) => {};
 
   useEffect(() => {
-    form.setFieldValue('topicName', curItem?.topicName);
-    form.setFieldValue('startDate', curItem?.startDate);
-    form.setFieldValue('endDate', curItem?.endDate);
-    form.setFieldValue('idolVote', curItem?.idolVote);
+    form.setFieldValue('voteTitle', curItem?.voteTitle);
+    form.setFieldValue('requestDate', curItem?.requestDate);
+    form.setFieldValue('community', curItem?.community);
     form.setFieldValue('status', curItem?.status);
     form.setFieldValue('content', curItem?.content);
   }, [curItem]);
@@ -50,27 +48,18 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
         }}
       >
         <ProFormText
-          label="Topic Name"
-          name={'topicName'}
+          allowClear
+          label="Vote Title"
+          name={'voteTitle'}
           placeholder={''}
           rules={[formItemRule.required()]}
         />
-        <ProFormDateRangePicker
-          name={'rangeDate'}
-          placeholder={['Start date', 'End date']}
-          label="Start Date/ End Date"
+        <ProFormDatePicker
+          label="RequestDate"
+          name="requestDate"
+          placeholder="Select date"
           rules={[formItemRule.required()]}
         />
-        {curItem && (
-          <ProFormSelect
-            label="Idol vote"
-            name={'idolVote'}
-            placeholder={'Select idol'}
-            options={curItem?.idolVote}
-            rules={[formItemRule.required()]}
-            mode="tags"
-          />
-        )}
         <ProFormUploadButton
           label="Banner"
           title="Upload"
