@@ -9,10 +9,7 @@ interface DataUserTableProps {
 const DataUserTable: FC<DataUserTableProps> = ({ handleSetCurUser }) => {
   return (
     <div>
-      <Table
-        columns={configColumns(handleSetCurUser)} 
-        dataSource={userData} 
-       />
+      <Table columns={configColumns(handleSetCurUser)} dataSource={userData} />
     </div>
   );
 };

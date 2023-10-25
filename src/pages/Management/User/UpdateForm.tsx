@@ -26,7 +26,7 @@ const UpdateForm: FC<UpdateFormProps> = ({ showModal, curItem, setShowModal }) =
     form.setFieldValue('status', curItem?.status === 1 ? 'Actived' : 'Not Activated');
     form.setFieldValue('email', curItem?.email);
     form.setFieldValue('password', curItem?.password);
-  });
+  }, [curItem]);
 
   return (
     <Modal
