@@ -1,4 +1,4 @@
-import { QuestionCircleOutlined } from '@ant-design/icons';
+import { BellOutlined } from '@ant-design/icons';
 import { SelectLang as UmiSelectLang } from '@umijs/max';
 
 export type SiderTheme = 'light' | 'dark';
@@ -18,13 +18,29 @@ export const Question = () => {
     <div
       style={{
         display: 'flex',
-        height: 26,
-      }}
-      onClick={() => {
-        window.open('https://pro.ant.design/docs/getting-started');
+        position: 'relative',
+        padding: 0,
       }}
     >
-      <QuestionCircleOutlined />
+      <BellOutlined style={{ fontSize: '26px' }} />
+      <div
+        style={{
+          position: 'absolute',
+          right: 0,
+          top: '-5px',
+          borderRadius: '9999px',
+          backgroundColor: '#EA5455',
+          width: '16px',
+          height: '16px',
+          color: '#FFF',
+          fontSize: '12px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        4
+      </div>
     </div>
   );
 };
