@@ -12,7 +12,7 @@ import { typeSelect } from '.';
 interface CreateUpdateFormProps {
   showModal: boolean;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-  curItem?: API.IdolsItem;
+  curItem?: API.IdolItem;
 }
 
 const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setShowModal }) => {
@@ -21,10 +21,10 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
     setShowModal(false);
     form?.resetFields();
   };
-  const handleSubmit = (formItem: API.IdolsItem) => {};
+  const handleSubmit = (formItem: API.IdolItem) => {};
 
   useEffect(() => {
-    form.setFieldValue('type', curItem?.type ? 'Group' : 'Solo');
+    form.setFieldValue('type', curItem?.idolType ? 'Group' : 'Solo');
     form.setFieldValue('idolName', curItem?.idolName);
   }, [curItem]);
 

@@ -197,7 +197,7 @@ const DataTopicVoteTable: FC<DataTopicVoteTableProps> = ({
               {curTopicVote?.idolVote?.map((item, index) => (
                 <Tag key={index} style={{ display: 'flex', gap: '4px', padding: '4px 10px' }}>
                   <img src={idolAvatar} alt="idolAvatar" width={20} height={20} />
-                  <div>{item.name}</div>
+                  <div>{item.idolName}</div>
                 </Tag>
               ))}
             </div>
@@ -217,2246 +217,2246 @@ const DataTopicVoteTable: FC<DataTopicVoteTableProps> = ({
 
 export default DataTopicVoteTable;
 
-const topicVoteData: API.TopicVoteItem[] = [
-  {
-    topicName: 'SEOL MUSIC AWARDS x FANDOM',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 1,
-        name: 'Jiso',
-      },
-      {
-        id: 2,
-        name: 'Jenny',
-      },
-      {
-        id: 1,
-        name: 'Lisa',
-      },
-      {
-        id: 2,
-        name: 'Rose',
-      },
-    ],
-    content: contentDummy,
-    status: 1,
-  },
-  {
-    topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-    ],
-    status: 0,
-  },
-  {
-    topicName: 'SEOL MUSIC AWARDS x FANDOM',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 1,
-        name: 'Jiso',
-      },
-      {
-        id: 2,
-        name: 'Jenny',
-      },
-      {
-        id: 1,
-        name: 'Lisa',
-      },
-      {
-        id: 2,
-        name: 'Rose',
-      },
-    ],
-    status: 1,
-  },
-  {
-    topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-    ],
-    status: 0,
-  },
-  {
-    topicName: 'SEOL MUSIC AWARDS x FANDOM',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 1,
-        name: 'Jiso',
-      },
-      {
-        id: 2,
-        name: 'Jenny',
-      },
-      {
-        id: 1,
-        name: 'Lisa',
-      },
-      {
-        id: 2,
-        name: 'Rose',
-      },
-    ],
-    status: 1,
-  },
-  {
-    topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-    ],
-    status: 0,
-  },
-  {
-    topicName: 'SEOL MUSIC AWARDS x FANDOM',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 1,
-        name: 'Jiso',
-      },
-      {
-        id: 2,
-        name: 'Jenny',
-      },
-      {
-        id: 1,
-        name: 'Lisa',
-      },
-      {
-        id: 2,
-        name: 'Rose',
-      },
-    ],
-    status: 1,
-  },
-  {
-    topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-    ],
-    status: 0,
-  },
-  {
-    topicName: 'SEOL MUSIC AWARDS x FANDOM',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 1,
-        name: 'Jiso',
-      },
-      {
-        id: 2,
-        name: 'Jenny',
-      },
-      {
-        id: 1,
-        name: 'Lisa',
-      },
-      {
-        id: 2,
-        name: 'Rose',
-      },
-    ],
-    status: 1,
-  },
-  {
-    topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-    ],
-    status: 0,
-  },
-  {
-    topicName: 'SEOL MUSIC AWARDS x FANDOM',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 1,
-        name: 'Jiso',
-      },
-      {
-        id: 2,
-        name: 'Jenny',
-      },
-      {
-        id: 1,
-        name: 'Lisa',
-      },
-      {
-        id: 2,
-        name: 'Rose',
-      },
-    ],
-    status: 1,
-  },
-  {
-    topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-    ],
-    status: 0,
-  },
-  {
-    topicName: 'SEOL MUSIC AWARDS x FANDOM',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 1,
-        name: 'Jiso',
-      },
-      {
-        id: 2,
-        name: 'Jenny',
-      },
-      {
-        id: 1,
-        name: 'Lisa',
-      },
-      {
-        id: 2,
-        name: 'Rose',
-      },
-    ],
-    status: 1,
-  },
-  {
-    topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-    ],
-    status: 0,
-  },
-  {
-    topicName: 'SEOL MUSIC AWARDS x FANDOM',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 1,
-        name: 'Jiso',
-      },
-      {
-        id: 2,
-        name: 'Jenny',
-      },
-      {
-        id: 1,
-        name: 'Lisa',
-      },
-      {
-        id: 2,
-        name: 'Rose',
-      },
-    ],
-    status: 1,
-  },
-  {
-    topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-    ],
-    status: 0,
-  },
-  {
-    topicName: 'SEOL MUSIC AWARDS x FANDOM',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 1,
-        name: 'Jiso',
-      },
-      {
-        id: 2,
-        name: 'Jenny',
-      },
-      {
-        id: 1,
-        name: 'Lisa',
-      },
-      {
-        id: 2,
-        name: 'Rose',
-      },
-    ],
-    status: 1,
-  },
-  {
-    topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-    ],
-    status: 0,
-  },
-  {
-    topicName: 'SEOL MUSIC AWARDS x FANDOM',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 1,
-        name: 'Jiso',
-      },
-      {
-        id: 2,
-        name: 'Jenny',
-      },
-      {
-        id: 1,
-        name: 'Lisa',
-      },
-      {
-        id: 2,
-        name: 'Rose',
-      },
-    ],
-    status: 1,
-  },
-  {
-    topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-    ],
-    status: 0,
-  },
-  {
-    topicName: 'DBSK',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 1,
-        name: 'Jiso',
-      },
-      {
-        id: 2,
-        name: 'Jenny',
-      },
-      {
-        id: 1,
-        name: 'Lisa',
-      },
-      {
-        id: 2,
-        name: 'Rose',
-      },
-    ],
-    status: 1,
-  },
-  {
-    topicName: 'Chi Pu',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-    ],
-    status: 0,
-  },
-  {
-    topicName: 'SEOL MUSIC AWARDS x FANDOM',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 1,
-        name: 'Jiso',
-      },
-      {
-        id: 2,
-        name: 'Jenny',
-      },
-      {
-        id: 1,
-        name: 'Lisa',
-      },
-      {
-        id: 2,
-        name: 'Rose',
-      },
-    ],
-    status: 1,
-  },
-  {
-    topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-    ],
-    status: 0,
-  },
-  {
-    topicName: 'SEOL MUSIC AWARDS x FANDOM',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 1,
-        name: 'Jiso',
-      },
-      {
-        id: 2,
-        name: 'Jenny',
-      },
-      {
-        id: 1,
-        name: 'Lisa',
-      },
-      {
-        id: 2,
-        name: 'Rose',
-      },
-    ],
-    status: 1,
-  },
-  {
-    topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-    ],
-    status: 0,
-  },
-  {
-    topicName: 'SEOL MUSIC AWARDS x FANDOM',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 1,
-        name: 'Jiso',
-      },
-      {
-        id: 2,
-        name: 'Jenny',
-      },
-      {
-        id: 1,
-        name: 'Lisa',
-      },
-      {
-        id: 2,
-        name: 'Rose',
-      },
-    ],
-    status: 1,
-  },
-  {
-    topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-    ],
-    status: 0,
-  },
-  {
-    topicName: 'SEOL MUSIC AWARDS x FANDOM',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 1,
-        name: 'Jiso',
-      },
-      {
-        id: 2,
-        name: 'Jenny',
-      },
-      {
-        id: 1,
-        name: 'Lisa',
-      },
-      {
-        id: 2,
-        name: 'Rose',
-      },
-    ],
-    status: 1,
-  },
-  {
-    topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-    ],
-    status: 0,
-  },
-  {
-    topicName: 'SEOL MUSIC AWARDS x FANDOM',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 1,
-        name: 'Jiso',
-      },
-      {
-        id: 2,
-        name: 'Jenny',
-      },
-      {
-        id: 1,
-        name: 'Lisa',
-      },
-      {
-        id: 2,
-        name: 'Rose',
-      },
-    ],
-    status: 1,
-  },
-  {
-    topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-    ],
-    status: 0,
-  },
-  {
-    topicName: 'SEOL MUSIC AWARDS x FANDOM',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 1,
-        name: 'Jiso',
-      },
-      {
-        id: 2,
-        name: 'Jenny',
-      },
-      {
-        id: 1,
-        name: 'Lisa',
-      },
-      {
-        id: 2,
-        name: 'Rose',
-      },
-    ],
-    status: 1,
-  },
-  {
-    topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-    ],
-    status: 0,
-  },
-  {
-    topicName: 'SEOL MUSIC AWARDS x FANDOM',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 1,
-        name: 'Jiso',
-      },
-      {
-        id: 2,
-        name: 'Jenny',
-      },
-      {
-        id: 1,
-        name: 'Lisa',
-      },
-      {
-        id: 2,
-        name: 'Rose',
-      },
-    ],
-    status: 1,
-  },
-  {
-    topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-    ],
-    status: 0,
-  },
-  {
-    topicName: 'SEOL MUSIC AWARDS x FANDOM',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 1,
-        name: 'Jiso',
-      },
-      {
-        id: 2,
-        name: 'Jenny',
-      },
-      {
-        id: 1,
-        name: 'Lisa',
-      },
-      {
-        id: 2,
-        name: 'Rose',
-      },
-    ],
-    status: 1,
-  },
-  {
-    topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-    ],
-    status: 0,
-  },
-  {
-    topicName: 'US-UK K-STAR MVA BEST',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 1,
-        name: 'Jiso',
-      },
-      {
-        id: 2,
-        name: 'Jenny',
-      },
-      {
-        id: 1,
-        name: 'Lisa',
-      },
-      {
-        id: 2,
-        name: 'Rose',
-      },
-    ],
-    status: 1,
-  },
-  {
-    topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    idolVote: [
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-      {
-        id: 100,
-        name: 'AWC',
-      },
-      {
-        id: 100,
-        name: 'UAT',
-      },
-      {
-        id: 100,
-        name: 'HCA',
-      },
-      {
-        id: 100,
-        name: 'UYT',
-      },
-      {
-        id: 100,
-        name: 'THS',
-      },
-      {
-        id: 100,
-        name: 'IAY',
-      },
-      {
-        id: 100,
-        name: 'HJS',
-      },
-      {
-        id: 100,
-        name: 'QTA',
-      },
-      {
-        id: 100,
-        name: 'LKA',
-      },
-      {
-        id: 100,
-        name: 'ISB',
-      },
-    ],
-    status: 0,
-  },
-];
+const topicVoteData: API.TopicVoteItem[] = [];
+//   {
+//     topicName: 'SEOL MUSIC AWARDS x FANDOM',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 1,
+//         idolName: 'Jiso',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Jenny',
+//       },
+//       {
+//         id: 1,
+//         idolName: 'Lisa',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Rose',
+//       },
+//     ],
+//     content: contentDummy,
+//     status: 1,
+//   },
+//   {
+//     topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//     ],
+//     status: 0,
+//   },
+//   {
+//     topicName: 'SEOL MUSIC AWARDS x FANDOM',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 1,
+//         idolName: 'Jiso',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Jenny',
+//       },
+//       {
+//         id: 1,
+//         idolName: 'Lisa',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Rose',
+//       },
+//     ],
+//     status: 1,
+//   },
+//   {
+//     topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//     ],
+//     status: 0,
+//   },
+//   {
+//     topicName: 'SEOL MUSIC AWARDS x FANDOM',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 1,
+//         idolName: 'Jiso',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Jenny',
+//       },
+//       {
+//         id: 1,
+//         idolName: 'Lisa',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Rose',
+//       },
+//     ],
+//     status: 1,
+//   },
+//   {
+//     topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//     ],
+//     status: 0,
+//   },
+//   {
+//     topicName: 'SEOL MUSIC AWARDS x FANDOM',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 1,
+//         idolName: 'Jiso',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Jenny',
+//       },
+//       {
+//         id: 1,
+//         idolName: 'Lisa',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Rose',
+//       },
+//     ],
+//     status: 1,
+//   },
+//   {
+//     topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//     ],
+//     status: 0,
+//   },
+//   {
+//     topicName: 'SEOL MUSIC AWARDS x FANDOM',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 1,
+//         idolName: 'Jiso',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Jenny',
+//       },
+//       {
+//         id: 1,
+//         idolName: 'Lisa',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Rose',
+//       },
+//     ],
+//     status: 1,
+//   },
+//   {
+//     topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//     ],
+//     status: 0,
+//   },
+//   {
+//     topicName: 'SEOL MUSIC AWARDS x FANDOM',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 1,
+//         idolName: 'Jiso',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Jenny',
+//       },
+//       {
+//         id: 1,
+//         idolName: 'Lisa',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Rose',
+//       },
+//     ],
+//     status: 1,
+//   },
+//   {
+//     topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//     ],
+//     status: 0,
+//   },
+//   {
+//     topicName: 'SEOL MUSIC AWARDS x FANDOM',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 1,
+//         idolName: 'Jiso',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Jenny',
+//       },
+//       {
+//         id: 1,
+//         idolName: 'Lisa',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Rose',
+//       },
+//     ],
+//     status: 1,
+//   },
+//   {
+//     topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//     ],
+//     status: 0,
+//   },
+//   {
+//     topicName: 'SEOL MUSIC AWARDS x FANDOM',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 1,
+//         idolName: 'Jiso',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Jenny',
+//       },
+//       {
+//         id: 1,
+//         idolName: 'Lisa',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Rose',
+//       },
+//     ],
+//     status: 1,
+//   },
+//   {
+//     topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//     ],
+//     status: 0,
+//   },
+//   {
+//     topicName: 'SEOL MUSIC AWARDS x FANDOM',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 1,
+//         idolName: 'Jiso',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Jenny',
+//       },
+//       {
+//         id: 1,
+//         idolName: 'Lisa',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Rose',
+//       },
+//     ],
+//     status: 1,
+//   },
+//   {
+//     topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//     ],
+//     status: 0,
+//   },
+//   {
+//     topicName: 'SEOL MUSIC AWARDS x FANDOM',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 1,
+//         idolName: 'Jiso',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Jenny',
+//       },
+//       {
+//         id: 1,
+//         idolName: 'Lisa',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Rose',
+//       },
+//     ],
+//     status: 1,
+//   },
+//   {
+//     topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//     ],
+//     status: 0,
+//   },
+//   {
+//     topicName: 'DBSK',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 1,
+//         idolName: 'Jiso',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Jenny',
+//       },
+//       {
+//         id: 1,
+//         idolName: 'Lisa',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Rose',
+//       },
+//     ],
+//     status: 1,
+//   },
+//   {
+//     topicName: 'Chi Pu',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//     ],
+//     status: 0,
+//   },
+//   {
+//     topicName: 'SEOL MUSIC AWARDS x FANDOM',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 1,
+//         idolName: 'Jiso',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Jenny',
+//       },
+//       {
+//         id: 1,
+//         idolName: 'Lisa',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Rose',
+//       },
+//     ],
+//     status: 1,
+//   },
+//   {
+//     topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//     ],
+//     status: 0,
+//   },
+//   {
+//     topicName: 'SEOL MUSIC AWARDS x FANDOM',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 1,
+//         idolName: 'Jiso',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Jenny',
+//       },
+//       {
+//         id: 1,
+//         idolName: 'Lisa',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Rose',
+//       },
+//     ],
+//     status: 1,
+//   },
+//   {
+//     topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//     ],
+//     status: 0,
+//   },
+//   {
+//     topicName: 'SEOL MUSIC AWARDS x FANDOM',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 1,
+//         idolName: 'Jiso',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Jenny',
+//       },
+//       {
+//         id: 1,
+//         idolName: 'Lisa',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Rose',
+//       },
+//     ],
+//     status: 1,
+//   },
+//   {
+//     topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//     ],
+//     status: 0,
+//   },
+//   {
+//     topicName: 'SEOL MUSIC AWARDS x FANDOM',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 1,
+//         idolName: 'Jiso',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Jenny',
+//       },
+//       {
+//         id: 1,
+//         idolName: 'Lisa',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Rose',
+//       },
+//     ],
+//     status: 1,
+//   },
+//   {
+//     topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//     ],
+//     status: 0,
+//   },
+//   {
+//     topicName: 'SEOL MUSIC AWARDS x FANDOM',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 1,
+//         idolName: 'Jiso',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Jenny',
+//       },
+//       {
+//         id: 1,
+//         idolName: 'Lisa',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Rose',
+//       },
+//     ],
+//     status: 1,
+//   },
+//   {
+//     topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//     ],
+//     status: 0,
+//   },
+//   {
+//     topicName: 'SEOL MUSIC AWARDS x FANDOM',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 1,
+//         idolName: 'Jiso',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Jenny',
+//       },
+//       {
+//         id: 1,
+//         idolName: 'Lisa',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Rose',
+//       },
+//     ],
+//     status: 1,
+//   },
+//   {
+//     topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//     ],
+//     status: 0,
+//   },
+//   {
+//     topicName: 'SEOL MUSIC AWARDS x FANDOM',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 1,
+//         idolName: 'Jiso',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Jenny',
+//       },
+//       {
+//         id: 1,
+//         idolName: 'Lisa',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Rose',
+//       },
+//     ],
+//     status: 1,
+//   },
+//   {
+//     topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//     ],
+//     status: 0,
+//   },
+//   {
+//     topicName: 'SEOL MUSIC AWARDS x FANDOM',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 1,
+//         idolName: 'Jiso',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Jenny',
+//       },
+//       {
+//         id: 1,
+//         idolName: 'Lisa',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Rose',
+//       },
+//     ],
+//     status: 1,
+//   },
+//   {
+//     topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//     ],
+//     status: 0,
+//   },
+//   {
+//     topicName: 'US-UK K-STAR MVA BEST',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 1,
+//         idolName: 'Jiso',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Jenny',
+//       },
+//       {
+//         id: 1,
+//         idolName: 'Lisa',
+//       },
+//       {
+//         id: 2,
+//         idolName: 'Rose',
+//       },
+//     ],
+//     status: 1,
+//   },
+//   {
+//     topicName: '[MVA 2023] K-STAR MVA BEST ARTIST (Women)',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     idolVote: [
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'AWC',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UAT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HCA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'UYT',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'THS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'IAY',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'HJS',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'QTA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'LKA',
+//       },
+//       {
+//         id: 100,
+//         idolName: 'ISB',
+//       },
+//     ],
+//     status: 0,
+//   },
+// ];

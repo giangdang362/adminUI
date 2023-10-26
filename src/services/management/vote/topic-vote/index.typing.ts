@@ -3,7 +3,7 @@ declare namespace API {
     topicName?: string;
     startDate?: string;
     endDate?: string;
-    idolVote?: MemberItem[];
+    idolVote?: API.IdolItem[];
     status?: number;
     content?: string;
   };

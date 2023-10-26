@@ -3,13 +3,11 @@ import { currentUser as queryCurrentUser } from '@/services/ant-design-pro/api';
 import { LinkOutlined } from '@ant-design/icons';
 import type { Settings as LayoutSettings } from '@ant-design/pro-components';
 import { SettingDrawer } from '@ant-design/pro-components';
-import type { RunTimeLayoutConfig } from '@umijs/max';
+import type { RequestConfig, RunTimeLayoutConfig } from '@umijs/max';
 import { Link, history } from '@umijs/max';
 import { ConfigProvider } from 'antd';
-import { Provider } from 'react-redux';
 import defaultSettings from '../config/defaultSettings';
 import { errorConfig } from './requestErrorConfig';
-import { store } from './store';
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
 
@@ -143,23 +141,20 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
               },
             }}
           >
-            {/* Add Provider to use store of redux */}
-            <Provider store={store}>
-              {children}
-              {isDev && (
-                <SettingDrawer
-                  disableUrlParams
-                  enableDarkTheme
-                  settings={initialState?.settings}
-                  onSettingChange={(settings) => {
-                    setInitialState((preInitialState) => ({
-                      ...preInitialState,
-                      settings,
-                    }));
-                  }}
-                />
-              )}
-            </Provider>
+            {children}
+            {isDev && (
+              <SettingDrawer
+                disableUrlParams
+                enableDarkTheme
+                settings={initialState?.settings}
+                onSettingChange={(settings) => {
+                  setInitialState((preInitialState) => ({
+                    ...preInitialState,
+                    settings,
+                  }));
+                }}
+              />
+            )}
           </ConfigProvider>
         </>
       );
@@ -173,6 +168,9 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
  * 它基于 axios 和 ahooks 的 useRequest 提供了一套统一的网络请求和错误处理方案。
  * @doc https://umijs.org/docs/max/request#配置
  */
-export const request = {
+
+const { API_BASE_URL } = process.env;
+export const request: RequestConfig = {
+  baseURL: API_BASE_URL || 'http://10.10.31.53:8686',
   ...errorConfig,
 };

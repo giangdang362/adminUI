@@ -55,7 +55,7 @@ const UpdateForm: FC<UpdateFormProps> = ({ showModal, curItem, setShowModal }) =
             label="Idol Follow"
             name={'idolFollow'}
             placeholder={'Select type'}
-            options={curItem?.idolFollow?.map((item) => item.name)}
+            options={curItem?.idolFollow?.map((item) => item.idolName)}
             rules={[formItemRule.required()]}
             mode="tags"
           />

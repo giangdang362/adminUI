@@ -7,12 +7,12 @@ import DataIdolsTable from './DataSoloTable';
 const { Title } = Typography;
 
 const IdolsManagement = () => {
-  const [curIdol, setCurIdol] = useState<API.IdolsItem>();
+  const [curIdol, setCurIdol] = useState<API.IdolItem>();
   const [currentEsalisday, setCurrentEsalisday] = useState<SelectType>();
   const [currentType, setCurrentType] = useState<SelectType>();
   const [showModal, setShowModal] = useState<boolean>(false);
 
-  const handleSetCurIdol = (x: API.IdolsItem) => {
+  const handleSetCurIdol = (x: API.IdolItem) => {
     setCurIdol(x);
     setShowModal(true);
   };

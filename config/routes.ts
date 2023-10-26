@@ -28,12 +28,12 @@ export default [
     icon: 'home',
     component: './Dasboard/index',
   },
-  {
-    path: '/welcome',
-    name: 'welcome',
-    icon: 'smile',
-    component: './Welcome',
-  },
+  // {
+  //   path: '/welcome',
+  //   name: 'welcome',
+  //   icon: 'smile',
+  //   component: './Welcome',
+  // },
   {
     path: '/management',
     name: 'Management',
