@@ -1,20 +1,27 @@
 import { ArrowLeftOutlined } from '@ant-design/icons';
-import { useNavigate } from '@umijs/max';
+import { useIntl, useNavigate } from '@umijs/max';
 import { Button, Tabs } from 'antd';
 import FundingVoteDetail from './FundingVote';
 import RequestOpenVoteDetail from './RequestOpenVote';
 
 const CommunityDetail = () => {
+  const intl = useIntl();
   const navigate = useNavigate();
   const listTabs = [
     {
       id: 1,
-      label: 'Funding Vote',
+      label: `${intl.formatMessage({
+        id: 'pages.community.fundingVote.title',
+        defaultMessage: 'Funding Vote',
+      })}`,
       children: <FundingVoteDetail />,
     },
     {
       id: 2,
-      label: 'Request Open Vote',
+      label: `${intl.formatMessage({
+        id: 'pages.community.request.title',
+        defaultMessage: 'Request Open Vote',
+      })}`,
       children: <RequestOpenVoteDetail />,
     },
   ];
@@ -46,7 +53,10 @@ const CommunityDetail = () => {
             lineHeight: '24px',
           }}
         >
-          BlackPink
+          {intl.formatMessage({
+            id: 'pages.community.titale',
+            defaultMessage: 'BlackPink',
+          })}
         </div>
       </div>
       <Tabs

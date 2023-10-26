@@ -1,3 +1,4 @@
+import { useIntl } from '@umijs/max';
 import { Tabs, Typography } from 'antd';
 import FundingVote from './Tabs/FundingVote';
 import RequestOpenVote from './Tabs/RequestOpenVote';
@@ -6,26 +7,41 @@ import TopicVote from './Tabs/TopicVote';
 const { Title } = Typography;
 
 const VoteManagement = () => {
+  const intl = useIntl();
   const listTabs = [
     {
       id: 1,
-      label: 'Topic Vote',
+      label: `${intl.formatMessage({
+        id: 'pages.vote.topicVote.title',
+        defaultMessage: 'Topic Vote',
+      })}`,
       children: <TopicVote />,
     },
     {
       id: 2,
-      label: 'Funding Vote',
+      label: `${intl.formatMessage({
+        id: 'pages.vote.fundingVote.title',
+        defaultMessage: 'Funding Vote',
+      })}`,
       children: <FundingVote />,
     },
     {
       id: 3,
-      label: 'Request Open Vote',
+      label: `${intl.formatMessage({
+        id: 'pages.vote.reuest.title',
+        defaultMessage: 'Request Open Vote',
+      })}`,
       children: <RequestOpenVote />,
     },
   ];
   return (
     <div>
-      <Title level={3}>Vote Management</Title>
+      <Title level={3}>
+        {intl.formatMessage({
+          id: 'pages.vote.title',
+          defaultMessage: 'Vote Management',
+        })}
+      </Title>
       <Tabs
         tabPosition="top"
         items={listTabs.map((item, index) => {

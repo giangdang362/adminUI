@@ -1,5 +1,6 @@
 import idolAvatar from '@/../public/images/idol-avatar.png';
 import { FormatNumber } from '@/constants/common';
+import { useIntl } from '@umijs/max';
 import { Modal } from 'antd';
 import { FC } from 'react';
 
@@ -9,17 +10,27 @@ interface RankingResultModalProps {
 }
 
 const RankingResultModal: FC<RankingResultModalProps> = ({ showModal, setShowModal }) => {
+  const intl = useIntl();
   const handleCloseModal = () => {
     setShowModal(false);
   };
 
   return (
     <Modal
-      title="Ranking Result"
+      title={`${intl.formatMessage({
+        id: 'pages.vote.topicVote.rankingTitle',
+        defaultMessage: 'Ranking Result',
+      })}`}
       open={showModal}
       onCancel={handleCloseModal}
-      okText="Save"
-      cancelText="Cancel"
+      okText={`${intl.formatMessage({
+        id: 'pages.button.save',
+        defaultMessage: 'Save',
+      })}`}
+      cancelText={`${intl.formatMessage({
+        id: 'pages.button.cancel',
+        defaultMessage: 'Cancel',
+      })}`}
       style={{
         width: '500px',
       }}

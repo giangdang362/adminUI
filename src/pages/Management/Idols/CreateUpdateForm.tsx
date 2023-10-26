@@ -5,6 +5,7 @@ import {
   ProFormText,
   ProFormUploadButton,
 } from '@ant-design/pro-components';
+import { useIntl } from '@umijs/max';
 import { Form, Modal } from 'antd';
 import { FC, useEffect } from 'react';
 import { typeSelect } from '.';
@@ -16,6 +17,7 @@ interface CreateUpdateFormProps {
 }
 
 const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setShowModal }) => {
+  const intl = useIntl();
   const [form] = Form.useForm();
   const handleCloseModal = () => {
     setShowModal(false);
@@ -30,11 +32,27 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
 
   return (
     <Modal
-      title="Add Idol"
+      title={
+        !curItem
+          ? `${intl.formatMessage({
+              id: 'pages.idols.form.titleAdd',
+              defaultMessage: 'Add Idol',
+            })}`
+          : `${intl.formatMessage({
+              id: 'pages.idols.form.titleEdit',
+              defaultMessage: 'Edit Idol',
+            })}`
+      }
       open={showModal}
       onCancel={handleCloseModal}
-      okText="Save"
-      cancelText="Cancel"
+      okText={`${intl.formatMessage({
+        id: 'pages.button.save',
+        defaultMessage: 'Save',
+      })}`}
+      cancelText={`${intl.formatMessage({
+        id: 'pages.button.cancel',
+        defaultMessage: 'Cancel',
+      })}`}
     >
       <Form
         form={form}
@@ -46,35 +64,62 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
         }}
       >
         <ProFormSelect
-          label="Type"
+          label={`${intl.formatMessage({
+            id: 'pages.idols.form.type',
+            defaultMessage: 'Type',
+          })}`}
           name={'type'}
-          placeholder={'Select type'}
+          placeholder={`${intl.formatMessage({
+            id: 'pages.button.placeholderType',
+            defaultMessage: 'Select type',
+          })}`}
           options={typeSelect}
           rules={[formItemRule.required()]}
           mode="single"
         />
         <ProFormUploadButton
-          label="Avatar"
-          title="Upload"
+          label={`${intl.formatMessage({
+            id: 'pages.idols.form.avatar',
+            defaultMessage: 'Avatar',
+          })}`}
+          title={`${intl.formatMessage({
+            id: 'pages.button.titleUpload',
+            defaultMessage: 'Upload',
+          })}`}
           name={'avatar'}
           rules={[formItemRule.required()]}
         />
         <ProFormUploadButton
-          label="Banner"
-          title="Upload"
+          label={`${intl.formatMessage({
+            id: 'pages.idols.form.banner',
+            defaultMessage: 'Banner',
+          })}`}
+          title={`${intl.formatMessage({
+            id: 'pages.button.titleUpload',
+            defaultMessage: 'Upload',
+          })}`}
           name={'banner'}
           rules={[formItemRule.required()]}
         />
         <ProFormText
-          label="Idol Name"
+          label={`${intl.formatMessage({
+            id: 'pages.idols.form.idolName',
+            defaultMessage: 'Idol Name',
+          })}`}
           placeholder={''}
           name={'idolName'}
           rules={[formItemRule.required()]}
         />
         <ProFormDatePicker
           name={'birthday'}
-          placeholder={'Select date'}
-          label="Birthday/Estalisday"
+          placeholder={`${intl.formatMessage({
+            id: 'pages.idols.form.placeholderBirth',
+            defaultMessage: 'Select date',
+          })}`}
+          label={`${intl.formatMessage({
+            id: 'pages.idols.form.birthday',
+            defaultMessage: 'Birthday/Estalisday',
+          })}`}
           rules={[formItemRule.required()]}
         />
         {curItem && (

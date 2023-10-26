@@ -1,5 +1,15 @@
+import { useIntl } from '@umijs/max';
+
 const Dasboard = () => {
-  return <div>Dasboard</div>;
+  const intl = useIntl();
+  return (
+    <div>
+      {intl.formatMessage({
+        id: 'menu.dashboard',
+        defaultMessage: 'Dashboard',
+      })}
+    </div>
+  );
 };
 
 export default Dasboard;

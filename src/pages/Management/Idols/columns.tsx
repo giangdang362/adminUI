@@ -1,5 +1,6 @@
 import { FormatBirthday } from '@/constants/datetime';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import { useIntl } from '@umijs/max';
 import { Button, Tag, Tooltip } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 
@@ -10,22 +11,32 @@ export const configColumns = (
   const handleClickEdit = (x: API.IdolsItem) => {
     handleSetCurIdol(x);
   };
+  const intl = useIntl();
 
   return [
     {
-      title: 'ID',
+      title: `${intl.formatMessage({
+        id: 'pages.table.columns.id',
+        defaultMessage: 'ID',
+      })}`,
       dataIndex: 'id',
       key: 'id',
       width: '10%',
     },
     {
-      title: 'Idol Name',
+      title: `${intl.formatMessage({
+        id: 'pages.table.columns.idolName',
+        defaultMessage: 'Idol Name',
+      })}`,
       dataIndex: 'idolName',
       key: 'idolName',
       width: '15%',
     },
     {
-      title: 'Birthday/Estalisday',
+      title: `${intl.formatMessage({
+        id: 'pages.table.columns.birthday',
+        defaultMessage: 'Birthday/Estalisday',
+      })}`,
       dataIndex: 'birthday',
       key: 'birthday',
       render: (_, original) => {
@@ -34,7 +45,10 @@ export const configColumns = (
       width: '10%',
     },
     {
-      title: 'Member',
+      title: `${intl.formatMessage({
+        id: 'pages.table.columns.member',
+        defaultMessage: 'Member',
+      })}`,
       dataIndex: 'member',
       key: 'member',
       render: (_, original) => (
@@ -78,26 +92,38 @@ export const configColumns = (
       width: '45%',
     },
     {
-      title: 'Type',
+      title: `${intl.formatMessage({
+        id: 'pages.table.columns.type',
+        defaultMessage: 'Type',
+      })}`,
       dataIndex: 'type',
       key: 'type',
       render: (_, original) => {
         if (original.type === 0)
           return (
             <Tag style={{ borderColor: '#6940DA', color: '#6940DA', backgroundColor: '#E9E2F9' }}>
-              Solo
+              {intl.formatMessage({
+                id: 'pages.table.columns.solo',
+                defaultMessage: 'Solo',
+              })}
             </Tag>
           );
         return (
           <Tag style={{ borderColor: '#945723', color: '#945723', backgroundColor: '#EFE6DE' }}>
-            Group
+            {intl.formatMessage({
+              id: 'pages.table.columns.group',
+              defaultMessage: 'Group',
+            })}
           </Tag>
         );
       },
       width: '10%',
     },
     {
-      title: 'Action',
+      title: `${intl.formatMessage({
+        id: 'pages.table.columns.action',
+        defaultMessage: 'Action',
+      })}`,
       dataIndex: 'action',
       key: 'action',
       width: '10%',

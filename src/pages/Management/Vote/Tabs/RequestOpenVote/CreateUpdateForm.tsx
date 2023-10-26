@@ -5,6 +5,7 @@ import {
   ProFormTextArea,
   ProFormUploadButton,
 } from '@ant-design/pro-components';
+import { useIntl } from '@umijs/max';
 import { Form, Modal } from 'antd';
 import { FC, useEffect } from 'react';
 
@@ -15,6 +16,7 @@ interface CreateUpdateFormProps {
 }
 
 const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setShowModal }) => {
+  const intl = useIntl();
   const [form] = Form.useForm();
   const handleCloseModal = () => {
     setShowModal(false);
@@ -32,11 +34,27 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
 
   return (
     <Modal
-      title="Add Idol"
+      title={
+        !curItem
+          ? `${intl.formatMessage({
+              id: 'pages.vote.request.form.titleAdd',
+              defaultMessage: 'Add Request Open Vote',
+            })}`
+          : `${intl.formatMessage({
+              id: 'pages.vote.request.form.titleEdit',
+              defaultMessage: 'Edit Request Open Vote',
+            })}`
+      }
       open={showModal}
       onCancel={handleCloseModal}
-      okText="Save"
-      cancelText="Cancel"
+      okText={`${intl.formatMessage({
+        id: 'pages.button.save',
+        defaultMessage: 'Save',
+      })}`}
+      cancelText={`${intl.formatMessage({
+        id: 'pages.button.cancel',
+        defaultMessage: 'Cancel',
+      })}`}
     >
       <Form
         form={form}
@@ -49,27 +67,48 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
       >
         <ProFormText
           allowClear
-          label="Vote Title"
+          label={`${intl.formatMessage({
+            id: 'pages.vote.fundingVote.form.voteTitle',
+            defaultMessage: 'Vote Title',
+          })}`}
           name={'voteTitle'}
           placeholder={''}
           rules={[formItemRule.required()]}
         />
         <ProFormDatePicker
-          label="RequestDate"
+          label={`${intl.formatMessage({
+            id: 'pages.vote.request.form.date',
+            defaultMessage: 'RequestDate',
+          })}`}
           name="requestDate"
-          placeholder="Select date"
+          placeholder={`${intl.formatMessage({
+            id: 'pages.idols.form.placeholderBirth',
+            defaultMessage: 'Select date',
+          })}`}
           rules={[formItemRule.required()]}
         />
         <ProFormUploadButton
-          label="Banner"
-          title="Upload"
+          label={`${intl.formatMessage({
+            id: 'pages.vote.topicVote.form.banner',
+            defaultMessage: 'Banner',
+          })}`}
+          title={`${intl.formatMessage({
+            id: 'pages.button.upload',
+            defaultMessage: 'Upload',
+          })}`}
           name={'banner'}
           rules={[formItemRule.required()]}
         />
         <ProFormTextArea
-          label="Content"
+          label={`${intl.formatMessage({
+            id: 'pages.vote.topicVote.form.content',
+            defaultMessage: 'Content',
+          })}`}
           name="content"
-          placeholder="Note"
+          placeholder={`${intl.formatMessage({
+            id: 'pages.vote.topicVote.form.placeholderContent',
+            defaultMessage: 'Note',
+          })}`}
           rules={[formItemRule.required()]}
         />
       </Form>

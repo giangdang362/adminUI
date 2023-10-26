@@ -4,13 +4,14 @@ import pointLogo from '@/../public/images/point-logo.png';
 import { FormatNumber } from '@/constants/common';
 import { FormatBirthday } from '@/constants/datetime';
 import { DeleteOutlined, EditOutlined, ExclamationCircleFilled } from '@ant-design/icons';
+import { useIntl } from '@umijs/max';
 import { Button, Drawer, Image, Modal, Progress, Table, Tag, Typography } from 'antd';
 import { FC } from 'react';
 import { configColumns } from './columns';
 
 interface DataFundingVoteTableProps {
-  curFundingVote: API.FundingVoteItem;
-  setCurFundingVote: React.Dispatch<React.SetStateAction<API.FundingVoteItem>>;
+  curFundingVote?: API.FundingVoteItem;
+  setCurFundingVote: React.Dispatch<React.SetStateAction<API.FundingVoteItem | undefined>>;
   setShowModalForm: React.Dispatch<React.SetStateAction<boolean>>;
   handleSetCurFundingVote: (x: API.FundingVoteItem) => void;
   showDrawer: boolean;
@@ -26,16 +27,28 @@ const DataFundingVoteTable: FC<DataFundingVoteTableProps> = ({
   setShowDrawer,
 }) => {
   const { Title } = Typography;
-
+  const intl = useIntl();
   const { confirm } = Modal;
   const showDeleteConfirm = () => {
     confirm({
-      title: 'Delete this Topic vote?',
+      title: `${intl.formatMessage({
+        id: 'pages.vote.fundingVote.delete',
+        defaultMessage: 'Delete this Funding vote',
+      })}`,
       icon: <ExclamationCircleFilled style={{ color: 'red' }} />,
-      content: 'Do you really want to delete this item? This process can not be undone.',
-      okText: 'Delete',
+      content: `${intl.formatMessage({
+        id: 'pages.vote.topicVote.deleteContent',
+        defaultMessage: 'Do you really want to delete this item? This process can not be undone.',
+      })}`,
+      okText: `${intl.formatMessage({
+        id: 'pages.button.delete',
+        defaultMessage: 'Delete',
+      })}`,
       okType: 'danger',
-      cancelText: 'Cancel',
+      cancelText: `${intl.formatMessage({
+        id: 'pages.button.cancel',
+        defaultMessage: 'Cancel',
+      })}`,
       onOk() {
         console.log('Deleted');
       },
@@ -84,7 +97,12 @@ const DataFundingVoteTable: FC<DataFundingVoteTableProps> = ({
             </Button>
             <Button type="primary" onClick={() => setShowModalForm(true)}>
               <EditOutlined />
-              <span>Edit</span>
+              <span>
+                {intl.formatMessage({
+                  id: 'pages.button.edit',
+                  defaultMessage: 'Edit',
+                })}
+              </span>
             </Button>
           </div>
         }
@@ -114,7 +132,10 @@ const DataFundingVoteTable: FC<DataFundingVoteTableProps> = ({
                 alignItems: 'center',
               }}
             >
-              Status
+              {intl.formatMessage({
+                id: 'pages.user.form.status',
+                defaultMessage: 'Status',
+              })}
             </div>
             <div
               style={{
@@ -124,36 +145,45 @@ const DataFundingVoteTable: FC<DataFundingVoteTableProps> = ({
                 padding: '8px 12px',
                 borderRadius: '30px',
                 color: `
-                  ${curFundingVote.status === 'Ongoing' ? '#5DC983' : ''}
-                  ${curFundingVote.status === 'Booking' ? '#E9B558' : ''}
-                  ${curFundingVote.status === 'Closed' ? '#848484' : ''}
+                  ${curFundingVote?.status === 'Ongoing' ? '#5DC983' : ''}
+                  ${curFundingVote?.status === 'Booking' ? '#E9B558' : ''}
+                  ${curFundingVote?.status === 'Closed' ? '#848484' : ''}
                 `,
                 backgroundColor: `
-                  ${curFundingVote.status === 'Ongoing' ? '#E7F7EC' : ''}
-                  ${curFundingVote.status === 'Booking' ? '#FDF3E4' : ''}
-                  ${curFundingVote.status === 'Closed' ? '#F0F0F0' : ''}
+                  ${curFundingVote?.status === 'Ongoing' ? '#E7F7EC' : ''}
+                  ${curFundingVote?.status === 'Booking' ? '#FDF3E4' : ''}
+                  ${curFundingVote?.status === 'Closed' ? '#F0F0F0' : ''}
                 `,
                 fontSize: '13px',
               }}
             >
-              {curFundingVote.status}
+              {curFundingVote?.status}
             </div>
           </div>
           <div style={{ display: 'flex' }}>
             <div style={{ width: '108px', fontSize: '14px', fontWeight: 400, color: '#616161' }}>
-              Start Date
+              {intl.formatMessage({
+                id: 'pages.user.form.startDate',
+                defaultMessage: 'Start Date',
+              })}
             </div>
             <div>{FormatBirthday(curFundingVote?.startDate ?? '')}</div>
           </div>
           <div style={{ display: 'flex' }}>
             <div style={{ width: '108px', fontSize: '14px', fontWeight: 400, color: '#616161' }}>
-              End Date
+              {intl.formatMessage({
+                id: 'pages.vote.topicVote.endDate',
+                defaultMessage: 'End Date',
+              })}
             </div>
             <div>{FormatBirthday(curFundingVote?.endDate ?? '')}</div>
           </div>
           <div style={{ display: 'flex' }}>
             <div style={{ width: '108px', fontSize: '14px', fontWeight: 400, color: '#616161' }}>
-              Reward
+              {intl.formatMessage({
+                id: 'pages.vote.fundingVote.form.reward',
+                defaultMessage: 'Reward',
+              })}
             </div>
             <div
               style={{
@@ -164,12 +194,15 @@ const DataFundingVoteTable: FC<DataFundingVoteTableProps> = ({
                 maxWidth: '332px',
               }}
             >
-              {curFundingVote.reward}
+              {curFundingVote?.reward}
             </div>
           </div>
           <div style={{ display: 'flex' }}>
             <div style={{ width: '108px', fontSize: '14px', fontWeight: 400, color: '#616161' }}>
-              Goal
+              {intl.formatMessage({
+                id: 'pages.vote.fundingVote.goal',
+                defaultMessage: 'Goal',
+              })}
             </div>
             <div
               style={{
@@ -184,12 +217,15 @@ const DataFundingVoteTable: FC<DataFundingVoteTableProps> = ({
                   height: '16px',
                 }}
               />
-              <span>{FormatNumber(curFundingVote.goal ?? 0)}</span>
+              <span>{FormatNumber(curFundingVote?.goal ?? 0)}</span>
             </div>
           </div>
           <div style={{ display: 'flex' }}>
             <div style={{ width: '108px', fontSize: '14px', fontWeight: 400, color: '#616161' }}>
-              Idol Vote
+              {intl.formatMessage({
+                id: 'pages.vote.fundingVote.form.idolVote',
+                defaultMessage: 'Idol Vote',
+              })}
             </div>
             <div>
               <Tag
@@ -208,19 +244,25 @@ const DataFundingVoteTable: FC<DataFundingVoteTableProps> = ({
                     height: '20px',
                   }}
                 />
-                <span>{curFundingVote.idolVote}</span>
+                <span>{curFundingVote?.idolVote}</span>
               </Tag>
             </div>
           </div>
           <div style={{ display: 'flex' }}>
             <div style={{ width: '108px', fontSize: '14px', fontWeight: 400, color: '#616161' }}>
-              Vote
+              {intl.formatMessage({
+                id: 'pages.vote.fundingVote.vote',
+                defaultMessage: 'Vote',
+              })}
             </div>
-            <Progress style={{ width: '200px' }} percent={curFundingVote.vote} />
+            <Progress style={{ width: '200px' }} percent={curFundingVote?.vote} />
           </div>
           <div style={{ display: 'flex' }}>
             <div style={{ width: '108px', fontSize: '14px', fontWeight: 400, color: '#616161' }}>
-              Content
+              {intl.formatMessage({
+                id: 'pages.vote.topicVote.form.content',
+                defaultMessage: 'Content',
+              })}
             </div>
             <div style={{ maxWidth: '332px' }}>{curFundingVote?.content}</div>
           </div>

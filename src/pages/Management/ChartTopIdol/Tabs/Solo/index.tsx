@@ -1,5 +1,6 @@
 import { SearchOutlined } from '@ant-design/icons';
 import { ProForm } from '@ant-design/pro-components';
+import { useIntl } from '@umijs/max';
 import { Input, Select } from 'antd';
 import { useState } from 'react';
 import DataSoloTable from './DataSoloTable';
@@ -10,6 +11,7 @@ type SelectType = {
 };
 
 const SoloChartTopIdol = () => {
+  const intl = useIntl();
   const [currentSelect, setCurrentSelect] = useState<SelectType>(listSelect[0]);
 
   const handleProvinceChange = (value: SelectType) => {
@@ -31,7 +33,10 @@ const SoloChartTopIdol = () => {
             style={{
               width: '50%',
             }}
-            placeholder="Search by name"
+            placeholder={`${intl.formatMessage({
+              id: 'pages.chartTopIdol.solo.placeholderSearch',
+              defaultMessage: 'Search by name',
+            })}`}
             prefix={<SearchOutlined />}
           />
           <Select

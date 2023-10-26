@@ -6,6 +6,7 @@ import {
   ProFormTextArea,
   ProFormUploadButton,
 } from '@ant-design/pro-components';
+import { useIntl } from '@umijs/max';
 import { Form, Modal } from 'antd';
 import { FC, useEffect } from 'react';
 
@@ -16,6 +17,7 @@ interface CreateUpdateFormProps {
 }
 
 const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setShowModal }) => {
+  const intl = useIntl();
   const [form] = Form.useForm();
   const handleCloseModal = () => {
     setShowModal(false);
@@ -37,11 +39,27 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
 
   return (
     <Modal
-      title="Add Idol"
+      title={
+        !curItem
+          ? `${intl.formatMessage({
+              id: 'pages.vote.fundingVote.form.titleAdd',
+              defaultMessage: 'Add Funding Vote',
+            })}`
+          : `${intl.formatMessage({
+              id: 'pages.vote.fundingVote.form.titleEdit',
+              defaultMessage: 'Edit Funding Vote',
+            })}`
+      }
       open={showModal}
       onCancel={handleCloseModal}
-      okText="Save"
-      cancelText="Cancel"
+      okText={`${intl.formatMessage({
+        id: 'pages.button.save',
+        defaultMessage: 'Save',
+      })}`}
+      cancelText={`${intl.formatMessage({
+        id: 'pages.button.cancel',
+        defaultMessage: 'Cancel',
+      })}`}
     >
       <Form
         form={form}
@@ -54,7 +72,10 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
       >
         <ProFormText
           allowClear
-          label="Vote Title"
+          label={`${intl.formatMessage({
+            id: 'pages.vote.fundingVote.form.voteTitle',
+            defaultMessage: 'Vote Title',
+          })}`}
           name={'voteTitle'}
           placeholder={''}
           rules={[formItemRule.required()]}
@@ -62,14 +83,32 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
         <ProFormDateRangePicker
           allowClear
           name={'rangeDate'}
-          placeholder={['Start date', 'End date']}
-          label="Start Date - End Date"
+          placeholder={[
+            `${intl.formatMessage({
+              id: 'pages.vote.topicVote.form.placeholderStartDate',
+              defaultMessage: 'Start Date',
+            })}`,
+            `${intl.formatMessage({
+              id: 'pages.vote.topicVote.form.placeholderEndDate',
+              defaultMessage: 'End Date',
+            })}`,
+          ]}
+          label={`${intl.formatMessage({
+            id: 'pages.vote.fundingVote.form.date',
+            defaultMessage: 'Start Date - End Date',
+          })}`}
           rules={[formItemRule.required()]}
         />
         <ProFormText
-          label="reward"
+          label={`${intl.formatMessage({
+            id: 'pages.vote.fundingVote.form.reward',
+            defaultMessage: 'Reward',
+          })}`}
           name={'reward'}
-          placeholder={'Reward'}
+          placeholder={`${intl.formatMessage({
+            id: 'pages.vote.fundingVote.form.reward',
+            defaultMessage: 'Reward',
+          })}`}
           rules={[formItemRule.required()]}
         />
         <div
@@ -79,30 +118,54 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
           }}
         >
           <ProFormSelect
-            label={'Goal (point)'}
+            label={`${intl.formatMessage({
+              id: 'pages.vote.fundingVote.form.goal',
+              defaultMessage: 'Goal (point)',
+            })}`}
             name={'goal'}
-            placeholder="Select Goal"
+            placeholder={`${intl.formatMessage({
+              id: 'pages.vote.fundingVote.form.placeholderGoal',
+              defaultMessage: 'Select Goal',
+            })}`}
             options={listSelectPoint.map((op) => ({ label: op.label, value: op.value }))}
             rules={[formItemRule.required()]}
           />
           <ProFormSelect
-            label={'Idol Vote'}
+            label={`${intl.formatMessage({
+              id: 'pages.vote.fundingVote.form.idolVote',
+              defaultMessage: 'Idol Vote',
+            })}`}
             name={'idolVote'}
-            placeholder="Select Idol Vote"
+            placeholder={`${intl.formatMessage({
+              id: 'pages.vote.fundingVote.form.placeholderIdolVote',
+              defaultMessage: 'Select Idol Vote',
+            })}`}
             options={listSelectIdol.map((op) => ({ label: op.label, value: op.value }))}
             rules={[formItemRule.required()]}
           />
         </div>
         <ProFormUploadButton
-          label="Banner"
-          title="Upload"
+          label={`${intl.formatMessage({
+            id: 'pages.vote.topicVote.form.banner',
+            defaultMessage: 'Banner',
+          })}`}
+          title={`${intl.formatMessage({
+            id: 'pages.button.upload',
+            defaultMessage: 'Upload',
+          })}`}
           name={'banner'}
           rules={[formItemRule.required()]}
         />
         <ProFormTextArea
-          label="Content"
+          label={`${intl.formatMessage({
+            id: 'pages.vote.topicVote.form.content',
+            defaultMessage: 'Content',
+          })}`}
           name="content"
-          placeholder="Note"
+          placeholder={`${intl.formatMessage({
+            id: 'pages.vote.topicVote.form.placeholderContent',
+            defaultMessage: 'Note',
+          })}`}
           rules={[formItemRule.required()]}
         />
       </Form>

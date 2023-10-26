@@ -7,6 +7,7 @@ import {
   ExclamationCircleFilled,
   EyeOutlined,
 } from '@ant-design/icons';
+import { useIntl } from '@umijs/max';
 import { Button, Drawer, Image, Modal, Table, Tag, Typography } from 'antd';
 import { FC } from 'react';
 import RankingResultModal from './RankingResultModal';
@@ -35,8 +36,8 @@ The winner of the vote will be promoted on the main street's digital vision in "
 
 interface DataTopicVoteTableProps {
   handleSetCurTopicVote: (x: API.TopicVoteItem) => void;
-  curTopicVote: API.TopicVoteItem;
-  setCurTopicVote: React.Dispatch<React.SetStateAction<API.TopicVoteItem>>;
+  curTopicVote?: API.TopicVoteItem;
+  setCurTopicVote: React.Dispatch<React.SetStateAction<API.TopicVoteItem | undefined>>;
   setShowModalForm: React.Dispatch<React.SetStateAction<boolean>>;
   showDrawer: boolean;
   setShowDrawer: React.Dispatch<React.SetStateAction<boolean>>;
@@ -55,16 +56,28 @@ const DataTopicVoteTable: FC<DataTopicVoteTableProps> = ({
   setShowRankingResult,
 }) => {
   const { Title } = Typography;
-
+  const intl = useIntl();
   const { confirm } = Modal;
   const showDeleteConfirm = () => {
     confirm({
-      title: 'Delete this Topic vote?',
+      title: `${intl.formatMessage({
+        id: 'pages.vote.topicVote.delete',
+        defaultMessage: 'Delete this Topic vote',
+      })}`,
       icon: <ExclamationCircleFilled style={{ color: 'red' }} />,
-      content: 'Do you really want to delete this item? This process can not be undone.',
-      okText: 'Delete',
+      content: `${intl.formatMessage({
+        id: 'pages.vote.topicVote.deleteContent',
+        defaultMessage: 'Do you really want to delete this item? This process can not be undone.',
+      })}`,
+      okText: `${intl.formatMessage({
+        id: 'pages.button.delete',
+        defaultMessage: 'Delete',
+      })}`,
       okType: 'danger',
-      cancelText: 'Cancel',
+      cancelText: `${intl.formatMessage({
+        id: 'pages.button.cancel',
+        defaultMessage: 'Cancel',
+      })}`,
       onOk() {
         console.log('Deleted');
       },
@@ -109,18 +122,33 @@ const DataTopicVoteTable: FC<DataTopicVoteTableProps> = ({
               }}
             >
               <DeleteOutlined style={{ color: 'red' }} />
-              <span style={{ color: 'red' }}>Delete</span>
+              <span style={{ color: 'red' }}>
+                {intl.formatMessage({
+                  id: 'pages.button.delete',
+                  defaultMessage: 'Delete',
+                })}
+              </span>
             </Button>
             <>
-              {curTopicVote.status ? (
+              {curTopicVote?.status ? (
                 <Button type="primary" onClick={() => setShowModalForm(true)}>
                   <EditOutlined />
-                  <span>Edit</span>
+                  <span>
+                    {intl.formatMessage({
+                      id: 'pages.button.edit',
+                      defaultMessage: 'Edit',
+                    })}
+                  </span>
                 </Button>
               ) : (
                 <Button type="primary" onClick={() => setShowRankingResult(true)}>
                   <EyeOutlined />
-                  <span>View Result</span>
+                  <span>
+                    {intl.formatMessage({
+                      id: 'pages.button.view',
+                      defaultMessage: 'View Result',
+                    })}
+                  </span>
                 </Button>
               )}
             </>
@@ -152,7 +180,10 @@ const DataTopicVoteTable: FC<DataTopicVoteTableProps> = ({
                 alignItems: 'center',
               }}
             >
-              Status
+              {intl.formatMessage({
+                id: 'pages.user.form.status',
+                defaultMessage: 'Status',
+              })}
             </div>
             <div
               style={{
@@ -171,19 +202,28 @@ const DataTopicVoteTable: FC<DataTopicVoteTableProps> = ({
           </div>
           <div style={{ display: 'flex' }}>
             <div style={{ width: '108px', fontSize: '14px', fontWeight: 400, color: '#616161' }}>
-              Start Date
+              {intl.formatMessage({
+                id: 'pages.user.form.startDate',
+                defaultMessage: 'Start Date',
+              })}
             </div>
             <div>{FormatBirthday(curTopicVote?.startDate ?? '')}</div>
           </div>
           <div style={{ display: 'flex' }}>
             <div style={{ width: '108px', fontSize: '14px', fontWeight: 400, color: '#616161' }}>
-              End Date
+              {intl.formatMessage({
+                id: 'pages.vote.topicVote.endDate',
+                defaultMessage: 'End Date',
+              })}
             </div>
             <div>{FormatBirthday(curTopicVote?.endDate ?? '')}</div>
           </div>
           <div style={{ display: 'flex' }}>
             <div style={{ width: '108px', fontSize: '14px', fontWeight: 400, color: '#616161' }}>
-              Idol Vote
+              {intl.formatMessage({
+                id: 'pages.vote.fundingVote.form.idolVote',
+                defaultMessage: 'Idol vote',
+              })}
             </div>
             <div
               style={{
@@ -204,7 +244,10 @@ const DataTopicVoteTable: FC<DataTopicVoteTableProps> = ({
           </div>
           <div style={{ display: 'flex' }}>
             <div style={{ width: '108px', fontSize: '14px', fontWeight: 400, color: '#616161' }}>
-              Content
+              {intl.formatMessage({
+                id: 'pages.vote.topicVote.form.content',
+                defaultMessage: 'Content',
+              })}
             </div>
             <div style={{ maxWidth: '332px' }}>{curTopicVote?.content}</div>
           </div>

@@ -8,7 +8,7 @@ const DataCommunityTable = () => {
   return (
     <div className="wrapp-table">
       <Table
-        columns={columns}
+        columns={columns()}
         dataSource={soloData}
         pagination={{
           showQuickJumper: true,

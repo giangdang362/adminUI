@@ -1,5 +1,6 @@
 import { formItemRule } from '@/utils/ruleForm';
 import { ProFormDatePicker, ProFormSelect, ProFormText } from '@ant-design/pro-components';
+import { useIntl } from '@umijs/max';
 import { Form, Input, Modal } from 'antd';
 import { FC, useEffect } from 'react';
 
@@ -10,6 +11,7 @@ interface UpdateFormProps {
 }
 
 const UpdateForm: FC<UpdateFormProps> = ({ showModal, curItem, setShowModal }) => {
+  const intl = useIntl();
   const [form] = Form.useForm();
   const handleCloseModal = () => {
     setShowModal(false);
@@ -30,11 +32,20 @@ const UpdateForm: FC<UpdateFormProps> = ({ showModal, curItem, setShowModal }) =
 
   return (
     <Modal
-      title="Edit Users"
+      title={`${intl.formatMessage({
+        id: 'pages.user.form.title',
+        defaultMessage: 'Edit Users',
+      })}`}
       open={showModal}
       onCancel={handleCloseModal}
-      okText="Save"
-      cancelText="Cancel"
+      okText={`${intl.formatMessage({
+        id: 'pages.button.save',
+        defaultMessage: 'Save',
+      })}`}
+      cancelText={`${intl.formatMessage({
+        id: 'pages.button.cancel',
+        defaultMessage: 'Cancel',
+      })}`}
     >
       <Form
         form={form}
@@ -43,29 +54,87 @@ const UpdateForm: FC<UpdateFormProps> = ({ showModal, curItem, setShowModal }) =
         onFinish={handleSubmit}
         style={{ padding: '12px 0px' }}
       >
-        <ProFormText label="User Name" placeholder="" name="userName" />
+        <ProFormText
+          label={`${intl.formatMessage({
+            id: 'pages.user.form.userName',
+            defaultMessage: 'User Name',
+          })}`}
+          placeholder=""
+          name="userName"
+        />
         <div style={{ display: 'flex', gap: '15px' }}>
-          <ProFormDatePicker label="Start Date" name="lastLoginDate" disabled />
-          <ProFormDatePicker label="Last Login Date" name="lastLoginDate" disabled />
+          <ProFormDatePicker
+            label={`${intl.formatMessage({
+              id: 'pages.user.form.startDate',
+              defaultMessage: 'Start Date',
+            })}`}
+            name="lastLoginDate"
+            disabled
+          />
+          <ProFormDatePicker
+            label={`${intl.formatMessage({
+              id: 'pages.user.form.lastDate',
+              defaultMessage: 'Last Login Date',
+            })}`}
+            name="lastLoginDate"
+            disabled
+          />
         </div>
-        <ProFormText label="Email" placeholder="" name="email" disabled />
-        <ProFormText.Password label="Password" placeholder="" name="password" />
+        <ProFormText
+          label={`${intl.formatMessage({
+            id: 'pages.user.form.email',
+            defaultMessage: 'Email',
+          })}`}
+          placeholder=""
+          name="email"
+          disabled
+        />
+        <ProFormText.Password
+          label={`${intl.formatMessage({
+            id: 'pages.user.form.password',
+            defaultMessage: 'Password',
+          })}`}
+          placeholder=""
+          name="password"
+        />
         {curItem && (
           <ProFormSelect
-            label="Idol Follow"
+            label={`${intl.formatMessage({
+              id: 'pages.user.form.idolFollow',
+              defaultMessage: 'Idol Follow',
+            })}`}
             name={'idolFollow'}
-            placeholder={'Select type'}
+            placeholder={`${intl.formatMessage({
+              id: 'pages.idols.form.placeholderType',
+              defaultMessage: 'Select type',
+            })}`}
             options={curItem?.idolFollow?.map((item) => item.name)}
             rules={[formItemRule.required()]}
             mode="tags"
           />
         )}
         <div style={{ display: 'flex', gap: '15px' }}>
-          <Form.Item label="Point" name="point">
-            <Input suffix="Point" disabled style={{ height: '34px' }} />
+          <Form.Item
+            label={`${intl.formatMessage({
+              id: 'pages.user.form.point',
+              defaultMessage: 'Point',
+            })}`}
+            name="point"
+          >
+            <Input
+              suffix={`${intl.formatMessage({
+                id: 'pages.user.form.point',
+                defaultMessage: 'Point',
+              })}`}
+              disabled
+              style={{ height: '34px' }}
+            />
           </Form.Item>
           <ProFormText
-            label="Status"
+            label={`${intl.formatMessage({
+              id: 'pages.user.form.status',
+              defaultMessage: 'Status',
+            })}`}
             placeholder=""
             name="status"
             rules={[formItemRule.required()]}

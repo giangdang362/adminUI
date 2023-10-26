@@ -1,4 +1,5 @@
 import { PlusOutlined, SearchOutlined } from '@ant-design/icons';
+import { useIntl } from '@umijs/max';
 import { Button, Input, Select, Typography } from 'antd';
 import { useState } from 'react';
 import CreateUpdateForm from './CreateUpdateForm';
@@ -7,6 +8,7 @@ import DataIdolsTable from './DataSoloTable';
 const { Title } = Typography;
 
 const IdolsManagement = () => {
+  const intl = useIntl();
   const [curIdol, setCurIdol] = useState<API.IdolsItem>();
   const [currentEsalisday, setCurrentEsalisday] = useState<SelectType>();
   const [currentType, setCurrentType] = useState<SelectType>();
@@ -27,7 +29,12 @@ const IdolsManagement = () => {
 
   return (
     <div>
-      <Title level={3}>Idols Management</Title>
+      <Title level={3}>
+        {intl.formatMessage({
+          id: 'pages.idols.title',
+          defaultMessage: 'Idols Management',
+        })}
+      </Title>
       <div
         style={{
           display: 'flex',
@@ -47,11 +54,17 @@ const IdolsManagement = () => {
             style={{
               width: '20%',
             }}
-            placeholder="Search by name"
+            placeholder={`${intl.formatMessage({
+              id: 'pages.chartTopIdol.solo.placeholderSearch',
+              defaultMessage: 'Search by name',
+            })}`}
             prefix={<SearchOutlined />}
           />
           <Select
-            placeholder="Esalisday"
+            placeholder={`${intl.formatMessage({
+              id: 'pages.idols.placeholderEsal',
+              defaultMessage: 'Esalisday',
+            })}`}
             style={{
               width: '20%',
             }}
@@ -59,7 +72,10 @@ const IdolsManagement = () => {
             onChange={handleEsalisdayChange}
           />
           <Select
-            placeholder="Type"
+            placeholder={`${intl.formatMessage({
+              id: 'pages.idols.placeholderType',
+              defaultMessage: 'Type',
+            })}`}
             style={{
               width: '20%',
             }}
@@ -77,7 +93,12 @@ const IdolsManagement = () => {
           onClick={() => setShowModal(true)}
         >
           <PlusOutlined />
-          <span>Add</span>
+          <span>
+            {intl.formatMessage({
+              id: 'pages.button.add',
+              defaultMessage: 'Add',
+            })}
+          </span>
         </Button>
       </div>
       <DataIdolsTable handleSetCurIdol={handleSetCurIdol} />

@@ -7,7 +7,7 @@ const DataGroupTable = () => {
   return (
     <div className="wrapp-table">
       <Table
-        columns={columns}
+        columns={columns()}
         dataSource={groupData}
         pagination={{
           showQuickJumper: true,

@@ -1,5 +1,6 @@
 import { FormatDateTime } from '@/constants/datetime';
 import { DeleteOutlined, EditOutlined, ExclamationCircleFilled } from '@ant-design/icons';
+import { useIntl } from '@umijs/max';
 import { Button, Drawer, Modal, Table } from 'antd';
 import { FC, useState } from 'react';
 import '../../../Management/styles/styleTable.css';
@@ -23,16 +24,28 @@ const DataNotifiTable: FC<DataNotifiTableProps> = ({
     setCurNotifi(x);
     setOpenNotiDetail(true);
   };
-
+  const intl = useIntl();
   const { confirm } = Modal;
   const showDeleteConfirm = () => {
     confirm({
-      title: 'Delete this idol?',
+      title: `${intl.formatMessage({
+        id: 'pages.settings.notification.delete',
+        defaultMessage: 'Delete this Notification vote',
+      })}`,
       icon: <ExclamationCircleFilled style={{ color: 'red' }} />,
-      content: 'Do you really want to delete this notification? This process can not be undone.',
-      okText: 'Delete',
+      content: `${intl.formatMessage({
+        id: 'pages.settings.notification.deleteContent',
+        defaultMessage: 'Do you really want to delete this item? This process can not be undone.',
+      })}`,
+      okText: `${intl.formatMessage({
+        id: 'pages.button.delete',
+        defaultMessage: 'Delete',
+      })}`,
       okType: 'danger',
-      cancelText: 'Cancel',
+      cancelText: `${intl.formatMessage({
+        id: 'pages.button.cancel',
+        defaultMessage: 'Cancel',
+      })}`,
       onOk() {
         console.log('Deleted');
       },
@@ -58,7 +71,12 @@ const DataNotifiTable: FC<DataNotifiTableProps> = ({
           }}
         >
           <DeleteOutlined style={{ color: 'red' }} />
-          <span style={{ color: 'red' }}>Delete</span>
+          <span style={{ color: 'red' }}>
+            {intl.formatMessage({
+              id: 'pages.button.delete',
+              defaultMessage: 'Delete',
+            })}
+          </span>
         </Button>
         <Button
           type="primary"
@@ -70,7 +88,12 @@ const DataNotifiTable: FC<DataNotifiTableProps> = ({
           onClick={() => setShowModal(true)}
         >
           <EditOutlined />
-          <span>Edit</span>
+          <span>
+            {intl.formatMessage({
+              id: 'pages.button.edit',
+              defaultMessage: 'Edit',
+            })}
+          </span>
         </Button>
       </div>
     );
@@ -90,7 +113,14 @@ const DataNotifiTable: FC<DataNotifiTableProps> = ({
         }}
       />
       <Drawer
-        title={<div style={{ fontSize: '22px' }}>Notification Detail</div>}
+        title={
+          <div style={{ fontSize: '22px' }}>
+            {intl.formatMessage({
+              id: 'pages.settings.notification.titleDetail',
+              defaultMessage: 'Notification Detail',
+            })}
+          </div>
+        }
         placement="right"
         onClose={() => setOpenNotiDetail(false)}
         open={openNotiDetail}
@@ -99,25 +129,45 @@ const DataNotifiTable: FC<DataNotifiTableProps> = ({
       >
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
           <div style={{ display: 'flex' }}>
-            <div style={{ width: '100px' }}>Title</div>
+            <div style={{ width: '100px' }}>
+              {intl.formatMessage({
+                id: 'pages.settings.notification.form.title',
+                defaultMessage: 'Title',
+              })}
+            </div>
             <div style={{ fontSize: '15px', color: '#242424', maxWidth: '332px' }}>
               {curNotifi?.title}
             </div>
           </div>
           <div style={{ display: 'flex' }}>
-            <div style={{ width: '100px' }}>Update on</div>
+            <div style={{ width: '100px' }}>
+              {intl.formatMessage({
+                id: 'pages.settings.notification.updateOn',
+                defaultMessage: 'Update on',
+              })}
+            </div>
             <div style={{ fontSize: '15px', color: '#242424', maxWidth: '332px' }}>
               {FormatDateTime(curNotifi?.updatedDate ?? '')}
             </div>
           </div>
           <div style={{ display: 'flex' }}>
-            <div style={{ width: '100px' }}>Description</div>
+            <div style={{ width: '100px' }}>
+              {intl.formatMessage({
+                id: 'pages.settings.notification.desc',
+                defaultMessage: 'Description',
+              })}
+            </div>
             <div style={{ fontSize: '15px', color: '#242424', maxWidth: '332px' }}>
               {curNotifi?.description}
             </div>
           </div>
           <div style={{ display: 'flex' }}>
-            <div style={{ width: '100px' }}>Important</div>
+            <div style={{ width: '100px' }}>
+              {intl.formatMessage({
+                id: 'pages.settings.notification.form.important',
+                defaultMessage: 'Important',
+              })}
+            </div>
             <div style={{ fontSize: '15px', color: '#242424', maxWidth: '332px' }}>
               {curNotifi?.important === 1 ? 'Yes' : 'No'}
             </div>
