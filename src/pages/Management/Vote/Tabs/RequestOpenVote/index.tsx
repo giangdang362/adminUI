@@ -1,11 +1,13 @@
 import { PlusOutlined, SearchOutlined } from '@ant-design/icons';
+import { useIntl } from '@umijs/max';
 import { Button, Input, Select } from 'antd';
 import { useState } from 'react';
 import CreateUpdateForm from './CreateUpdateForm';
 import DataRequestOpenVoteTable from './DataTable';
 
 const RequestOpenVote = () => {
-  const [curRequestOpenVote, setCurRequestOpenVote] = useState<API.RequestOpenVoteItem>({});
+  const intl = useIntl();
+  const [curRequestOpenVote, setCurRequestOpenVote] = useState<API.RequestOpenVoteItem>();
 
   const [showModalForm, setShowModalForm] = useState<boolean>(false);
   const [showDrawer, setShowDrawer] = useState<boolean>(false);
@@ -46,12 +48,18 @@ const RequestOpenVote = () => {
             style={{
               width: '20%',
             }}
-            placeholder="Search by vote title"
+            placeholder={`${intl.formatMessage({
+              id: 'pages.vote.request.placeholderSearch',
+              defaultMessage: 'Search by vote title',
+            })}`}
             prefix={<SearchOutlined />}
           />
           <Select
             allowClear
-            placeholder="Select community"
+            placeholder={`${intl.formatMessage({
+              id: 'pages.vote.request.placeholderCommunity',
+              defaultMessage: 'Search community',
+            })}`}
             style={{
               width: '20%',
             }}
@@ -61,7 +69,10 @@ const RequestOpenVote = () => {
           />
           <Select
             allowClear
-            placeholder="Select status"
+            placeholder={`${intl.formatMessage({
+              id: 'pages.vote.topicVote.placeholderSelect',
+              defaultMessage: 'Select status',
+            })}`}
             style={{
               width: '20%',
             }}
@@ -80,7 +91,12 @@ const RequestOpenVote = () => {
           onClick={() => setShowModalForm(true)}
         >
           <PlusOutlined />
-          <span>Add</span>
+          <span>
+            {intl.formatMessage({
+              id: 'pages.button.add',
+              defaultMessage: 'Add',
+            })}
+          </span>
         </Button>
       </div>
       <DataRequestOpenVoteTable

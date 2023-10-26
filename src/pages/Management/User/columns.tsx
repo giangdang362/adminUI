@@ -1,5 +1,6 @@
 import { FormatBirthday } from '@/constants/datetime';
 import { EditOutlined } from '@ant-design/icons';
+import { useIntl } from '@umijs/max';
 import { Button, Tag, Tooltip } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import pointIcon from '../../../../public/images/point-icon.png';
@@ -10,15 +11,24 @@ export const configColumns = (
   const handleClickEdit = (x: API.UserItem) => {
     handleSetCurUser(x);
   };
+
+  const intl = useIntl();
+
   return [
     {
-      title: 'ID',
+      title: `${intl.formatMessage({
+        id: 'pages.table.columns.id',
+        defaultMessage: 'ID',
+      })}`,
       dataIndex: 'id',
       key: 'ID',
       width: '8%',
     },
     {
-      title: 'User Name',
+      title: `${intl.formatMessage({
+        id: 'pages.table.columns.userName',
+        defaultMessage: 'Use Name',
+      })}`,
       dataIndex: 'userName',
       key: 'userName',
       width: '21%',
@@ -33,7 +43,10 @@ export const configColumns = (
       ),
     },
     {
-      title: 'Last login Date',
+      title: `${intl.formatMessage({
+        id: 'pages.table.columns.lastDate',
+        defaultMessage: 'Last login Date',
+      })}`,
       dataIndex: 'lastLoginDate',
       key: 'lastLoginDate',
       width: '12%',
@@ -45,7 +58,12 @@ export const configColumns = (
       title: (
         <div style={{ display: 'flex', gap: '4px' }}>
           <img src={pointIcon} style={{ width: '16px', height: '16px', marginTop: '3px' }} />
-          <p style={{ margin: '0px' }}>Point</p>
+          <p style={{ margin: '0px' }}>
+            {intl.formatMessage({
+              id: 'pages.table.columns.point',
+              defaultMessage: 'Point',
+            })}
+          </p>
         </div>
       ),
       dataIndex: 'point',
@@ -53,7 +71,10 @@ export const configColumns = (
       width: '12%',
     },
     {
-      title: 'Idol Follow',
+      title: `${intl.formatMessage({
+        id: 'pages.table.columns.idolFollow',
+        defaultMessage: 'Idol Follow',
+      })}`,
       dataIndex: 'idolFollow',
       key: 'idolFollow',
       width: '24%',
@@ -91,7 +112,10 @@ export const configColumns = (
       ),
     },
     {
-      title: 'Status',
+      title: `${intl.formatMessage({
+        id: 'pages.table.columns.status',
+        defaultMessage: 'Status',
+      })}`,
       dataIndex: 'status',
       key: 'status',
       width: '15%',
@@ -113,7 +137,10 @@ export const configColumns = (
       ),
     },
     {
-      title: 'Action',
+      title: `${intl.formatMessage({
+        id: 'pages.table.columns.action',
+        defaultMessage: 'Action',
+      })}`,
       dataIndex: 'action',
       key: 'action',
       width: '8%',

@@ -1,5 +1,6 @@
 import { formItemRule } from '@/utils/ruleForm';
 import { ProFormText, ProFormTextArea } from '@ant-design/pro-components';
+import { useIntl } from '@umijs/max';
 import { Checkbox, Form, Modal } from 'antd';
 import { FC, useEffect } from 'react';
 
@@ -10,6 +11,7 @@ interface CreateUpdateFormProps {
 }
 
 const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setShowModal }) => {
+  const intl = useIntl();
   const [form] = Form.useForm();
   const handleCloseModal = () => {
     setShowModal(false);
@@ -26,11 +28,27 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
 
   return (
     <Modal
-      title={curItem?.title === undefined ? 'Create Notification' : 'Edit Notification'}
+      title={
+        !curItem
+          ? `${intl.formatMessage({
+              id: 'pages.settings.notification.form.titleAdd',
+              defaultMessage: 'Create Notification',
+            })}`
+          : `${intl.formatMessage({
+              id: 'pages.settings.notification.form.titleEdit',
+              defaultMessage: 'Edit Notification',
+            })}`
+      }
       open={showModal}
       onCancel={handleCloseModal}
-      okText="Save"
-      cancelText="Cancel"
+      okText={`${intl.formatMessage({
+        id: 'pages.button.save',
+        defaultMessage: 'Save',
+      })}`}
+      cancelText={`${intl.formatMessage({
+        id: 'pages.button.cancel',
+        defaultMessage: 'Cancel',
+      })}`}
     >
       <Form
         form={form}
@@ -42,13 +60,28 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
         }}
       >
         <ProFormText
-          label="Title"
+          label={`${intl.formatMessage({
+            id: 'pages.settings.notification.form.title',
+            defaultMessage: 'Title',
+          })}`}
           name={'title'}
           placeholder={''}
           rules={[formItemRule.required()]}
         />
-        <ProFormTextArea label="Description" name="description" rules={[formItemRule.required()]} />
-        <Checkbox checked={curItem?.important === 1}>Important</Checkbox>
+        <ProFormTextArea
+          label={`${intl.formatMessage({
+            id: 'pages.settings.notification.form.description',
+            defaultMessage: 'Description',
+          })}`}
+          name="description"
+          rules={[formItemRule.required()]}
+        />
+        <Checkbox checked={curItem?.important === 1}>
+          {intl.formatMessage({
+            id: 'pages.settings.notification.form.important',
+            defaultMessage: 'Important',
+          })}
+        </Checkbox>
       </Form>
     </Modal>
   );

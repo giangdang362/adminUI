@@ -1,6 +1,7 @@
 import ButtonForm from '@/pages/components/ButtonForm/ButtonForm';
 import TitleCurrentPage from '@/pages/components/TitleCurrentPage';
 import { ProForm } from '@ant-design/pro-components';
+import { useIntl } from '@umijs/max';
 import { Button, Tabs, Typography } from 'antd';
 import { useState } from 'react';
 import Notification from './Tabs/Notification';
@@ -9,6 +10,7 @@ import Point from './Tabs/Point';
 
 const { Title } = Typography;
 const Setting = () => {
+  const intl = useIntl();
   const [form] = ProForm.useForm();
   const [showModal, setShowModal] = useState<boolean>(false);
   const [curNotifi, setCurNotifi] = useState<API.NotificationItem>();
@@ -33,7 +35,12 @@ const Setting = () => {
   ];
   return (
     <div>
-      <Title level={3}>Settings</Title>
+      <Title level={3}>
+        {intl.formatMessage({
+          id: 'pages.settings.title',
+          defaultMessage: 'Settings',
+        })}
+      </Title>
       <Tabs
         tabPosition="left"
         items={listTabsSetting.map((item, index) => {
@@ -47,7 +54,12 @@ const Setting = () => {
                   header={
                     item.label === 'Point' ? (
                       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <p style={{ color: '#C8467C', fontWeight: '600' }}>Point Setting</p>
+                        <p style={{ color: '#C8467C', fontWeight: '600' }}>
+                          {intl.formatMessage({
+                            id: 'pages.settings.pointSetting.title',
+                            defaultMessage: 'Point Setting',
+                          })}
+                        </p>
                         <div style={{ display: 'flex', gap: '10px' }}>
                           <ButtonForm
                             onCancel={() => form.resetFields()}
@@ -57,7 +69,12 @@ const Setting = () => {
                       </div>
                     ) : (
                       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <p style={{ color: '#C8467C', fontWeight: '600' }}>Notification</p>
+                        <p style={{ color: '#C8467C', fontWeight: '600' }}>
+                          {intl.formatMessage({
+                            id: 'pages.settings.notification.title',
+                            defaultMessage: 'Notification',
+                          })}
+                        </p>
                         <Button
                           type="primary"
                           style={{
@@ -67,7 +84,12 @@ const Setting = () => {
                           }}
                           onClick={() => setShowModal(true)}
                         >
-                          <span>Create</span>
+                          <span>
+                            {intl.formatMessage({
+                              id: 'pages.button.create',
+                              defaultMessage: 'Create',
+                            })}
+                          </span>
                         </Button>
                       </div>
                     )

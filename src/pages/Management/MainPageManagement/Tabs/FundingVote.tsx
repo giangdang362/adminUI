@@ -1,4 +1,5 @@
 import { ProForm, ProFormSelect } from '@ant-design/pro-components';
+import { useIntl } from '@umijs/max';
 
 type SelectType = {
   label: string;
@@ -7,63 +8,134 @@ type SelectType = {
 
 const FundingVote = () => {
   const [form] = ProForm.useForm();
+  const intl = useIntl();
   return (
     <div>
       <ProForm submitter={false}>
         <ProFormSelect
-          label="Funding vote 1"
+          label={`${intl.formatMessage({
+            id: 'pages.mainPage.fundingVote.fundingVote1',
+            defaultMessage: 'Funding Vote 1',
+          })}`}
           options={listSelect}
           fieldProps={{
             optionItemRender(item: SelectType) {
               return item.label + ' - ' + item.value;
             },
           }}
-          placeholder="Please select a status"
-          rules={[{ required: true, message: 'Please select your status!' }]}
+          placeholder={`${intl.formatMessage({
+            id: 'pages.mainPage.topicVote.placholder',
+            defaultMessage: 'Please select a status',
+          })}`}
+          rules={[
+            {
+              required: true,
+              message: `${intl.formatMessage({
+                id: 'pages.mainPage.topicVote.message',
+                defaultMessage: 'Please select your status!',
+              })}`,
+            },
+          ]}
         />
         <ProFormSelect
-          label="Funding vote 2"
+          label={`${intl.formatMessage({
+            id: 'pages.mainPage.fundingVote.fundingVote2',
+            defaultMessage: 'Funding Vote 2',
+          })}`}
           options={listSelect}
           fieldProps={{
             optionItemRender(item: SelectType) {
               return item.label + ' - ' + item.value;
             },
           }}
-          placeholder="Please select a status"
-          rules={[{ required: true, message: 'Please select your status!' }]}
+          placeholder={`${intl.formatMessage({
+            id: 'pages.mainPage.topicVote.placholder',
+            defaultMessage: 'Please select a status',
+          })}`}
+          rules={[
+            {
+              required: true,
+              message: `${intl.formatMessage({
+                id: 'pages.mainPage.topicVote.message',
+                defaultMessage: 'Please select your status!',
+              })}`,
+            },
+          ]}
         />
         <ProFormSelect
-          label="Funding vote 3"
+          label={`${intl.formatMessage({
+            id: 'pages.mainPage.fundingVote.fundingVote3',
+            defaultMessage: 'Funding Vote 3',
+          })}`}
           options={listSelect}
           fieldProps={{
             optionItemRender(item: SelectType) {
               return item.label + ' - ' + item.value;
             },
           }}
-          placeholder="Please select a status"
-          rules={[{ required: true, message: 'Please select your status!' }]}
+          placeholder={`${intl.formatMessage({
+            id: 'pages.mainPage.topicVote.placholder',
+            defaultMessage: 'Please select a status',
+          })}`}
+          rules={[
+            {
+              required: true,
+              message: `${intl.formatMessage({
+                id: 'pages.mainPage.topicVote.message',
+                defaultMessage: 'Please select your status!',
+              })}`,
+            },
+          ]}
         />
         <ProFormSelect
-          label="Funding vote 4"
+          label={`${intl.formatMessage({
+            id: 'pages.mainPage.fundingVote.fundingVote4',
+            defaultMessage: 'Funding Vote 4',
+          })}`}
           options={listSelect}
           fieldProps={{
             optionItemRender(item: SelectType) {
               return item.label + ' - ' + item.value;
             },
           }}
-          placeholder="Please select a status"
-          rules={[{ required: true, message: 'Please select your status!' }]}
+          placeholder={`${intl.formatMessage({
+            id: 'pages.mainPage.topicVote.placholder',
+            defaultMessage: 'Please select a status',
+          })}`}
+          rules={[
+            {
+              required: true,
+              message: `${intl.formatMessage({
+                id: 'pages.mainPage.topicVote.message',
+                defaultMessage: 'Please select your status!',
+              })}`,
+            },
+          ]}
         />
         <ProFormSelect
-          label="Funding vote 5"
+          label={`${intl.formatMessage({
+            id: 'pages.mainPage.fundingVote.fundingVote5',
+            defaultMessage: 'Funding Vote 5',
+          })}`}
           options={listSelect}
           fieldProps={{
             optionItemRender(item: SelectType) {
               return item.label + ' - ' + item.value;
             },
           }}
-          placeholder="Please select a status"
-          rules={[{ required: true, message: 'Please select your status!' }]}
+          placeholder={`${intl.formatMessage({
+            id: 'pages.mainPage.topicVote.placholder',
+            defaultMessage: 'Please select a status',
+          })}`}
+          rules={[
+            {
+              required: true,
+              message: `${intl.formatMessage({
+                id: 'pages.mainPage.topicVote.message',
+                defaultMessage: 'Please select your status!',
+              })}`,
+            },
+          ]}
         />
         {/* <div style={{ maxWidth: '800px' }}>
           <ButtonForm onCancel={() => form.resetFields()} onSubmit={() => form.submit()} />

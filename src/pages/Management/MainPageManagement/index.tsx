@@ -1,6 +1,7 @@
 import ButtonForm from '@/pages/components/ButtonForm/ButtonForm';
 import TitleCurrentPage from '@/pages/components/TitleCurrentPage';
 import { ProForm } from '@ant-design/pro-components';
+import { useIntl } from '@umijs/max';
 import { Tabs, Typography } from 'antd';
 import Banner from './Tabs/Banner';
 import FandomService from './Tabs/FandomService';
@@ -10,10 +11,50 @@ import TopicVote from './Tabs/TopicVote';
 const { Title } = Typography;
 
 const MainPageManagement = () => {
+  const intl = useIntl();
   const [form] = ProForm.useForm();
+  const listTabsManagement = [
+    {
+      id: 1,
+      label: `${intl.formatMessage({
+        id: 'pages.mainPage.banner.title',
+        defaultMessage: 'Banner',
+      })}`,
+      children: <Banner />,
+    },
+    {
+      id: 2,
+      label: `${intl.formatMessage({
+        id: 'pages.mainPage.topicVote.title',
+        defaultMessage: 'Topic Vote',
+      })}`,
+      children: <TopicVote />,
+    },
+    {
+      id: 3,
+      label: `${intl.formatMessage({
+        id: 'pages.mainPage.fundingVote.title',
+        defaultMessage: 'Funding Vote',
+      })}`,
+      children: <FundingVote />,
+    },
+    {
+      id: 4,
+      label: `${intl.formatMessage({
+        id: 'pages.mainPage.fandomService.title',
+        defaultMessage: 'Fandom service',
+      })}`,
+      children: <FandomService />,
+    },
+  ];
   return (
     <div>
-      <Title level={3}>Main Page</Title>
+      <Title level={3}>
+        {intl.formatMessage({
+          id: 'pages.mainPage.title',
+          defaultMessage: 'Main Page Management',
+        })}
+      </Title>
       <Tabs
         tabPosition="left"
         items={listTabsManagement.map((item, index) => {
@@ -47,26 +88,3 @@ const MainPageManagement = () => {
 };
 
 export default MainPageManagement;
-
-const listTabsManagement = [
-  {
-    id: 1,
-    label: 'Banner',
-    children: <Banner />,
-  },
-  {
-    id: 2,
-    label: 'Topic Vote',
-    children: <TopicVote />,
-  },
-  {
-    id: 3,
-    label: 'Funding Vote',
-    children: <FundingVote />,
-  },
-  {
-    id: 4,
-    label: 'Fandom Service',
-    children: <FandomService />,
-  },
-];

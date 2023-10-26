@@ -7,7 +7,7 @@ const DataSoloTable = () => {
   return (
     <div className="wrapp-table">
       <Table
-        columns={columns}
+        columns={columns()}
         dataSource={soloData}
         pagination={{
           showQuickJumper: true,

@@ -1,6 +1,7 @@
 import idolAvatar from '@/../public/images/idol-avatar.png';
 import { FormatBirthday } from '@/constants/datetime';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import { useIntl } from '@umijs/max';
 import { Button } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 
@@ -17,15 +18,23 @@ export const configColumns = (
     showDeleteConfirm();
   };
 
+  const intl = useIntl();
+
   return [
     {
-      title: 'Vote Title',
+      title: `${intl.formatMessage({
+        id: 'pages.table.columns.voteTitle',
+        defaultMessage: 'Vote Title',
+      })}`,
       dataIndex: 'voteTitle',
       key: 'voteTitle',
       width: '45%',
     },
     {
-      title: 'Community',
+      title: `${intl.formatMessage({
+        id: 'pages.table.columns.community',
+        defaultMessage: 'Community',
+      })}`,
       dataIndex: 'community',
       key: 'community',
       width: '20%',
@@ -50,7 +59,10 @@ export const configColumns = (
       ),
     },
     {
-      title: 'RequestDate',
+      title: `${intl.formatMessage({
+        id: 'pages.table.columns.requestDate',
+        defaultMessage: 'RequestDate',
+      })}`,
       dataIndex: 'requestDate',
       key: 'requestDate',
       width: '10%',
@@ -59,7 +71,10 @@ export const configColumns = (
       },
     },
     {
-      title: 'Status',
+      title: `${intl.formatMessage({
+        id: 'pages.table.columns.status',
+        defaultMessage: 'Status',
+      })}`,
       dataIndex: 'status',
       key: 'status',
       width: '15%',
@@ -89,7 +104,10 @@ export const configColumns = (
       ),
     },
     {
-      title: 'Action',
+      title: `${intl.formatMessage({
+        id: 'pages.table.columns.action',
+        defaultMessage: 'Action',
+      })}`,
       dataIndex: 'action',
       key: 'action',
       width: '10%',

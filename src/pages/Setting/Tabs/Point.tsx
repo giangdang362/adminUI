@@ -1,6 +1,8 @@
+import { useIntl } from '@umijs/max';
 import { Input } from 'antd';
 
 const Point = () => {
+  const intl = useIntl();
   return (
     <div>
       {listPoint.map((item) => (
@@ -29,7 +31,12 @@ const Point = () => {
             style={{ display: 'flex', gap: '10px', justifyContent: 'center', alignItems: 'center' }}
           >
             <Input value={30} style={{ width: '100px', height: '32px' }} />
-            <div>Points</div>
+            <div>
+              {intl.formatMessage({
+                id: 'pages.user.form.point',
+                defaultMessage: 'Point',
+              })}
+            </div>
           </div>
         </div>
       ))}

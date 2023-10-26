@@ -1,5 +1,6 @@
 import { FormatBirthday } from '@/constants/datetime';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import { useIntl } from '@umijs/max';
 import { Button, Tag } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 
@@ -16,15 +17,23 @@ export const configColumns = (
     showDeleteConfirm();
   };
 
+  const intl = useIntl();
+
   return [
     {
-      title: 'Vote Title',
+      title: `${intl.formatMessage({
+        id: 'pages.table.columns.voteTitle',
+        defaultMessage: 'Vote Title',
+      })}`,
       dataIndex: 'voteTitle',
       key: 'voteTitle',
       width: '35%',
     },
     {
-      title: 'Start Date',
+      title: `${intl.formatMessage({
+        id: 'pages.table.columns.startDate',
+        defaultMessage: 'Start Date',
+      })}`,
       dataIndex: 'startDate',
       key: 'startDate',
       width: '10%',
@@ -33,7 +42,10 @@ export const configColumns = (
       },
     },
     {
-      title: 'End Date',
+      title: `${intl.formatMessage({
+        id: 'pages.table.columns.endDate',
+        defaultMessage: 'End Date',
+      })}`,
       dataIndex: 'endDate',
       key: 'endDate',
       width: '10%',
@@ -42,20 +54,29 @@ export const configColumns = (
       },
     },
     {
-      title: 'Reward',
+      title: `${intl.formatMessage({
+        id: 'pages.table.columns.reward',
+        defaultMessage: 'Reward',
+      })}`,
       dataIndex: 'reward',
       key: 'reward',
       width: '15%',
     },
     {
-      title: 'Idol Vote',
+      title: `${intl.formatMessage({
+        id: 'pages.table.columns.idolVote',
+        defaultMessage: 'Idol Vote',
+      })}`,
       dataIndex: 'idolVote',
       key: 'idolVote',
       width: '10%',
       render: (_, original) => <Tag style={{ fontSize: '13px' }}>{original.idolVote}</Tag>,
     },
     {
-      title: 'Status',
+      title: `${intl.formatMessage({
+        id: 'pages.table.columns.status',
+        defaultMessage: 'Status',
+      })}`,
       dataIndex: 'status',
       key: 'status',
       width: '10%',
@@ -85,7 +106,10 @@ export const configColumns = (
       ),
     },
     {
-      title: 'Action',
+      title: `${intl.formatMessage({
+        id: 'pages.table.columns.action',
+        defaultMessage: 'Action',
+      })}`,
       dataIndex: 'action',
       key: 'action',
       width: '10%',

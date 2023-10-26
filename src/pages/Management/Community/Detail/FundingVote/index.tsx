@@ -1,11 +1,13 @@
 import { PlusOutlined, SearchOutlined } from '@ant-design/icons';
+import { useIntl } from '@umijs/max';
 import { Button, Input, Select } from 'antd';
 import { useState } from 'react';
 import CreateUpdateForm from './CreateUpdateForm';
 import DataFundingVoteTable from './DataTable';
 
 const FundingVoteDetail = () => {
-  const [curFundingVote, setCurFundingVote] = useState<API.FundingVoteItem>({});
+  const intl = useIntl();
+  const [curFundingVote, setCurFundingVote] = useState<API.FundingVoteItem>();
 
   const [showModalForm, setShowModalForm] = useState<boolean>(false);
   const [showDrawer, setShowDrawer] = useState<boolean>(false);
@@ -47,12 +49,18 @@ const FundingVoteDetail = () => {
             style={{
               width: '20%',
             }}
-            placeholder="Search by topic vote"
+            placeholder={`${intl.formatMessage({
+              id: 'pages.vote.topicVote.placeholderSearch',
+              defaultMessage: 'Search by topic vote',
+            })}`}
             prefix={<SearchOutlined />}
           />
           <Select
             allowClear
-            placeholder="Select status"
+            placeholder={`${intl.formatMessage({
+              id: 'pages.vote.topicVote.placeholderSelect',
+              defaultMessage: 'Select status',
+            })}`}
             style={{
               width: '20%',
             }}
@@ -62,7 +70,10 @@ const FundingVoteDetail = () => {
           />
           <Select
             allowClear
-            placeholder="Select idol vote"
+            placeholder={`${intl.formatMessage({
+              id: 'pages.vote.fundingVote.placeholderSelect',
+              defaultMessage: 'Select idol vote',
+            })}`}
             style={{
               width: '20%',
             }}
@@ -81,7 +92,12 @@ const FundingVoteDetail = () => {
           onClick={() => setShowModalForm(true)}
         >
           <PlusOutlined />
-          <span>Add</span>
+          <span>
+            {intl.formatMessage({
+              id: 'pages.button.add',
+              defaultMessage: 'Add',
+            })}
+          </span>
         </Button>
       </div>
       <DataFundingVoteTable

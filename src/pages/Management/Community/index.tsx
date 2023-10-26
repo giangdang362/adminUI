@@ -1,13 +1,20 @@
 import { SearchOutlined } from '@ant-design/icons';
+import { useIntl } from '@umijs/max';
 import { Input, Typography } from 'antd';
 import DataCommunityTable from './DataTable';
 
 const { Title } = Typography;
 
 const CommunityManagement = () => {
+  const intl = useIntl();
   return (
     <div>
-      <Title level={3}>Community Management</Title>
+      <Title level={3}>
+        {intl.formatMessage({
+          id: 'pages.community.title',
+          defaultMessage: 'Community Management',
+        })}
+      </Title>
       <div
         style={{
           display: 'flex',
@@ -27,7 +34,10 @@ const CommunityManagement = () => {
             style={{
               width: '20%',
             }}
-            placeholder="Search by name"
+            placeholder={`${intl.formatMessage({
+              id: 'pages.chartTopIdol.solo.placeholderSearch',
+              defaultMessage: 'Search by name',
+            })}`}
             prefix={<SearchOutlined />}
           />
         </div>

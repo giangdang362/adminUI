@@ -1,5 +1,6 @@
 import { FormatDateTime } from '@/constants/datetime';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import { useIntl } from '@umijs/max';
 import { Button } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 
@@ -20,9 +21,14 @@ export const configColumns = (
     showDeleteConfirm();
   };
 
+  const intl = useIntl();
+
   return [
     {
-      title: 'Updated Date',
+      title: `${intl.formatMessage({
+        id: 'pages.table.columns.updatedDate',
+        defaultMessage: 'Updated Date',
+      })}`,
       dataIndex: 'updatedDate',
       key: 'updatedDate',
       width: '15%',
@@ -31,13 +37,19 @@ export const configColumns = (
       },
     },
     {
-      title: 'Title',
+      title: `${intl.formatMessage({
+        id: 'pages.table.columns.title',
+        defaultMessage: 'Title',
+      })}`,
       dataIndex: 'title',
       key: 'title',
       width: '61%',
     },
     {
-      title: 'Important',
+      title: `${intl.formatMessage({
+        id: 'pages.table.columns.important',
+        defaultMessage: 'Important',
+      })}`,
       dataIndex: 'important',
       key: 'important',
       width: '15%',
@@ -46,7 +58,10 @@ export const configColumns = (
       },
     },
     {
-      title: 'Action',
+      title: `${intl.formatMessage({
+        id: 'pages.table.columns.action',
+        defaultMessage: 'Action',
+      })}`,
       dataIndex: 'action',
       key: 'action',
       width: '9%',
