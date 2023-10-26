@@ -5,10 +5,10 @@ import { Button, Tag, Tooltip } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 
 export const configColumns = (
-  handleSetCurIdol: (x: API.IdolsItem) => void,
+  handleSetCurIdol: (x: API.IdolItem) => void,
   showDeleteConfirm: () => void,
-): ColumnsType<API.IdolsItem> => {
-  const handleClickEdit = (x: API.IdolsItem) => {
+): ColumnsType<API.IdolItem> => {
+  const handleClickEdit = (x: API.IdolItem) => {
     handleSetCurIdol(x);
   };
   const intl = useIntl();
@@ -40,7 +40,7 @@ export const configColumns = (
       dataIndex: 'birthday',
       key: 'birthday',
       render: (_, original) => {
-        return <div>{FormatBirthday(original.birthday ?? '')}</div>;
+        return <div>{FormatBirthday(original.anniversaryDay ?? '')}</div>;
       },
       width: '10%',
     },
@@ -61,7 +61,7 @@ export const configColumns = (
         >
           {!original.members?.length && ' - '}
           {original.members?.map((member, indexM) => {
-            return <>{indexM <= 4 && <Tag style={{ fontSize: '13px' }}>{member.name}</Tag>}</>;
+            return <>{indexM <= 4 && <Tag style={{ fontSize: '13px' }}>{member.idolName}</Tag>}</>;
           })}
           {original.members && original.members?.length > 5 && (
             <Tooltip
@@ -78,7 +78,7 @@ export const configColumns = (
                 >
                   {original.members?.map((member, indexM) => {
                     return (
-                      <>{indexM > 4 && <Tag style={{ fontSize: '13px' }}>{member.name}</Tag>}</>
+                      <>{indexM > 4 && <Tag style={{ fontSize: '13px' }}>{member.idolName}</Tag>}</>
                     );
                   })}
                 </div>
@@ -99,7 +99,7 @@ export const configColumns = (
       dataIndex: 'type',
       key: 'type',
       render: (_, original) => {
-        if (original.type === 0)
+        if (original.idolType === 'Solo')
           return (
             <Tag style={{ borderColor: '#6940DA', color: '#6940DA', backgroundColor: '#E9E2F9' }}>
               {intl.formatMessage({

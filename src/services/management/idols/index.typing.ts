@@ -1,14 +1,12 @@
 declare namespace API {
-  type IdolsItem = {
+  type IdolItem = {
     id?: string;
     idolName?: string;
-    birthday?: string;
-    members?: MemberItem[];
-    type?: number;
-  };
-
-  export type MemberItem = {
-    id: number;
-    name: string;
+    anniversaryDay?: string;
+    members?: IdolItem[];
+    idolType?: string;
+    avatarUrl?: string;
+    bannerUrl?: string;
+    groupId?: number;
   };
 }

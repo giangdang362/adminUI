@@ -108,7 +108,7 @@ const UpdateForm: FC<UpdateFormProps> = ({ showModal, curItem, setShowModal }) =
               id: 'pages.idols.form.placeholderType',
               defaultMessage: 'Select type',
             })}`}
-            options={curItem?.idolFollow?.map((item) => item.name)}
+            options={curItem?.idolFollow?.map((item) => item.idolName)}
             rules={[formItemRule.required()]}
             mode="tags"
           />

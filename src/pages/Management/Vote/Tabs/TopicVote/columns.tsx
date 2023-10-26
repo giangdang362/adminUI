@@ -71,7 +71,7 @@ export const configColumns = (
         >
           {!original.idolVote?.length && ' - '}
           {original.idolVote?.map((item, indexI) => {
-            return <>{indexI <= 4 && <Tag style={{ fontSize: '13px' }}>{item.name}</Tag>}</>;
+            return <>{indexI <= 4 && <Tag style={{ fontSize: '13px' }}>{item.idolName}</Tag>}</>;
           })}
           {original.idolVote && original.idolVote?.length > 5 && (
             <Tooltip
@@ -87,7 +87,9 @@ export const configColumns = (
                   }}
                 >
                   {original.idolVote?.map((item, indexI) => {
-                    return <>{indexI > 4 && <Tag style={{ fontSize: '13px' }}>{item.name}</Tag>}</>;
+                    return (
+                      <>{indexI > 4 && <Tag style={{ fontSize: '13px' }}>{item.idolName}</Tag>}</>
+                    );
                   })}
                 </div>
               }

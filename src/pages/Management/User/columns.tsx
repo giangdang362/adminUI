@@ -82,7 +82,7 @@ export const configColumns = (
         <div style={{ display: 'flex', gap: '2px', flexWrap: 'wrap' }}>
           {!original.idolFollow?.length && ' - '}
           {original.idolFollow?.map((item, indexI) => {
-            return <>{indexI <= 4 && <Tag style={{ fontSize: '13px' }}>{item.name}</Tag>}</>;
+            return <>{indexI <= 4 && <Tag style={{ fontSize: '13px' }}>{item.idolName}</Tag>}</>;
           })}
           {original.idolFollow && original.idolFollow?.length > 5 && (
             <Tooltip
@@ -98,7 +98,9 @@ export const configColumns = (
                   }}
                 >
                   {original.idolFollow?.map((item, indexI) => {
-                    return <>{indexI > 4 && <Tag style={{ fontSize: '13px' }}>{item.name}</Tag>}</>;
+                    return (
+                      <>{indexI > 4 && <Tag style={{ fontSize: '13px' }}>{item.idolName}</Tag>}</>
+                    );
                   })}
                 </div>
               }
