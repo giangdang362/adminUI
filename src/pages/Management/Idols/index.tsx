@@ -10,7 +10,7 @@ const { Title } = Typography;
 const IdolsManagement = () => {
   const intl = useIntl();
   const [curIdol, setCurIdol] = useState<API.IdolItem>();
-  
+
   const [currentEsalisday, setCurrentEsalisday] = useState<SelectType>();
   const [currentType, setCurrentType] = useState<SelectType>();
   const [showModal, setShowModal] = useState<boolean>(false);

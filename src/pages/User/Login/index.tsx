@@ -1,4 +1,5 @@
-import { login } from '@/services/ant-design-pro/api';
+import { login } from '@/services/auth';
+import { setToken } from '@/utils/auth';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { LoginForm, ProFormCheckbox, ProFormText } from '@ant-design/pro-components';
 import { FormattedMessage, history, useIntl, useModel } from '@umijs/max';
@@ -54,28 +55,13 @@ import './index.css';
 //   );
 // };
 
-// const LoginMessage: React.FC<{
-//   content: string;
-// }> = ({ content }) => {
-//   return (
-//     <Alert
-//       style={{
-//         marginBottom: 12,
-//       }}
-//       message={content}
-//       type="error"
-//       showIcon
-//     />
-//   );
-// };
-
 const Login: React.FC = () => {
-  const [userLoginState, setUserLoginState] = useState<API.LoginResult>({});
-  const [loginParams, setLoginParams] = useState<API.LoginParams>({
-    username: '',
+  // const [userLoginState, setUserLoginState] = useState<API.LoginResult>({});
+  const [loginParams, setLoginParams] = useState<API.Login>({
+    email: '',
     password: '',
-    autoLogin: true,
-    remember: true,
+    // autoLogin: true,
+    // remember: true,
   });
   const [type, setType] = useState<string>('account');
   const { initialState, setInitialState } = useModel('@@initialState');
@@ -92,50 +78,32 @@ const Login: React.FC = () => {
     console.log('Failed:', errorInfo);
   };
 
-  // const containerClassName = useEmotionCss(() => {
-  //   return {
-  //     display: 'flex',
-  //     flexDirection: 'column',
-  //     height: '100vh',
-  //     overflow: 'auto',
-  //     backgroundImage:
-  //       "url('https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/V-_oS6r-i7wAAAAAAAAAAAAAFl94AQBr')",
-  //     backgroundSize: '100% 100%',
-  //   };
-  // });
-
   const intl = useIntl();
 
-  const fetchUserInfo = async () => {
-    const userInfo = await initialState?.fetchUserInfo?.();
-    if (userInfo) {
-      flushSync(() => {
-        setInitialState((s) => ({
-          ...s,
-          currentUser: userInfo,
-        }));
-      });
-    }
-  };
-
-  const handleSubmit = async (values: API.LoginParams) => {
+  const handleSubmit = async (values: API.Login) => {
     try {
       // 登录
-      const msg = await login({ ...values, type });
-      if (msg.status === 'ok') {
+      const user = await login({ ...values });
+      if (user) {
+        setToken({
+          accessToken: user?.jwtToken,
+          refreshToken: user?.refreshToken,
+        });
         const defaultLoginSuccessMessage = intl.formatMessage({
           id: 'pages.login.success',
           defaultMessage: 'Login successfull!',
         });
         message.success(defaultLoginSuccessMessage);
-        await fetchUserInfo();
+        flushSync(() => {
+          setInitialState((s) => ({
+            ...s,
+            currentUser: user,
+          }));
+        });
         const urlParams = new URL(window.location.href).searchParams;
         history.push(urlParams.get('redirect') || '/');
         return;
       }
-      console.log(msg);
-      // 如果失败去设置用户错误信息
-      setUserLoginState(msg);
     } catch (error) {
       const defaultLoginFailureMessage = intl.formatMessage({
         id: 'pages.login.failure',
@@ -165,7 +133,7 @@ const Login: React.FC = () => {
         >
           <div style={{ width: '50%' }} className="login-block">
             {/* <LoginMessage content='' /> */}
-            <LoginForm<API.LoginParams>
+            <LoginForm<API.Login>
               title="Welcome Back!"
               initialValues={{ remember: true }}
               onFinish={async (values) => {
@@ -178,13 +146,13 @@ const Login: React.FC = () => {
               <div style={{ marginTop: 12 }}>
                 <p style={{ marginBottom: '8px', fontSize: '14px' }}>Email</p>
                 <ProFormText
-                  name="username"
+                  name="email"
                   fieldProps={{
                     size: 'large',
                     prefix: <UserOutlined />,
                   }}
                   placeholder={intl.formatMessage({
-                    id: 'pages.login.username.placeholder',
+                    id: 'pages.login.email.placeholder',
                     defaultMessage: 'admin or user',
                   })}
                   rules={[
@@ -192,7 +160,7 @@ const Login: React.FC = () => {
                       required: true,
                       message: (
                         <FormattedMessage
-                          id="pages.login.username.required"
+                          id="pages.login.email.required"
                           defaultMessage="Please enter email!"
                         />
                       ),
