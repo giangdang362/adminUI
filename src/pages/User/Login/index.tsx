@@ -4,6 +4,7 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { LoginForm, ProFormCheckbox, ProFormText } from '@ant-design/pro-components';
 import { FormattedMessage, history, useIntl, useModel } from '@umijs/max';
 import { message } from 'antd';
+import { CheckboxChangeEvent } from 'antd/es/checkbox';
 import React, { useState } from 'react';
 import { flushSync } from 'react-dom';
 import loginLogo from './../../../../public/images/logo-login.png';
@@ -66,13 +67,9 @@ const Login: React.FC = () => {
   const [type, setType] = useState<string>('account');
   const { initialState, setInitialState } = useModel('@@initialState');
 
-  // const onChangeRememberMe = (e: CheckboxChangeEvent) => {
-  //   setLoginParams({ ...loginParams, remember: e.target.checked });
-  // };
-
-  // const onFinishLogin = (values: API.LoginParams) => {
-  //   console.log('Success:', values);
-  // };
+  const onChangeRememberMe = (e: CheckboxChangeEvent) => {
+    setLoginParams({ ...loginParams, remember: e.target.checked ? 1 : 0 });
+  };
 
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
@@ -95,7 +92,7 @@ const Login: React.FC = () => {
         });
         message.success(defaultLoginSuccessMessage);
         flushSync(() => {
-          setInitialState((s) => ({
+          setInitialState((s: any) => ({
             ...s,
             currentUser: user,
           }));

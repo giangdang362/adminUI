@@ -5,6 +5,7 @@ declare namespace API {
   type Login = {
     email?: string;
     password?: string;
+    remember?: number;
   };
   type User = {
     id?: number;
