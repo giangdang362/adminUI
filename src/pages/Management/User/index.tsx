@@ -9,9 +9,9 @@ const { Title } = Typography;
 
 const UserManagement = () => {
   const intl = useIntl();
-  const [curUser, setCurUser] = useState<API.UserItem>();
+  const [curUser, setCurUser] = useState<API.User>();
   const [showModal, setShowModal] = useState<boolean>(false);
-  const handleSetCurUser = (x: API.UserItem) => {
+  const handleSetCurUser = (x: API.User) => {
     setCurUser(x);
     setShowModal(true);
   };

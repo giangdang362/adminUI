@@ -1,8 +1,8 @@
 import banner from '@/../public/images/bannerVote.png';
 import idolAvatar from '@/../public/images/idol-avatar.png';
 import pointLogo from '@/../public/images/point-logo.png';
-import { FormatNumber } from '@/constants/common';
-import { FormatBirthday } from '@/constants/datetime';
+import { FormatNumber } from '@/utils/common';
+import { FormatBirthday } from '@/utils/datetime';
 import { DeleteOutlined, EditOutlined, ExclamationCircleFilled } from '@ant-design/icons';
 import { useIntl } from '@umijs/max';
 import { Button, Drawer, Image, Modal, Progress, Table, Tag, Typography } from 'antd';

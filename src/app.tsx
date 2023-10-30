@@ -1,6 +1,5 @@
 import { AvatarDropdown, AvatarName, Question, SelectLang } from '@/components';
 import { LinkOutlined } from '@ant-design/icons';
-import { SettingDrawer } from '@ant-design/pro-components';
 import type { RequestConfig, RunTimeLayoutConfig } from '@umijs/max';
 import { Link, history } from '@umijs/max';
 import { ConfigProvider } from 'antd';
