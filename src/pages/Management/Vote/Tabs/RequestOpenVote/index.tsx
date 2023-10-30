@@ -7,23 +7,23 @@ import DataRequestOpenVoteTable from './DataTable';
 
 const RequestOpenVote = () => {
   const intl = useIntl();
-  const [curRequestOpenVote, setCurRequestOpenVote] = useState<API.RequestOpenVoteItem>();
+  const [curRequestOpenVote, setCurRequestOpenVote] = useState<API.VoteItem>();
 
   const [showModalForm, setShowModalForm] = useState<boolean>(false);
   const [showDrawer, setShowDrawer] = useState<boolean>(false);
   const [showRejectModal, setShowRejectModal] = useState<boolean>(false);
 
-  const [currentStatus, setCurrentStatus] = useState<SelectType>();
+  const [currentStatus, setCurrentStatus] = useState<string>();
   const [currentCommunity, setCurrentCommunity] = useState<SelectType>();
 
-  const handleStatusChange = (value: SelectType) => {
-    setCurrentStatus(value);
+  const handleStatusChange = (x: string) => {
+    setCurrentStatus(x);
   };
 
   const handleCommunityChange = (value: SelectType) => {
     setCurrentCommunity(value);
   };
-  const handleSetCurRequestOpenVote = (x: API.RequestOpenVoteItem) => {
+  const handleSetCurRequestOpenVote = (x: API.VoteItem) => {
     setCurRequestOpenVote(x);
     setShowModalForm(true);
   };
@@ -78,7 +78,6 @@ const RequestOpenVote = () => {
             }}
             options={listSelectStatus.map((op) => ({ label: op.label, value: op.value }))}
             onChange={handleStatusChange}
-            value={currentStatus}
           />
         </div>
         <Button
@@ -107,6 +106,7 @@ const RequestOpenVote = () => {
         setShowDrawer={setShowDrawer}
         showRejectModal={showRejectModal}
         setShowRejectModal={setShowRejectModal}
+        currentStatus={currentStatus}
       />
       <CreateUpdateForm
         showModal={showModalForm}
@@ -126,7 +126,7 @@ type SelectType = {
 
 export const listSelectStatus: SelectType[] = [
   { label: 'Approved', value: 'Approved' },
-  { label: 'Waiting Approve', value: 'Waiting Approve' },
+  { label: 'Waiting Approve', value: 'WaitingApprove' },
   { label: 'Rejected', value: 'Rejected' },
 ];
 

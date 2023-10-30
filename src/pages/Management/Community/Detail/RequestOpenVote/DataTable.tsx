@@ -9,9 +9,9 @@ import { FC } from 'react';
 import { configColumns } from './columns';
 
 interface DataRequestOpenVoteTableProps {
-  curRequestOpenVote?: API.RequestOpenVoteItem;
-  setCurRequestOpenVote: React.Dispatch<React.SetStateAction<API.RequestOpenVoteItem | undefined>>;
-  handleSetCurFundingVote: (x: API.RequestOpenVoteItem) => void;
+  curRequestOpenVote?: API.VoteItem;
+  setCurRequestOpenVote: React.Dispatch<React.SetStateAction<API.VoteItem | undefined>>;
+  handleSetCurFundingVote: (x: API.VoteItem) => void;
   showDrawer: boolean;
   setShowDrawer: React.Dispatch<React.SetStateAction<boolean>>;
   showRejectModal: boolean;
@@ -59,7 +59,7 @@ const DataRequestOpenVoteTable: FC<DataRequestOpenVoteTableProps> = ({
     });
   };
 
-  const handleClickRow = (x: API.FundingVoteItem) => {
+  const handleClickRow = (x: API.VoteItem) => {
     setCurRequestOpenVote(x);
     setShowDrawer(true);
   };
@@ -302,7 +302,7 @@ const DataRequestOpenVoteTable: FC<DataRequestOpenVoteTableProps> = ({
 
 export default DataRequestOpenVoteTable;
 
-const topicVoteData: API.RequestOpenVoteItem[] = [
+const topicVoteData: API.VoteItem[] = [
   {
     voteTitle: 'SEOL MUSIC AWARDS x FANDOM',
     requestDate: '2023-02-02T21:03:16.044967+07:00',

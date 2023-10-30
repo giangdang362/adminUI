@@ -1,6 +1,5 @@
 import { IDOL_TYPE } from '@/constants/idolType';
 import { getIdols } from '@/services/management/idols';
-import { useIntl } from '@umijs/max';
 import { Table } from 'antd';
 import { FC, useEffect, useState } from 'react';
 import FooterTable from '../ChartTopIdol/Tabs/FooterTable';
@@ -11,63 +10,22 @@ interface DataIdolsTableProps {
   handleSetCurIdol: (x: API.IdolItem) => void;
   currentType?: number;
   curIdol: API.IdolItem;
-  render?: boolean;
-  setRender: React.Dispatch<React.SetStateAction<boolean>>;
+  reload?: boolean;
+  setReload: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const DataIdolsTable: FC<DataIdolsTableProps> = ({
   handleSetCurIdol,
   currentType,
   curIdol,
-  render,
-  setRender,
+  reload: reload,
+  setReload: setReload,
 }) => {
-  const intl = useIntl();
   const [idolData, setIdolData] = useState<API.IdolItem[]>([]);
 
-  const handleRender = () => {
-    setRender((pre) => !pre);
+  const handleReload = () => {
+    setReload((pre) => !pre);
   };
-  // const Delete = async () => {
-  //   await deleteIdol({idolId:""})
-
-  // }
-
-  // const { confirm } = Modal;
-  // const showDeleteConfirm = () => {
-  //   confirm({
-  //     title: `${intl.formatMessage({
-  //       id: 'pages.button.delete.title',
-  //       defaultMessage: 'Delete this item',
-  //     })}`,
-  //     icon: <ExclamationCircleFilled style={{ color: 'red' }} />,
-  //     content: `${intl.formatMessage({
-  //       id: 'pages.button.delete.content',
-  //       defaultMessage: 'Do you really want to delete this item? This process can not be undone.',
-  //     })}`,
-  //     okText: `${intl.formatMessage({
-  //       id: 'pages.button.delete',
-  //       defaultMessage: 'Delete',
-  //     })}`,
-  //     okType: 'danger',
-  //     cancelText: `${intl.formatMessage({
-  //       id: 'pages.button.cancel',
-  //       defaultMessage: 'Cancel',
-  //     })}`,
-  //     onOk: async () => {
-  //       try {
-  //         // await deleteIdol({idolId: curIdol?.id ?? ""});
-  //         console.log("curIdol", curIdol?.id);
-
-  //       } catch (error) {
-  //         console.error('Lỗi xóa idol:', error);
-  //       }
-  //     },
-  //     onCancel() {
-  //       console.log('Cancel');
-  //     },
-  //   });
-  // };
 
   const handleGetIdols = async () => {
     const res =
@@ -81,12 +39,12 @@ const DataIdolsTable: FC<DataIdolsTableProps> = ({
 
   useEffect(() => {
     handleGetIdols();
-  }, [currentType, render]);
+  }, [currentType, reload]);
 
   return (
     <div className="wrapp-table">
       <Table
-        columns={configColumns(handleSetCurIdol, curIdol, handleRender)}
+        columns={configColumns(handleSetCurIdol, curIdol, handleReload)}
         dataSource={idolData}
         pagination={{
           showQuickJumper: true,

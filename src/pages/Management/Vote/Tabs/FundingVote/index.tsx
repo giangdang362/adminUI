@@ -7,16 +7,16 @@ import DataFundingVoteTable from './DataTable';
 
 const FundingVote = () => {
   const intl = useIntl();
-  const [curFundingVote, setCurFundingVote] = useState<API.FundingVoteItem>();
+  const [curFundingVote, setCurFundingVote] = useState<API.VoteItem>();
 
   const [showModalForm, setShowModalForm] = useState<boolean>(false);
   const [showDrawer, setShowDrawer] = useState<boolean>(false);
   const [showRankingResult, setShowRankingResult] = useState<boolean>(false);
 
-  const [currentStatus, setCurrentStatus] = useState<number>();
+  const [currentStatus, setCurrentStatus] = useState<string>();
   const [currentIdol, setCurrentIdol] = useState<SelectStatus>();
 
-  const handleStatusChange = (x: number) => {
+  const handleStatusChange = (x: string) => {
     setCurrentStatus(x);
   };
 
@@ -24,7 +24,7 @@ const FundingVote = () => {
     setCurrentIdol(value);
   };
 
-  const handleSetCurFundingVote = (x: API.FundingVoteItem) => {
+  const handleSetCurFundingVote = (x: API.VoteItem) => {
     setCurFundingVote(x);
     setShowModalForm(true);
   };
@@ -107,6 +107,7 @@ const FundingVote = () => {
         handleSetCurFundingVote={handleSetCurFundingVote}
         showDrawer={showDrawer}
         setShowDrawer={setShowDrawer}
+        currentStatus={currentStatus}
       />
       <CreateUpdateForm
         showModal={showModalForm}
@@ -121,13 +122,13 @@ export default FundingVote;
 
 type SelectStatus = {
   label: string;
-  value: number;
+  value: string;
 };
 
 export const listSelectStatus: SelectStatus[] = [
-  { label: 'On going', value: 1 },
-  { label: 'Booking', value: 2 },
-  { label: 'Closed', value: 3 },
+  { label: 'On going', value: 'Ongoing' },
+  { label: 'Booking', value: 'Booking' },
+  { label: 'Closed', value: 'Closed' },
 ];
 
 // export const listIdol: SelectStatus[] = [

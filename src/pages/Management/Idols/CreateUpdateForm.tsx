@@ -14,7 +14,7 @@ interface CreateUpdateFormProps {
   showModal: boolean;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   curItem?: API.IdolItem;
-  setRender: React.Dispatch<React.SetStateAction<boolean>>;
+  setReload: React.Dispatch<React.SetStateAction<boolean>>;
   setCurIdol: React.Dispatch<React.SetStateAction<API.IdolItem>>;
 }
 
@@ -22,7 +22,7 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({
   showModal,
   setShowModal,
   curItem,
-  setRender,
+  setReload: setRender,
   setCurIdol,
 }) => {
   const intl = useIntl();
@@ -33,7 +33,6 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({
     setCurIdol({});
   };
   const handleSubmit = (formItem: API.IdolItem) => {};
-  console.log('curIdol', curItem);
 
   const handleSave = async () => {
     !curItem

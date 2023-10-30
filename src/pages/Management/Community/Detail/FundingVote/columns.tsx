@@ -5,10 +5,10 @@ import { Button, Tag } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 
 export const configColumns = (
-  handleSetCurFundingVote: (x: API.FundingVoteItem) => void,
+  handleSetCurFundingVote: (x: API.VoteItem) => void,
   showDeleteConfirm: () => void,
-): ColumnsType<API.FundingVoteItem> => {
-  const handleClickEdit = (x: API.FundingVoteItem) => {
+): ColumnsType<API.VoteItem> => {
+  const handleClickEdit = (x: API.VoteItem) => {
     handleSetCurFundingVote(x);
   };
 

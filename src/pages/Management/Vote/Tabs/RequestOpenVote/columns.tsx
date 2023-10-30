@@ -6,10 +6,10 @@ import { Button } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 
 export const configColumns = (
-  handleSetCurFundungVote: (x: API.RequestOpenVoteItem) => void,
+  handleSetCurFundungVote: (x: API.VoteItem) => void,
   showDeleteConfirm: () => void,
-): ColumnsType<API.RequestOpenVoteItem> => {
-  const handleClickEdit = (x: API.RequestOpenVoteItem) => {
+): ColumnsType<API.VoteItem> => {
+  const handleClickEdit = (x: API.VoteItem) => {
     handleSetCurFundungVote(x);
   };
 
@@ -26,8 +26,8 @@ export const configColumns = (
         id: 'pages.table.columns.voteTitle',
         defaultMessage: 'Vote Title',
       })}`,
-      dataIndex: 'voteTitle',
-      key: 'voteTitle',
+      dataIndex: 'voteName',
+      key: 'voteName',
       width: '45%',
     },
     {
@@ -54,7 +54,10 @@ export const configColumns = (
               height: '20px',
             }}
           />
-          <span>{original.community}</span>
+          <span>
+            community
+            {/* {original.community} */}
+          </span>
         </div>
       ),
     },
@@ -67,7 +70,7 @@ export const configColumns = (
       key: 'requestDate',
       width: '10%',
       render: (_, original) => {
-        return <div>{FormatBirthday(original.requestDate ?? '')}</div>;
+        return <div>{FormatBirthday(original.requsetDate ?? '')}</div>;
       },
     },
     {
@@ -88,12 +91,12 @@ export const configColumns = (
             borderRadius: '30px',
             color: `
               ${original.status === 'Approved' ? '#5DC983' : ''}
-              ${original.status === 'Waiting Approve' ? '#E9B558' : ''}
+              ${original.status === 'WaitingApprove' ? '#E9B558' : ''}
               ${original.status === 'Rejected' ? '#848484' : ''}
             `,
             backgroundColor: `
               ${original.status === 'Approved' ? '#E7F7EC' : ''}
-              ${original.status === 'Waiting Approve' ? '#FDF3E4' : ''}
+              ${original.status === 'WaitingApprove' ? '#FDF3E4' : ''}
               ${original.status === 'Rejected' ? '#F0F0F0' : ''}
             `,
             fontSize: '13px',

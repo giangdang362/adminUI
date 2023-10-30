@@ -13,7 +13,7 @@ import { FC, useEffect } from 'react';
 interface CreateUpdateFormProps {
   showModal: boolean;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-  curItem?: API.FundingVoteItem;
+  curItem?: API.VoteItem;
 }
 
 const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setShowModal }) => {
@@ -23,18 +23,18 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
     setShowModal(false);
     form?.resetFields();
   };
-  const handleSubmit = (formItem: API.FundingVoteItem) => {};
+  const handleSubmit = (formItem: API.VoteItem) => {};
 
   useEffect(() => {
-    form.setFieldValue('voteTitle', curItem?.voteTitle);
+    form.setFieldValue('voteTitle', curItem?.voteName);
     form.setFieldValue('startDate', curItem?.startDate);
     form.setFieldValue('endDate', curItem?.endDate);
     form.setFieldValue('reward', curItem?.reward);
-    form.setFieldValue('goal', curItem?.goal);
+    form.setFieldValue('goal', curItem?.goalPoint);
     form.setFieldValue('idolVote', curItem?.idolVote);
     form.setFieldValue('vote', curItem?.vote);
     form.setFieldValue('status', curItem?.status);
-    form.setFieldValue('content', curItem?.content);
+    form.setFieldValue('content', curItem?.voteContent);
   }, [curItem]);
 
   return (
