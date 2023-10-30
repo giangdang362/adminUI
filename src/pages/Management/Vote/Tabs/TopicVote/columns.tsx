@@ -1,4 +1,4 @@
-import { FormatBirthday } from '@/constants/datetime';
+import { FormatBirthday } from '@/utils/datetime';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { useIntl } from '@umijs/max';
 import { Button, Tag, Tooltip } from 'antd';

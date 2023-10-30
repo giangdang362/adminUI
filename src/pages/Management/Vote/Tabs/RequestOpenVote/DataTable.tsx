@@ -1,10 +1,12 @@
 import idolAvatar from '@/../public/images/idol-avatar.png';
 import banner from '@/../public/images/openVoteBanner.png';
-import { FormatBirthday } from '@/constants/datetime';
+import { VOTE_TYPE } from '@/constants/voteType';
+import { getVote } from '@/services/management/vote';
+import { FormatBirthday } from '@/utils/datetime';
 import { DeleteOutlined, ExclamationCircleFilled, InfoCircleOutlined } from '@ant-design/icons';
 import { useIntl } from '@umijs/max';
 import { Button, Drawer, Image, Modal, Popover, Table, Tag, Typography } from 'antd';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { configColumns } from './columns';
 
 interface DataRequestOpenVoteTableProps {
@@ -28,6 +30,8 @@ const DataRequestOpenVoteTable: FC<DataRequestOpenVoteTableProps> = ({
 }) => {
   const { Title } = Typography;
   const intl = useIntl();
+
+  const [requestVote, setRequestVote] = useState<API.RequestOpenVoteItem[]>([]);
   const { confirm } = Modal;
   const showDeleteConfirm = () => {
     confirm({
@@ -74,16 +78,25 @@ const DataRequestOpenVoteTable: FC<DataRequestOpenVoteTableProps> = ({
     setShowRejectModal(newOpen);
   };
 
+  const handleGetRequestVote = async () => {
+    const res = await getVote({ voteType: VOTE_TYPE.REQUEST_TYPE });
+    setRequestVote(res);
+  };
+
+  useEffect(() => {
+    handleGetRequestVote();
+  }, [curRequestOpenVote]);
+
   return (
     <div className="wrapp-table">
       <Table
         columns={configColumns(handleSetCurFundingVote, showDeleteConfirm)}
-        dataSource={topicVoteData}
+        dataSource={requestVote}
         pagination={{
           showQuickJumper: true,
           defaultCurrent: 1,
           defaultPageSize: 10,
-          total: topicVoteData.length,
+          total: requestVote.length,
         }}
         onRow={(record) => {
           return {
@@ -301,40 +314,12 @@ const DataRequestOpenVoteTable: FC<DataRequestOpenVoteTableProps> = ({
 
 export default DataRequestOpenVoteTable;
 
-const topicVoteData: API.RequestOpenVoteItem[] = [
-  {
-    voteTitle: 'SEOL MUSIC AWARDS x FANDOM',
-    requestDate: '2023-02-02T21:03:16.044967+07:00',
-    community: 'Lisa',
-    status: 'Approved',
-    content: 'Content SEOL MUSIC AWARDS x FANDOM',
-  },
-  {
-    voteTitle: 'SEOL MUSIC AWARDS x FANDOM',
-    requestDate: '2023-02-02T21:03:16.044967+07:00',
-    community: 'Jenny',
-    status: 'Waiting Approve',
-    content: 'Content SEOL MUSIC AWARDS x FANDOM',
-  },
-  {
-    voteTitle: 'SEOL MUSIC AWARDS x FANDOM',
-    requestDate: '2023-02-02T21:03:16.044967+07:00',
-    community: 'Jiso',
-    status: 'Rejected',
-    content: 'Content SEOL MUSIC AWARDS x FANDOM',
-  },
-  {
-    voteTitle: 'SEOL MUSIC AWARDS x FANDOM',
-    requestDate: '2023-02-02T21:03:16.044967+07:00',
-    community: 'Rose',
-    status: 'Approved',
-    content: 'Content SEOL MUSIC AWARDS x FANDOM',
-  },
-  {
-    voteTitle: 'SEOL MUSIC AWARDS x FANDOM',
-    requestDate: '2023-02-02T21:03:16.044967+07:00',
-    community: 'Hihi',
-    status: 'Approved',
-    content: 'Content SEOL MUSIC AWARDS x FANDOM',
-  },
-];
+// const topicVoteData: API.RequestOpenVoteItem[] = [
+//   {
+//     voteTitle: 'SEOL MUSIC AWARDS x FANDOM',
+//     requestDate: '2023-02-02T21:03:16.044967+07:00',
+//     community: 'Lisa',
+//     status: 'Approved',
+//     content: 'Content SEOL MUSIC AWARDS x FANDOM',
+//   },
+// ];

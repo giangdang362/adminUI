@@ -13,11 +13,11 @@ const RequestOpenVoteDetail = () => {
   const [showDrawer, setShowDrawer] = useState<boolean>(false);
   const [showRejectModal, setShowRejectModal] = useState<boolean>(false);
 
-  const [currentStatus, setCurrentStatus] = useState<SelectType>();
+  const [currentStatus, setCurrentStatus] = useState<number>();
   const [currentCommunity, setCurrentCommunity] = useState<SelectType>();
 
-  const handleStatusChange = (value: SelectType) => {
-    setCurrentStatus(value);
+  const handleStatusChange = (x: number) => {
+    setCurrentStatus(x);
   };
 
   const handleCommunityChange = (value: SelectType) => {
@@ -63,7 +63,7 @@ const RequestOpenVoteDetail = () => {
             style={{
               width: '20%',
             }}
-            options={listIdol.map((op) => ({ label: op.label, value: op.value }))}
+            // options={listIdol.map((op) => ({ label: op.label, value: op.value }))}
             onChange={handleCommunityChange}
             value={currentCommunity}
           />
@@ -121,18 +121,18 @@ export default RequestOpenVoteDetail;
 
 type SelectType = {
   label: string;
-  value: string;
+  value: number;
 };
 
 export const listSelectStatus: SelectType[] = [
-  { label: 'Approved', value: 'Approved' },
-  { label: 'Waiting Approve', value: 'Waiting Approve' },
-  { label: 'Rejected', value: 'Rejected' },
+  { label: 'Approved', value: 1 },
+  { label: 'Waiting Approve', value: 2 },
+  { label: 'Rejected', value: 3 },
 ];
 
-export const listIdol: SelectType[] = [
-  { label: 'Lisa', value: 'Lisa' },
-  { label: 'Jenny', value: 'Jenny' },
-  { label: 'Rose', value: 'Rose' },
-  { label: 'Jiso', value: 'Jiso' },
-];
+// export const listIdol: SelectType[] = [
+//   { label: 'Lisa', value: 'Lisa' },
+//   { label: 'Jenny', value: 'Jenny' },
+//   { label: 'Rose', value: 'Rose' },
+//   { label: 'Jiso', value: 'Jiso' },
+// ];

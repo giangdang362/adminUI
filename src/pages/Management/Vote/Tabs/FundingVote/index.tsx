@@ -13,11 +13,11 @@ const FundingVote = () => {
   const [showDrawer, setShowDrawer] = useState<boolean>(false);
   const [showRankingResult, setShowRankingResult] = useState<boolean>(false);
 
-  const [currentStatus, setCurrentStatus] = useState<SelectStatus>();
+  const [currentStatus, setCurrentStatus] = useState<number>();
   const [currentIdol, setCurrentIdol] = useState<SelectStatus>();
 
-  const handleStatusChange = (value: SelectStatus) => {
-    setCurrentStatus(value);
+  const handleStatusChange = (x: number) => {
+    setCurrentStatus(x);
   };
 
   const handleIdolChange = (value: SelectStatus) => {
@@ -77,7 +77,7 @@ const FundingVote = () => {
             style={{
               width: '20%',
             }}
-            options={listIdol.map((op) => ({ label: op.label, value: op.value }))}
+            // options={listIdol.map((op) => ({ label: op.label, value: op.value }))}
             onChange={handleIdolChange}
             value={currentIdol}
           />
@@ -121,18 +121,18 @@ export default FundingVote;
 
 type SelectStatus = {
   label: string;
-  value: string;
+  value: number;
 };
 
 export const listSelectStatus: SelectStatus[] = [
-  { label: 'On going', value: 'onGoing' },
-  { label: 'Booking', value: 'booking' },
-  { label: 'Closed', value: 'closed' },
+  { label: 'On going', value: 1 },
+  { label: 'Booking', value: 2 },
+  { label: 'Closed', value: 3 },
 ];
 
-export const listIdol: SelectStatus[] = [
-  { label: 'Lisa', value: 'Lisa' },
-  { label: 'Jenny', value: 'Jenny' },
-  { label: 'Rose', value: 'Rose' },
-  { label: 'Jiso', value: 'Jiso' },
-];
+// export const listIdol: SelectStatus[] = [
+//   { label: 'Lisa', value: 'Lisa' },
+//   { label: 'Jenny', value: 'Jenny' },
+//   { label: 'Rose', value: 'Rose' },
+//   { label: 'Jiso', value: 'Jiso' },
+// ];

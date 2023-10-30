@@ -1,14 +1,12 @@
-import { FormatBirthday } from '@/constants/datetime';
+import { FormatBirthday } from '@/utils/datetime';
 import { EditOutlined } from '@ant-design/icons';
 import { useIntl } from '@umijs/max';
 import { Button, Tag, Tooltip } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import pointIcon from '../../../../public/images/point-icon.png';
 
-export const configColumns = (
-  handleSetCurUser: (x: API.UserItem) => void,
-): ColumnsType<API.UserItem> => {
-  const handleClickEdit = (x: API.UserItem) => {
+export const configColumns = (handleSetCurUser: (x: API.User) => void): ColumnsType<API.User> => {
+  const handleClickEdit = (x: API.User) => {
     handleSetCurUser(x);
   };
 
@@ -80,11 +78,11 @@ export const configColumns = (
       width: '24%',
       render: (_, original) => (
         <div style={{ display: 'flex', gap: '2px', flexWrap: 'wrap' }}>
-          {!original.idolFollow?.length && ' - '}
-          {original.idolFollow?.map((item, indexI) => {
+          {!original.idolFollows?.length && ' - '}
+          {original.idolFollows?.map((item, indexI) => {
             return <>{indexI <= 4 && <Tag style={{ fontSize: '13px' }}>{item.idolName}</Tag>}</>;
           })}
-          {original.idolFollow && original.idolFollow?.length > 5 && (
+          {original.idolFollows && original.idolFollows?.length > 5 && (
             <Tooltip
               color="#FFF"
               placement="bottom"
@@ -97,7 +95,7 @@ export const configColumns = (
                     backgroundColor: '#FFF',
                   }}
                 >
-                  {original.idolFollow?.map((item, indexI) => {
+                  {original.idolFollows?.map((item, indexI) => {
                     return (
                       <>{indexI > 4 && <Tag style={{ fontSize: '13px' }}>{item.idolName}</Tag>}</>
                     );
@@ -127,12 +125,12 @@ export const configColumns = (
             width: 'fit-content',
             padding: '4px 12px',
             borderRadius: '30px',
-            color: `${original.status ? '#5DC983' : '#EB5769'}`,
-            backgroundColor: `${original.status ? '#E7F7EC' : '#FCE6E9'}`,
+            color: `${original.isActive ? '#5DC983' : '#EB5769'}`,
+            backgroundColor: `${original.isActive ? '#E7F7EC' : '#FCE6E9'}`,
             fontSize: '13px',
           }}
         >
-          {original.status ? 'Actived' : 'Not Activated'}
+          {original.isActive ? 'Actived' : 'Not Activated'}
         </div>
       ),
     },

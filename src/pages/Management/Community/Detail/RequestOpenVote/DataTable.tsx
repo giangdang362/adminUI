@@ -1,7 +1,7 @@
 import idolAvatar from '@/../public/images/idol-avatar.png';
 import banner from '@/../public/images/openVoteBanner.png';
-import { FormatBirthday } from '@/constants/datetime';
 import '@/pages/Management/styles/styleTable.css';
+import { FormatBirthday } from '@/utils/datetime';
 import { DeleteOutlined, ExclamationCircleFilled, InfoCircleOutlined } from '@ant-design/icons';
 import { useIntl } from '@umijs/max';
 import { Button, Drawer, Image, Modal, Popover, Table, Tag, Typography } from 'antd';
