@@ -14,16 +14,37 @@ interface CreateUpdateFormProps {
   showModal: boolean;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   curItem?: API.IdolItem;
+  setRender: React.Dispatch<React.SetStateAction<boolean>>;
+  setCurIdol: React.Dispatch<React.SetStateAction<API.IdolItem>>;
 }
 
-const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setShowModal }) => {
+const CreateUpdateForm: FC<CreateUpdateFormProps> = ({
+  showModal,
+  setShowModal,
+  curItem,
+  setRender,
+  setCurIdol,
+}) => {
   const intl = useIntl();
   const [form] = Form.useForm();
   const handleCloseModal = () => {
     setShowModal(false);
     form?.resetFields();
+    setCurIdol({});
   };
   const handleSubmit = (formItem: API.IdolItem) => {};
+  console.log('curIdol', curItem);
+
+  const handleSave = async () => {
+    !curItem
+      ? (console.log('add'),
+        // await postIdol(curItem ?? {})
+        setShowModal(false))
+      : (console.log('edit'),
+        //  await putIdol(curItem.id ?? '')
+        setShowModal(false));
+    setRender((pre) => !pre);
+  };
 
   useEffect(() => {
     form.setFieldValue('type', curItem?.idolType ? 'Group' : 'Solo');
@@ -33,7 +54,7 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
   return (
     <Modal
       title={
-        !curItem
+        !curItem?.id
           ? `${intl.formatMessage({
               id: 'pages.idols.form.titleAdd',
               defaultMessage: 'Add Idol',
@@ -53,6 +74,7 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
         id: 'pages.button.cancel',
         defaultMessage: 'Cancel',
       })}`}
+      onOk={() => handleSave()}
     >
       <Form
         form={form}
@@ -64,6 +86,7 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
         }}
       >
         <ProFormSelect
+          allowClear
           label={`${intl.formatMessage({
             id: 'pages.idols.form.type',
             defaultMessage: 'Type',

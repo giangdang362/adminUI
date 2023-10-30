@@ -1,12 +1,14 @@
 import banner from '@/../public/images/bannerVote.png';
 import idolAvatar from '@/../public/images/idol-avatar.png';
 import pointLogo from '@/../public/images/point-logo.png';
-import { FormatNumber } from '@/constants/common';
-import { FormatBirthday } from '@/constants/datetime';
+import { VOTE_TYPE } from '@/constants/voteType';
+import { getVote } from '@/services/management/vote';
+import { FormatNumber } from '@/utils/common';
+import { FormatBirthday } from '@/utils/datetime';
 import { DeleteOutlined, EditOutlined, ExclamationCircleFilled } from '@ant-design/icons';
 import { useIntl } from '@umijs/max';
 import { Button, Drawer, Image, Modal, Progress, Table, Tag, Typography } from 'antd';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { configColumns } from './columns';
 
 interface DataFundingVoteTableProps {
@@ -28,6 +30,8 @@ const DataFundingVoteTable: FC<DataFundingVoteTableProps> = ({
 }) => {
   const { Title } = Typography;
   const intl = useIntl();
+
+  const [fundingVote, setFundingVote] = useState<API.FundingVoteItem[]>([]);
   const { confirm } = Modal;
   const showDeleteConfirm = () => {
     confirm({
@@ -61,16 +65,26 @@ const DataFundingVoteTable: FC<DataFundingVoteTableProps> = ({
     setCurFundingVote(x);
     setShowDrawer(true);
   };
+
+  const handleGetFundingVote = async () => {
+    const res = await getVote({ voteType: VOTE_TYPE.FUNDING_TYPE });
+    setFundingVote(res);
+  };
+
+  useEffect(() => {
+    handleGetFundingVote();
+  }, [curFundingVote]);
+
   return (
     <div className="wrapp-table">
       <Table
         columns={configColumns(handleSetCurFundingVote, showDeleteConfirm)}
-        dataSource={topicVoteData}
+        dataSource={fundingVote}
         pagination={{
           showQuickJumper: true,
           defaultCurrent: 1,
           defaultPageSize: 10,
-          total: topicVoteData.length,
+          total: fundingVote.length,
         }}
         onRow={(record) => {
           return {
@@ -274,60 +288,16 @@ const DataFundingVoteTable: FC<DataFundingVoteTableProps> = ({
 
 export default DataFundingVoteTable;
 
-const topicVoteData: API.FundingVoteItem[] = [
-  {
-    voteTitle: 'SEOL MUSIC AWARDS x FANDOM',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    reward: 'Outdoor Advertising',
-    vote: 20,
-    idolVote: 'Lisa',
-    status: 'Ongoing',
-    goal: 200000,
-    content: 'Outdoor Advertising',
-  },
-  {
-    voteTitle: 'SEOL MUSIC AWARDS x FANDOM',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    reward: 'Outdoor Advertising',
-    vote: 35,
-    idolVote: 'Jenny',
-    status: 'Booking',
-    goal: 200000,
-    content: 'Outdoor Advertising',
-  },
-  {
-    voteTitle: 'SEOL MUSIC AWARDS x FANDOM',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    reward: 'Outdoor Advertising',
-    vote: 45,
-    idolVote: 'Jiso',
-    status: 'Closed',
-    goal: 200000,
-    content: 'Outdoor Advertising',
-  },
-  {
-    voteTitle: 'SEOL MUSIC AWARDS x FANDOM',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    reward: 'Outdoor Advertising',
-    vote: 56,
-    idolVote: 'Rose',
-    status: 'Ongoing',
-    goal: 200000,
-    content: 'Outdoor Advertising',
-  },
-  {
-    voteTitle: 'SEOL MUSIC AWARDS x FANDOM',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    reward: 'Outdoor Advertising',
-    vote: 90,
-    idolVote: 'Hihi',
-    status: 'Ongoing',
-    goal: 200000,
-    content: 'Outdoor Advertising',
-  },
-];
+// const topicVoteData: API.FundingVoteItem[] = [
+//   {
+//     voteTitle: 'SEOL MUSIC AWARDS x FANDOM',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     reward: 'Outdoor Advertising',
+//     vote: 20,
+//     idolVote: 'Lisa',
+//     status: 'Ongoing',
+//     goal: 200000,
+//     content: 'Outdoor Advertising',
+//   },
+// ];

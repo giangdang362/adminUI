@@ -1,5 +1,5 @@
 import idolAvatar from '@/../public/images/idol-avatar.png';
-import { FormatNumber } from '@/constants/common';
+import { FormatNumber } from '@/utils/common';
 import { useIntl } from '@umijs/max';
 import { Modal } from 'antd';
 import { FC } from 'react';

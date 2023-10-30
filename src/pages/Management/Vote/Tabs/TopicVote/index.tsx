@@ -13,16 +13,17 @@ const TopicVote = () => {
   const [showDrawer, setShowDrawer] = useState<boolean>(false);
   const [showRankingResult, setShowRankingResult] = useState<boolean>(false);
 
-  const [currentStatus, setCurrentStatus] = useState<SelectStatus>();
+  const [currentStatus, setCurrentStatus] = useState<number>();
 
   const handleSetCurTopicVote = (x: API.TopicVoteItem) => {
     setCurTopicVote(x);
     setShowModalForm(true);
   };
 
-  const handleStatusChange = (value: SelectStatus) => {
-    setCurrentStatus(value);
+  const handleStatusChange = (x: number) => {
+    setCurrentStatus(x);
   };
+
   return (
     <div>
       <div
@@ -103,12 +104,12 @@ const TopicVote = () => {
 
 export default TopicVote;
 
-type SelectStatus = {
+export type SelectStatus = {
   label: string;
-  value: string;
+  value: number;
 };
 
 export const listSelectStatus: SelectStatus[] = [
-  { label: 'On going', value: 'onGoing' },
-  { label: 'Closed', value: 'closed' },
+  { label: 'On going', value: 1 },
+  { label: 'Closed', value: 2 },
 ];
