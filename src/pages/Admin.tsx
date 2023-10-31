@@ -1,4 +1,3 @@
-import { Counter } from '@/features/counter/Counter';
 import { HeartTwoTone, SmileTwoTone } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
@@ -14,7 +13,6 @@ const Admin: React.FC = () => {
         defaultMessage: 'This page can only be viewed by admin',
       })}
     >
-      <Counter />
       <Card>
         <Alert
           message={intl.formatMessage({

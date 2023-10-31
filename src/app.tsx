@@ -1,32 +1,30 @@
-import { AvatarDropdown, AvatarName, Question, SelectLang } from '@/components';
-import { LinkOutlined } from '@ant-design/icons';
+import { AvatarDropdown, AvatarName, SelectLang } from '@/components';
 import type { RequestConfig, RunTimeLayoutConfig } from '@umijs/max';
-import { Link, history } from '@umijs/max';
+import { history } from '@umijs/max';
 import { ConfigProvider } from 'antd';
 import { errorConfig } from './requestErrorConfig';
 import { getSessionStorageUser, getStorageUser } from './utils/auth';
 
-const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
 
 /**
  * @see  https://umijs.org/zh-CN/plugins/plugin-initial-state
  * */
 export async function getInitialState(): Promise<{ currentUser?: API.User }> {
-  const storageUser = getStorageUser()
-  const sessionStorageUser = getSessionStorageUser()
-  const currentUser = sessionStorageUser || storageUser
+  const storageUser = getStorageUser();
+  const sessionStorageUser = getSessionStorageUser();
+  const currentUser = sessionStorageUser || storageUser;
   return {
     currentUser,
   };
 }
 
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
-export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) => {
+export const layout: RunTimeLayoutConfig = ({ initialState }) => {
   console.log('🚀 ~ file: app.tsx:24 ~ initialState:', initialState);
 
   return {
-    actionsRender: () => [<Question key="doc" />, <SelectLang key="SelectLang" />],
+    actionsRender: () => [<SelectLang key="SelectLang" />],
     avatarProps: {
       src: initialState?.currentUser?.avatarUrl,
       title: <AvatarName />,
@@ -65,14 +63,14 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
         width: '331px',
       },
     ],
-    links: isDev
-      ? [
-        <a key="openapi" href="http://10.10.31.53:8686/index.html" target="_blank">
-          <LinkOutlined />
-          <span>OpenAPI</span>
-        </a>,
-      ]
-      : [],
+    // links: isDev
+    //   ? [
+    //     <a key="openapi" href="http://10.10.31.53:8686/index.html" target="_blank" rel='noreferrer'>
+    //       <LinkOutlined />
+    //       <span>OpenAPI</span>
+    //     </a>,
+    //   ]
+    //   : [],
     menuHeaderRender: undefined,
     // 自定义 403 页面
     // unAccessible: <div>unAccessible</div>,
@@ -118,19 +116,6 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
             }}
           >
             {children}
-            {/* {isDev && (
-              <SettingDrawer
-                disableUrlParams
-                enableDarkTheme
-                settings={initialState?.settings}
-                onSettingChange={(settings) => {
-                  setInitialState((preInitialState) => ({
-                    ...preInitialState,
-                    settings,
-                  }));
-                }}
-              />
-            )} */}
           </ConfigProvider>
         </>
       );

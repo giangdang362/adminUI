@@ -4,8 +4,7 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { LoginForm, ProFormCheckbox, ProFormText } from '@ant-design/pro-components';
 import { FormattedMessage, history, useIntl, useModel } from '@umijs/max';
 import { message } from 'antd';
-import { CheckboxChangeEvent } from 'antd/es/checkbox';
-import React, { useState } from 'react';
+import React from 'react';
 import { flushSync } from 'react-dom';
 import loginLogo from './../../../../public/images/logo-login.png';
 import './index.css';
@@ -58,18 +57,13 @@ import './index.css';
 
 const Login: React.FC = () => {
   // const [userLoginState, setUserLoginState] = useState<API.LoginResult>({});
-  const [loginParams, setLoginParams] = useState<API.Login>({
-    email: '',
-    password: '',
-    // autoLogin: true,
-    // remember: true,
-  });
-  const [type, setType] = useState<string>('account');
-  const { initialState, setInitialState } = useModel('@@initialState');
-
-  const onChangeRememberMe = (e: CheckboxChangeEvent) => {
-    setLoginParams({ ...loginParams, remember: e.target.checked ? 1 : 0 });
-  };
+  // const [loginParams, setLoginParams] = useState<API.Login>({
+  //   email: '',
+  //   password: '',
+  //   // remember: true,
+  // });
+  // const [, setType] = useState<string>('account');
+  const { setInitialState } = useModel('@@initialState');
 
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
@@ -86,8 +80,8 @@ const Login: React.FC = () => {
           accessToken: user?.jwtToken,
           refreshToken: user?.refreshToken,
         });
-        setSessionStorageUser(user)
-        if (values?.remember) setStorageUser(user)
+        setSessionStorageUser(user);
+        if (values?.remember) setStorageUser(user);
         const defaultLoginSuccessMessage = intl.formatMessage({
           id: 'pages.login.success',
           defaultMessage: 'Login successfull!',
@@ -154,7 +148,7 @@ const Login: React.FC = () => {
                     id: 'pages.login.email.placeholder',
                     defaultMessage: 'admin or user',
                   })}
-                  initialValue='giangdn@ltsgroup.tech'
+                  initialValue="giangdn@ltsgroup.tech"
                   rules={[
                     {
                       required: true,
@@ -174,7 +168,7 @@ const Login: React.FC = () => {
                     size: 'large',
                     prefix: <LockOutlined />,
                   }}
-                  initialValue='k57cauet'
+                  initialValue="k57cauet"
                   placeholder={intl.formatMessage({
                     id: 'pages.login.password.placeholder',
                     defaultMessage: 'admin/user',
