@@ -1,6 +1,6 @@
-import { getIdol } from '@/services/management/idols';
-import { ExclamationCircleFilled } from '@ant-design/icons';
-import { Modal, Table } from 'antd';
+import { IDOL_TYPE } from '@/constants/idolType';
+import { getIdols } from '@/services/management/idols';
+import { Table } from 'antd';
 import { FC, useEffect, useState } from 'react';
 import FooterTable from '../ChartTopIdol/Tabs/FooterTable';
 import '../styles/styleTable.css';
@@ -8,42 +8,43 @@ import { configColumns } from './columns';
 
 interface DataIdolsTableProps {
   handleSetCurIdol: (x: API.IdolItem) => void;
+  currentType?: number;
+  curIdol: API.IdolItem;
+  reload?: boolean;
+  setReload: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const DataIdolsTable: FC<DataIdolsTableProps> = ({ handleSetCurIdol }) => {
+const DataIdolsTable: FC<DataIdolsTableProps> = ({
+  handleSetCurIdol,
+  currentType,
+  curIdol,
+  reload: reload,
+  setReload: setReload,
+}) => {
   const [idolData, setIdolData] = useState<API.IdolItem[]>([]);
 
-  const { confirm } = Modal;
-  const showDeleteConfirm = () => {
-    confirm({
-      title: 'Delete this idol?',
-      icon: <ExclamationCircleFilled style={{ color: 'red' }} />,
-      content: 'Do you really want to delete this idol? This process can not be undone.',
-      okText: 'Delete',
-      okType: 'danger',
-      cancelText: 'Cancel',
-      onOk() {
-        console.log('Deleted');
-      },
-      onCancel() {
-        console.log('Cancel');
-      },
-    });
+  const handleReload = () => {
+    setReload((pre) => !pre);
   };
 
   const handleGetIdols = async () => {
-    const res = await getIdol({ idolType: null });
-    console.log('handleGetIdols', res);
+    const res =
+      currentType === 1
+        ? await getIdols({ idolType: IDOL_TYPE.GROUP_TYPE })
+        : currentType === 2
+        ? await getIdols({ idolType: IDOL_TYPE.SOLO_TYPE })
+        : await getIdols({ idolType: null });
+    setIdolData(res);
   };
 
   useEffect(() => {
     handleGetIdols();
-  }, []);
+  }, [currentType, reload]);
 
   return (
     <div className="wrapp-table">
       <Table
-        columns={configColumns(handleSetCurIdol, showDeleteConfirm)}
+        columns={configColumns(handleSetCurIdol, curIdol, handleReload)}
         dataSource={idolData}
         pagination={{
           showQuickJumper: true,
@@ -82,226 +83,6 @@ export default DataIdolsTable;
 //         name: 'Rose',
 //       },
 //     ],
-//     type: 1,
-//   },
-//   {
-//     id: '002',
-//     idolName: 'CR7',
-//     birthday: '2023-10-02T21:03:16.044967+07:00',
-//     type: 0,
-//     members: [
-//       {
-//         id: 7,
-//         name: 'Cristiano Ronaldo',
-//       },
-//     ],
-//   },
-//   {
-//     id: '010',
-//     idolName: 'M10',
-//     birthday: '2023-10-02T21:03:16.044967+07:00',
-//     type: 0,
-//     members: [
-//       {
-//         id: 10,
-//         name: 'Lionel Messi',
-//       },
-//     ],
-//   },
-//   {
-//     id: '003',
-//     idolName: 'BigBang',
-//     birthday: '2023-10-02T21:03:16.044967+07:00',
-//     type: 1,
-//     members: [
-//       {
-//         id: 123,
-//         name: 'JKK',
-//       },
-//       {
-//         id: 123,
-//         name: 'AXC',
-//       },
-//       {
-//         id: 123,
-//         name: 'MXA',
-//       },
-//       {
-//         id: 123,
-//         name: 'KKO',
-//       },
-//     ],
-//   },
-//   {
-//     id: '004',
-//     idolName: 'DBSK',
-//     birthday: '2023-10-02T21:03:16.044967+07:00',
-//     type: 1,
-//     members: [
-//       {
-//         id: 100,
-//         name: 'AWC',
-//       },
-//       {
-//         id: 100,
-//         name: 'UAT',
-//       },
-//       {
-//         id: 100,
-//         name: 'HCA',
-//       },
-//       {
-//         id: 100,
-//         name: 'UYT',
-//       },
-//       {
-//         id: 100,
-//         name: 'THS',
-//       },
-//       {
-//         id: 100,
-//         name: 'IAY',
-//       },
-//       {
-//         id: 100,
-//         name: 'HJS',
-//       },
-//       {
-//         id: 100,
-//         name: 'QTA',
-//       },
-//       {
-//         id: 100,
-//         name: 'LKA',
-//       },
-//       {
-//         id: 100,
-//         name: 'ISB',
-//       },
-//       {
-//         id: 100,
-//         name: 'AWC',
-//       },
-//       {
-//         id: 100,
-//         name: 'UAT',
-//       },
-//       {
-//         id: 100,
-//         name: 'HCA',
-//       },
-//       {
-//         id: 100,
-//         name: 'UYT',
-//       },
-//       {
-//         id: 100,
-//         name: 'THS',
-//       },
-//       {
-//         id: 100,
-//         name: 'IAY',
-//       },
-//       {
-//         id: 100,
-//         name: 'HJS',
-//       },
-//       {
-//         id: 100,
-//         name: 'QTA',
-//       },
-//       {
-//         id: 100,
-//         name: 'LKA',
-//       },
-//       {
-//         id: 100,
-//         name: 'ISB',
-//       },
-//     ],
-//   },
-//   {
-//     id: '005',
-//     idolName: 'JK',
-//     birthday: '2023-10-02T21:03:16.044967+07:00',
-//     type: 1,
-//   },
-//   {
-//     id: '006',
-//     idolName: 'AEY',
-//     birthday: '2023-10-02T21:03:16.044967+07:00',
-//     type: 1,
-//   },
-//   {
-//     id: '001',
-//     idolName: 'Rose',
-//     birthday: '2023-10-02T21:03:16.044967+07:00',
-//     type: 1,
-//   },
-//   {
-//     id: '002',
-//     idolName: 'Lisa',
-//     birthday: '2023-10-02T21:03:16.044967+07:00',
-//     type: 1,
-//   },
-//   {
-//     id: '003',
-//     idolName: 'Jiso',
-//     birthday: '2023-10-02T21:03:16.044967+07:00',
-//     type: 1,
-//   },
-//   {
-//     id: '004',
-//     idolName: 'Jenny',
-//     birthday: '2023-10-02T21:03:16.044967+07:00',
-//     type: 1,
-//   },
-//   {
-//     id: '005',
-//     idolName: 'JK',
-//     birthday: '2023-10-02T21:03:16.044967+07:00',
-//     type: 1,
-//   },
-//   {
-//     id: '006',
-//     idolName: 'AEY',
-//     birthday: '2023-10-02T21:03:16.044967+07:00',
-//     type: 1,
-//   },
-//   {
-//     id: '001',
-//     idolName: 'Rose',
-//     birthday: '2023-10-02T21:03:16.044967+07:00',
-//     type: 1,
-//   },
-//   {
-//     id: '002',
-//     idolName: 'Lisa',
-//     birthday: '2023-10-02T21:03:16.044967+07:00',
-//     type: 1,
-//   },
-//   {
-//     id: '003',
-//     idolName: 'Jiso',
-//     birthday: '2023-10-02T21:03:16.044967+07:00',
-//     type: 1,
-//   },
-//   {
-//     id: '004',
-//     idolName: 'Jenny',
-//     birthday: '2023-10-02T21:03:16.044967+07:00',
-//     type: 1,
-//   },
-//   {
-//     id: '005',
-//     idolName: 'JK',
-//     birthday: '2023-10-02T21:03:16.044967+07:00',
-//     type: 1,
-//   },
-//   {
-//     id: '006',
-//     idolName: 'AEY',
-//     birthday: '2023-10-02T21:03:16.044967+07:00',
 //     type: 1,
 //   },
 // ];

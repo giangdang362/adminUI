@@ -9,10 +9,10 @@ const { Title } = Typography;
 
 const IdolsManagement = () => {
   const intl = useIntl();
-  const [curIdol, setCurIdol] = useState<API.IdolItem>();
-
+  const [curIdol, setCurIdol] = useState<API.IdolItem>({});
+  const [reload, setReload] = useState<boolean>(false);
   const [currentEsalisday, setCurrentEsalisday] = useState<SelectType>();
-  const [currentType, setCurrentType] = useState<SelectType>();
+  const [currentType, setCurrentType] = useState<number>();
   const [showModal, setShowModal] = useState<boolean>(false);
 
   const handleSetCurIdol = (x: API.IdolItem) => {
@@ -24,8 +24,8 @@ const IdolsManagement = () => {
     setCurrentEsalisday(value);
   };
 
-  const handleTypeChange = (value: SelectType) => {
-    setCurrentType(value);
+  const handleTypeChange = (x: number) => {
+    setCurrentType(x);
   };
 
   return (
@@ -69,10 +69,11 @@ const IdolsManagement = () => {
             style={{
               width: '20%',
             }}
-            options={listSelectEsalisday.map((op) => ({ label: op.label, value: op.value }))}
+            // options={listSelectEsalisday.map((op) => ({ label: op.label, value: op.value }))}
             onChange={handleEsalisdayChange}
           />
           <Select
+            allowClear
             placeholder={`${intl.formatMessage({
               id: 'pages.idols.placeholderType',
               defaultMessage: 'Type',
@@ -102,26 +103,38 @@ const IdolsManagement = () => {
           </span>
         </Button>
       </div>
-      <DataIdolsTable handleSetCurIdol={handleSetCurIdol} />
-      <CreateUpdateForm showModal={showModal} setShowModal={setShowModal} curItem={curIdol} />
+      <DataIdolsTable
+        handleSetCurIdol={handleSetCurIdol}
+        currentType={currentType}
+        curIdol={curIdol}
+        reload={reload}
+        setReload={setReload}
+      />
+      <CreateUpdateForm
+        showModal={showModal}
+        setShowModal={setShowModal}
+        curItem={curIdol}
+        setReload={setReload}
+        setCurIdol={setCurIdol}
+      />
     </div>
   );
 };
 
 export default IdolsManagement;
 
-type SelectType = {
+export type SelectType = {
   label: string;
-  value: string;
+  value: number;
 };
 
-export const listSelectEsalisday: SelectType[] = [
-  { label: 'Daily Chart', value: 'Daily Chart' },
-  { label: 'Weekly Chart', value: 'Weekly Chart' },
-  { label: 'Monthly Chart', value: 'Monthly Chart' },
-];
+// export const listSelectEsalisday: SelectType[] = [
+//   { label: 'Daily Chart', value: 'Daily Chart' },
+//   { label: 'Weekly Chart', value: 'Weekly Chart' },
+//   { label: 'Monthly Chart', value: 'Monthly Chart' },
+// ];
 
 export const typeSelect: SelectType[] = [
-  { label: 'Solo', value: 'solo' },
-  { label: 'Group', value: 'group' },
+  { label: 'Solo', value: 2 },
+  { label: 'Group', value: 1 },
 ];

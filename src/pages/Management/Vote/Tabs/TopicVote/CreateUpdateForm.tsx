@@ -13,7 +13,7 @@ import { FC, useEffect } from 'react';
 interface CreateUpdateFormProps {
   showModal: boolean;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-  curItem?: API.TopicVoteItem;
+  curItem?: API.VoteItem;
 }
 
 const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setShowModal }) => {
@@ -23,7 +23,7 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
     setShowModal(false);
     form?.resetFields();
   };
-  const handleSubmit = (formItem: API.TopicVoteItem) => {};
+  const handleSubmit = (formItem: API.VoteItem) => {};
 
   useEffect(() => {
     form.setFieldValue('topicName', curItem?.topicName);

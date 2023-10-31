@@ -1,12 +1,15 @@
 declare namespace API {
-  type UserItem = {
-    id?: string;
+  type User = {
+    id?: number;
     userName?: string;
+    userEmail?: string;
+    avatarUrl?: string;
+    honeyPoint?: number;
+    isActive?: true;
+    startDate?: string;
     lastLoginDate?: string;
-    point?: number;
-    idolFollow?: MemberItem[];
-    status?: number;
-    email?: string;
-    password?: string;
+    idolFollows?: API.IdolItem[];
+    jwtToken?: string;
+    refreshToken?: string;
   };
 }

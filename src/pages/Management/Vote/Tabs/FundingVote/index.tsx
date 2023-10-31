@@ -7,24 +7,24 @@ import DataFundingVoteTable from './DataTable';
 
 const FundingVote = () => {
   const intl = useIntl();
-  const [curFundingVote, setCurFundingVote] = useState<API.FundingVoteItem>();
+  const [curFundingVote, setCurFundingVote] = useState<API.VoteItem>();
 
   const [showModalForm, setShowModalForm] = useState<boolean>(false);
   const [showDrawer, setShowDrawer] = useState<boolean>(false);
   const [showRankingResult, setShowRankingResult] = useState<boolean>(false);
 
-  const [currentStatus, setCurrentStatus] = useState<SelectStatus>();
+  const [currentStatus, setCurrentStatus] = useState<string>();
   const [currentIdol, setCurrentIdol] = useState<SelectStatus>();
 
-  const handleStatusChange = (value: SelectStatus) => {
-    setCurrentStatus(value);
+  const handleStatusChange = (x: string) => {
+    setCurrentStatus(x);
   };
 
   const handleIdolChange = (value: SelectStatus) => {
     setCurrentIdol(value);
   };
 
-  const handleSetCurFundingVote = (x: API.FundingVoteItem) => {
+  const handleSetCurFundingVote = (x: API.VoteItem) => {
     setCurFundingVote(x);
     setShowModalForm(true);
   };
@@ -77,7 +77,7 @@ const FundingVote = () => {
             style={{
               width: '20%',
             }}
-            options={listIdol.map((op) => ({ label: op.label, value: op.value }))}
+            // options={listIdol.map((op) => ({ label: op.label, value: op.value }))}
             onChange={handleIdolChange}
             value={currentIdol}
           />
@@ -107,6 +107,7 @@ const FundingVote = () => {
         handleSetCurFundingVote={handleSetCurFundingVote}
         showDrawer={showDrawer}
         setShowDrawer={setShowDrawer}
+        currentStatus={currentStatus}
       />
       <CreateUpdateForm
         showModal={showModalForm}
@@ -125,14 +126,14 @@ type SelectStatus = {
 };
 
 export const listSelectStatus: SelectStatus[] = [
-  { label: 'On going', value: 'onGoing' },
-  { label: 'Booking', value: 'booking' },
-  { label: 'Closed', value: 'closed' },
+  { label: 'On going', value: 'Ongoing' },
+  { label: 'Booking', value: 'Booking' },
+  { label: 'Closed', value: 'Closed' },
 ];
 
-export const listIdol: SelectStatus[] = [
-  { label: 'Lisa', value: 'Lisa' },
-  { label: 'Jenny', value: 'Jenny' },
-  { label: 'Rose', value: 'Rose' },
-  { label: 'Jiso', value: 'Jiso' },
-];
+// export const listIdol: SelectStatus[] = [
+//   { label: 'Lisa', value: 'Lisa' },
+//   { label: 'Jenny', value: 'Jenny' },
+//   { label: 'Rose', value: 'Rose' },
+//   { label: 'Jiso', value: 'Jiso' },
+// ];

@@ -7,22 +7,23 @@ import DataTopicVoteTable from './DataTable';
 
 const TopicVote = () => {
   const intl = useIntl();
-  const [curTopicVote, setCurTopicVote] = useState<API.TopicVoteItem>();
+  const [curTopicVote, setCurTopicVote] = useState<API.VoteItem>();
 
   const [showModalForm, setShowModalForm] = useState<boolean>(false);
   const [showDrawer, setShowDrawer] = useState<boolean>(false);
   const [showRankingResult, setShowRankingResult] = useState<boolean>(false);
 
-  const [currentStatus, setCurrentStatus] = useState<SelectStatus>();
+  const [currentStatus, setCurrentStatus] = useState<string>();
 
-  const handleSetCurTopicVote = (x: API.TopicVoteItem) => {
+  const handleSetCurTopicVote = (x: API.VoteItem) => {
     setCurTopicVote(x);
     setShowModalForm(true);
   };
 
-  const handleStatusChange = (value: SelectStatus) => {
-    setCurrentStatus(value);
+  const handleStatusChange = (x: string) => {
+    setCurrentStatus(x);
   };
+
   return (
     <div>
       <div
@@ -61,7 +62,6 @@ const TopicVote = () => {
             }}
             options={listSelectStatus.map((op) => ({ label: op.label, value: op.value }))}
             onChange={handleStatusChange}
-            value={currentStatus}
           />
         </div>
         <Button
@@ -91,6 +91,7 @@ const TopicVote = () => {
         setShowModalForm={setShowModalForm}
         showRankingResult={showRankingResult}
         setShowRankingResult={setShowRankingResult}
+        currentStatus={currentStatus}
       />
       <CreateUpdateForm
         showModal={showModalForm}
@@ -103,12 +104,12 @@ const TopicVote = () => {
 
 export default TopicVote;
 
-type SelectStatus = {
+export type SelectStatus = {
   label: string;
   value: string;
 };
 
 export const listSelectStatus: SelectStatus[] = [
-  { label: 'On going', value: 'onGoing' },
-  { label: 'Closed', value: 'closed' },
+  { label: 'On going', value: 'Ongoing' },
+  { label: 'Closed', value: 'Closed' },
 ];

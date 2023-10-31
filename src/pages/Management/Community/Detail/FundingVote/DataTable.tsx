@@ -1,8 +1,8 @@
 import banner from '@/../public/images/bannerVote.png';
 import idolAvatar from '@/../public/images/idol-avatar.png';
 import pointLogo from '@/../public/images/point-logo.png';
-import { FormatNumber } from '@/constants/common';
-import { FormatBirthday } from '@/constants/datetime';
+import { FormatNumber } from '@/utils/common';
+import { FormatBirthday } from '@/utils/datetime';
 import { DeleteOutlined, EditOutlined, ExclamationCircleFilled } from '@ant-design/icons';
 import { useIntl } from '@umijs/max';
 import { Button, Drawer, Image, Modal, Progress, Table, Tag, Typography } from 'antd';
@@ -10,10 +10,10 @@ import { FC } from 'react';
 import { configColumns } from './columns';
 
 interface DataFundingVoteTableProps {
-  curFundingVote?: API.FundingVoteItem;
-  setCurFundingVote: React.Dispatch<React.SetStateAction<API.FundingVoteItem | undefined>>;
+  curFundingVote?: API.VoteItem;
+  setCurFundingVote: React.Dispatch<React.SetStateAction<API.VoteItem | undefined>>;
   setShowModalForm: React.Dispatch<React.SetStateAction<boolean>>;
-  handleSetCurFundingVote: (x: API.FundingVoteItem) => void;
+  handleSetCurFundingVote: (x: API.VoteItem) => void;
   showDrawer: boolean;
   setShowDrawer: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -57,7 +57,7 @@ const DataFundingVoteTable: FC<DataFundingVoteTableProps> = ({
       },
     });
   };
-  const handleClickRow = (x: API.FundingVoteItem) => {
+  const handleClickRow = (x: API.VoteItem) => {
     setCurFundingVote(x);
     setShowDrawer(true);
   };
@@ -274,7 +274,7 @@ const DataFundingVoteTable: FC<DataFundingVoteTableProps> = ({
 
 export default DataFundingVoteTable;
 
-const topicVoteData: API.FundingVoteItem[] = [
+const topicVoteData: API.VoteItem[] = [
   {
     voteTitle: 'SEOL MUSIC AWARDS x FANDOM',
     startDate: '2023-02-02T21:03:16.044967+07:00',

@@ -63,6 +63,9 @@ export default {
   'pages.button.reject.yes': 'Yes',
   'pages.button.reject.no': 'No',
   'pages.button.approve': 'Approve',
+  'pages.button.delete.title': 'Delete this item',
+  'pages.button.delete.content':
+    'Do you really want to delete this item? This process can not be undone.',
 
   'pages.mainPage.title': 'Main Page Management',
   'pages.mainPage.banner.title': 'Banner',
@@ -105,6 +108,9 @@ export default {
   'pages.idols.form.birthday': 'Birthday/Estalisday',
   'pages.idols.form.placeholderType': 'Select type',
   'pages.idols.form.placeholderBirth': 'Select date',
+  'pages.vote.idols.delete': 'Delete this Idol',
+  'pages.vote.idols.deleteContent':
+    'Do you really want to delete this item? This process can not be undone.',
 
   'pages.vote.title': 'Vote Management',
   'pages.vote.topicVote.title': 'Topic Vote',
@@ -177,7 +183,7 @@ export default {
   'pages.settings.notification.form.description': 'Description',
   'pages.settings.notification.form.important': 'Important',
   'pages.settings.notification.titleDetail': 'Notification Detail',
-  'pages.settings.notification.delete': 'Delete this Notification',
+  'pages.settings.notification.delete': 'Delete this Notification vote',
   'pages.settings.notification.deleteContent':
     'Do you really want to delete this item? This process can not be undone.',
   'pages.settings.notification.updateOn': 'Update on',

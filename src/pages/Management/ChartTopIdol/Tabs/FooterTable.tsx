@@ -1,4 +1,4 @@
-import { FormatDateTime } from '@/constants/datetime';
+import { FormatDateTime } from '@/utils/datetime';
 import { FC } from 'react';
 
 interface FooterTableProps {

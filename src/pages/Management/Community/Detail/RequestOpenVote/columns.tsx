@@ -1,15 +1,15 @@
 import idolAvatar from '@/../public/images/idol-avatar.png';
-import { FormatBirthday } from '@/constants/datetime';
+import { FormatBirthday } from '@/utils/datetime';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { useIntl } from '@umijs/max';
 import { Button } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 
 export const configColumns = (
-  handleSetCurFundungVote: (x: API.RequestOpenVoteItem) => void,
+  handleSetCurFundungVote: (x: API.VoteItem) => void,
   showDeleteConfirm: () => void,
-): ColumnsType<API.RequestOpenVoteItem> => {
-  const handleClickEdit = (x: API.RequestOpenVoteItem) => {
+): ColumnsType<API.VoteItem> => {
+  const handleClickEdit = (x: API.VoteItem) => {
     handleSetCurFundungVote(x);
   };
 

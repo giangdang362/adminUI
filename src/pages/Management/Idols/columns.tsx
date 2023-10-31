@@ -1,17 +1,59 @@
-import { FormatBirthday } from '@/constants/datetime';
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import { deleteIdol } from '@/services/management/idols';
+import { FormatBirthday } from '@/utils/datetime';
+import { DeleteOutlined, EditOutlined, ExclamationCircleFilled } from '@ant-design/icons';
 import { useIntl } from '@umijs/max';
-import { Button, Tag, Tooltip } from 'antd';
+import { Button, Modal, Tag, Tooltip } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 
 export const configColumns = (
   handleSetCurIdol: (x: API.IdolItem) => void,
-  showDeleteConfirm: () => void,
+  curIdol: API.IdolItem,
+  handleReload: () => void,
 ): ColumnsType<API.IdolItem> => {
   const handleClickEdit = (x: API.IdolItem) => {
     handleSetCurIdol(x);
+    handleReload();
   };
   const intl = useIntl();
+  const { confirm } = Modal;
+  const showDeleteConfirm = () => {
+    confirm({
+      title: `${intl.formatMessage({
+        id: 'pages.button.delete.title',
+        defaultMessage: 'Delete this item',
+      })}`,
+      icon: <ExclamationCircleFilled style={{ color: 'red' }} />,
+      content: `${intl.formatMessage({
+        id: 'pages.button.delete.content',
+        defaultMessage: 'Do you really want to delete this item? This process can not be undone.',
+      })}`,
+      okText: `${intl.formatMessage({
+        id: 'pages.button.delete',
+        defaultMessage: 'Delete',
+      })}`,
+      okType: 'danger',
+      cancelText: `${intl.formatMessage({
+        id: 'pages.button.cancel',
+        defaultMessage: 'Cancel',
+      })}`,
+      onOk: async () => {
+        try {
+          await deleteIdol(curIdol?.id ?? '');
+          handleReload();
+        } catch (error) {
+          console.error('Lỗi xóa idol:', error);
+        }
+      },
+      onCancel() {
+        console.log('Cancel');
+      },
+    });
+  };
+
+  const handleDeleteIdol = (x: API.IdolItem) => {
+    curIdol = x;
+    showDeleteConfirm();
+  };
 
   return [
     {
@@ -37,8 +79,8 @@ export const configColumns = (
         id: 'pages.table.columns.birthday',
         defaultMessage: 'Birthday/Estalisday',
       })}`,
-      dataIndex: 'birthday',
-      key: 'birthday',
+      dataIndex: 'anniversaryDay',
+      key: 'anniversaryDay',
       render: (_, original) => {
         return <div>{FormatBirthday(original.anniversaryDay ?? '')}</div>;
       },
@@ -49,8 +91,8 @@ export const configColumns = (
         id: 'pages.table.columns.member',
         defaultMessage: 'Member',
       })}`,
-      dataIndex: 'member',
-      key: 'member',
+      dataIndex: 'members',
+      key: 'members',
       render: (_, original) => (
         <div
           style={{
@@ -96,8 +138,8 @@ export const configColumns = (
         id: 'pages.table.columns.type',
         defaultMessage: 'Type',
       })}`,
-      dataIndex: 'type',
-      key: 'type',
+      dataIndex: 'idolType',
+      key: 'idolType',
       render: (_, original) => {
         if (original.idolType === 'Solo')
           return (
@@ -140,7 +182,10 @@ export const configColumns = (
           >
             <EditOutlined />
           </Button>
-          <Button style={{ padding: '2px 6px', border: 'none' }} onClick={showDeleteConfirm}>
+          <Button
+            style={{ padding: '2px 6px', border: 'none' }}
+            onClick={() => handleDeleteIdol(original)}
+          >
             <DeleteOutlined />
           </Button>
         </div>

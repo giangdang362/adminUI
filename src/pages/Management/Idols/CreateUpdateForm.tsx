@@ -1,3 +1,4 @@
+import { postIdol, putIdol } from '@/services/management/idols';
 import { formItemRule } from '@/utils/ruleForm';
 import {
   ProFormDatePicker,
@@ -6,34 +7,70 @@ import {
   ProFormUploadButton,
 } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
-import { Form, Modal } from 'antd';
-import { FC, useEffect } from 'react';
+import { Form, Modal, message } from 'antd';
+import { FC, useEffect, useState } from 'react';
 import { typeSelect } from '.';
 
 interface CreateUpdateFormProps {
   showModal: boolean;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   curItem?: API.IdolItem;
+  setReload: React.Dispatch<React.SetStateAction<boolean>>;
+  setCurIdol: React.Dispatch<React.SetStateAction<API.IdolItem>>;
 }
 
-const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setShowModal }) => {
+const CreateUpdateForm: FC<CreateUpdateFormProps> = ({
+  showModal,
+  setShowModal,
+  curItem,
+  setReload: setRender,
+  setCurIdol,
+}) => {
   const intl = useIntl();
   const [form] = Form.useForm();
+
+  const [loading, setLoading] = useState(false);
+
   const handleCloseModal = () => {
     setShowModal(false);
     form?.resetFields();
+    setCurIdol({});
+    setRender((pre) => !pre);
   };
-  const handleSubmit = (formItem: API.IdolItem) => {};
+
+  console.log('curIdol', curItem);
+
+  const handleSave = async (formItem: API.IdolItem) => {
+    setLoading(true);
+    if (!curItem?.id) {
+      postIdol(formItem)
+        .then(() => {
+          message.success('Create success');
+        })
+        .then(() => {
+          handleCloseModal();
+        });
+    } else {
+      putIdol({ ...formItem, id: curItem.id })
+        .then(() => {
+          message.success('Update success');
+        })
+        .then(() => {
+          handleCloseModal();
+        });
+    }
+    setLoading(false);
+  };
 
   useEffect(() => {
-    form.setFieldValue('type', curItem?.idolType ? 'Group' : 'Solo');
+    form.setFieldValue('idolType', curItem?.idolType ? 'Group' : 'Solo');
     form.setFieldValue('idolName', curItem?.idolName);
   }, [curItem]);
 
   return (
     <Modal
       title={
-        !curItem
+        !curItem?.id
           ? `${intl.formatMessage({
               id: 'pages.idols.form.titleAdd',
               defaultMessage: 'Add Idol',
@@ -53,17 +90,20 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
         id: 'pages.button.cancel',
         defaultMessage: 'Cancel',
       })}`}
+      confirmLoading={loading}
+      onOk={() => form.submit()}
     >
       <Form
         form={form}
         layout="vertical"
         name="roleForm"
-        onFinish={handleSubmit}
+        onFinish={handleSave}
         style={{
           padding: '12px 0',
         }}
       >
         <ProFormSelect
+          allowClear
           label={`${intl.formatMessage({
             id: 'pages.idols.form.type',
             defaultMessage: 'Type',
@@ -87,7 +127,7 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
             defaultMessage: 'Upload',
           })}`}
           name={'avatar'}
-          rules={[formItemRule.required()]}
+          // rules={[formItemRule.required()]}
         />
         <ProFormUploadButton
           label={`${intl.formatMessage({
@@ -99,7 +139,7 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
             defaultMessage: 'Upload',
           })}`}
           name={'banner'}
-          rules={[formItemRule.required()]}
+          // rules={[formItemRule.required()]}
         />
         <ProFormText
           label={`${intl.formatMessage({

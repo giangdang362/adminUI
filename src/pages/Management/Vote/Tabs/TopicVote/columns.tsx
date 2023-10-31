@@ -1,14 +1,14 @@
-import { FormatBirthday } from '@/constants/datetime';
+import { FormatBirthday } from '@/utils/datetime';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { useIntl } from '@umijs/max';
 import { Button, Tag, Tooltip } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 
 export const configColumns = (
-  handleSetCurTopicVote: (x: API.TopicVoteItem) => void,
+  handleSetCurTopicVote: (x: API.VoteItem) => void,
   showDeleteConfirm: () => void,
-): ColumnsType<API.TopicVoteItem> => {
-  const handleClickEdit = (x: API.TopicVoteItem) => {
+): ColumnsType<API.VoteItem> => {
+  const handleClickEdit = (x: API.VoteItem) => {
     handleSetCurTopicVote(x);
   };
 
@@ -25,8 +25,8 @@ export const configColumns = (
         id: 'pages.table.columns.topicName',
         defaultMessage: 'Topic Name',
       })}`,
-      dataIndex: 'topicName',
-      key: 'topicName',
+      dataIndex: 'voteName',
+      key: 'voteName',
       width: '30%',
     },
     {
@@ -55,11 +55,11 @@ export const configColumns = (
     },
     {
       title: `${intl.formatMessage({
-        id: 'pages.table.columns.idolVote',
+        id: 'pages.table.columns.idolsName',
         defaultMessage: 'Idol Vote',
       })}`,
-      dataIndex: 'idolVote',
-      key: 'idolVote',
+      dataIndex: 'idolsName',
+      key: 'idolsName',
       width: '30%',
       render: (_, original) => (
         <div
@@ -69,11 +69,11 @@ export const configColumns = (
             flexWrap: 'wrap',
           }}
         >
-          {!original.idolVote?.length && ' - '}
-          {original.idolVote?.map((item, indexI) => {
-            return <>{indexI <= 4 && <Tag style={{ fontSize: '13px' }}>{item.idolName}</Tag>}</>;
+          {!original.idolsName?.length && ' - '}
+          {original.idolsName?.map((item, indexI) => {
+            return <>{indexI <= 4 && <Tag style={{ fontSize: '13px' }}>{item}</Tag>}</>;
           })}
-          {original.idolVote && original.idolVote?.length > 5 && (
+          {original.idolsName && original.idolsName?.length > 5 && (
             <Tooltip
               color="#FFF"
               placement="bottom"
@@ -86,10 +86,8 @@ export const configColumns = (
                     backgroundColor: '#FFF',
                   }}
                 >
-                  {original.idolVote?.map((item, indexI) => {
-                    return (
-                      <>{indexI > 4 && <Tag style={{ fontSize: '13px' }}>{item.idolName}</Tag>}</>
-                    );
+                  {original.idolsName?.map((item, indexI) => {
+                    return <>{indexI > 4 && <Tag style={{ fontSize: '13px' }}>{item}</Tag>}</>;
                   })}
                 </div>
               }

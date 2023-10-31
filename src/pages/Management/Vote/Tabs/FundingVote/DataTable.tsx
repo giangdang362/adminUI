@@ -1,21 +1,24 @@
 import banner from '@/../public/images/bannerVote.png';
 import idolAvatar from '@/../public/images/idol-avatar.png';
 import pointLogo from '@/../public/images/point-logo.png';
-import { FormatNumber } from '@/constants/common';
-import { FormatBirthday } from '@/constants/datetime';
+import { VOTE_TYPE } from '@/constants/voteType';
+import { getVote } from '@/services/management/vote';
+import { FormatNumber } from '@/utils/common';
+import { FormatBirthday } from '@/utils/datetime';
 import { DeleteOutlined, EditOutlined, ExclamationCircleFilled } from '@ant-design/icons';
 import { useIntl } from '@umijs/max';
 import { Button, Drawer, Image, Modal, Progress, Table, Tag, Typography } from 'antd';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { configColumns } from './columns';
 
 interface DataFundingVoteTableProps {
-  curFundingVote?: API.FundingVoteItem;
-  setCurFundingVote: React.Dispatch<React.SetStateAction<API.FundingVoteItem | undefined>>;
+  curFundingVote?: API.VoteItem;
+  setCurFundingVote: React.Dispatch<React.SetStateAction<API.VoteItem | undefined>>;
   setShowModalForm: React.Dispatch<React.SetStateAction<boolean>>;
-  handleSetCurFundingVote: (x: API.FundingVoteItem) => void;
+  handleSetCurFundingVote: (x: API.VoteItem) => void;
   showDrawer: boolean;
   setShowDrawer: React.Dispatch<React.SetStateAction<boolean>>;
+  currentStatus?: string;
 }
 
 const DataFundingVoteTable: FC<DataFundingVoteTableProps> = ({
@@ -25,9 +28,12 @@ const DataFundingVoteTable: FC<DataFundingVoteTableProps> = ({
   handleSetCurFundingVote,
   showDrawer,
   setShowDrawer,
+  currentStatus,
 }) => {
   const { Title } = Typography;
   const intl = useIntl();
+
+  const [fundingVote, setFundingVote] = useState<API.VoteItem[]>([]);
   const { confirm } = Modal;
   const showDeleteConfirm = () => {
     confirm({
@@ -57,20 +63,38 @@ const DataFundingVoteTable: FC<DataFundingVoteTableProps> = ({
       },
     });
   };
-  const handleClickRow = (x: API.FundingVoteItem) => {
+  const handleClickRow = (x: API.VoteItem) => {
     setCurFundingVote(x);
     setShowDrawer(true);
   };
+
+  const handleGetFundingVote = async () => {
+    const res = await getVote({ voteType: VOTE_TYPE.FUNDING_TYPE });
+    if (!currentStatus) {
+      setFundingVote(res);
+    } else {
+      const newRes = res.filter((item) => item.status === currentStatus);
+      if (newRes) {
+        setFundingVote(newRes);
+        return;
+      }
+    }
+  };
+
+  useEffect(() => {
+    handleGetFundingVote();
+  }, [curFundingVote, currentStatus]);
+
   return (
     <div className="wrapp-table">
       <Table
         columns={configColumns(handleSetCurFundingVote, showDeleteConfirm)}
-        dataSource={topicVoteData}
+        dataSource={fundingVote}
         pagination={{
           showQuickJumper: true,
           defaultCurrent: 1,
           defaultPageSize: 10,
-          total: topicVoteData.length,
+          total: fundingVote.length,
         }}
         onRow={(record) => {
           return {
@@ -112,7 +136,7 @@ const DataFundingVoteTable: FC<DataFundingVoteTableProps> = ({
           level={4}
           style={{ padding: '16px 0', borderBottom: '1px dash #E0E0E0', textAlign: 'center' }}
         >
-          {curFundingVote?.voteTitle}
+          {curFundingVote?.voteName}
         </Title>
         <div
           style={{
@@ -217,7 +241,7 @@ const DataFundingVoteTable: FC<DataFundingVoteTableProps> = ({
                   height: '16px',
                 }}
               />
-              <span>{FormatNumber(curFundingVote?.goal ?? 0)}</span>
+              <span>{FormatNumber(curFundingVote?.goalPoint ?? 0)}</span>
             </div>
           </div>
           <div style={{ display: 'flex' }}>
@@ -264,7 +288,7 @@ const DataFundingVoteTable: FC<DataFundingVoteTableProps> = ({
                 defaultMessage: 'Content',
               })}
             </div>
-            <div style={{ maxWidth: '332px' }}>{curFundingVote?.content}</div>
+            <div style={{ maxWidth: '332px' }}>{curFundingVote?.voteContent}</div>
           </div>
         </div>
       </Drawer>
@@ -274,60 +298,16 @@ const DataFundingVoteTable: FC<DataFundingVoteTableProps> = ({
 
 export default DataFundingVoteTable;
 
-const topicVoteData: API.FundingVoteItem[] = [
-  {
-    voteTitle: 'SEOL MUSIC AWARDS x FANDOM',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    reward: 'Outdoor Advertising',
-    vote: 20,
-    idolVote: 'Lisa',
-    status: 'Ongoing',
-    goal: 200000,
-    content: 'Outdoor Advertising',
-  },
-  {
-    voteTitle: 'SEOL MUSIC AWARDS x FANDOM',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    reward: 'Outdoor Advertising',
-    vote: 35,
-    idolVote: 'Jenny',
-    status: 'Booking',
-    goal: 200000,
-    content: 'Outdoor Advertising',
-  },
-  {
-    voteTitle: 'SEOL MUSIC AWARDS x FANDOM',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    reward: 'Outdoor Advertising',
-    vote: 45,
-    idolVote: 'Jiso',
-    status: 'Closed',
-    goal: 200000,
-    content: 'Outdoor Advertising',
-  },
-  {
-    voteTitle: 'SEOL MUSIC AWARDS x FANDOM',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    reward: 'Outdoor Advertising',
-    vote: 56,
-    idolVote: 'Rose',
-    status: 'Ongoing',
-    goal: 200000,
-    content: 'Outdoor Advertising',
-  },
-  {
-    voteTitle: 'SEOL MUSIC AWARDS x FANDOM',
-    startDate: '2023-02-02T21:03:16.044967+07:00',
-    endDate: '2023-10-02T21:03:16.044967+07:00',
-    reward: 'Outdoor Advertising',
-    vote: 90,
-    idolVote: 'Hihi',
-    status: 'Ongoing',
-    goal: 200000,
-    content: 'Outdoor Advertising',
-  },
-];
+// const topicVoteData: API.FundingVoteItem[] = [
+//   {
+//     voteTitle: 'SEOL MUSIC AWARDS x FANDOM',
+//     startDate: '2023-02-02T21:03:16.044967+07:00',
+//     endDate: '2023-10-02T21:03:16.044967+07:00',
+//     reward: 'Outdoor Advertising',
+//     vote: 20,
+//     idolVote: 'Lisa',
+//     status: 'Ongoing',
+//     goal: 200000,
+//     content: 'Outdoor Advertising',
+//   },
+// ];

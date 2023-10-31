@@ -1,20 +1,23 @@
 import idolAvatar from '@/../public/images/idol-avatar.png';
 import banner from '@/../public/images/openVoteBanner.png';
-import { FormatBirthday } from '@/constants/datetime';
+import { VOTE_TYPE } from '@/constants/voteType';
+import { getVote } from '@/services/management/vote';
+import { FormatBirthday } from '@/utils/datetime';
 import { DeleteOutlined, ExclamationCircleFilled, InfoCircleOutlined } from '@ant-design/icons';
 import { useIntl } from '@umijs/max';
 import { Button, Drawer, Image, Modal, Popover, Table, Tag, Typography } from 'antd';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { configColumns } from './columns';
 
 interface DataRequestOpenVoteTableProps {
-  curRequestOpenVote?: API.RequestOpenVoteItem;
-  setCurRequestOpenVote: React.Dispatch<React.SetStateAction<API.RequestOpenVoteItem | undefined>>;
-  handleSetCurFundingVote: (x: API.RequestOpenVoteItem) => void;
+  curRequestOpenVote?: API.VoteItem;
+  setCurRequestOpenVote: React.Dispatch<React.SetStateAction<API.VoteItem | undefined>>;
+  handleSetCurFundingVote: (x: API.VoteItem) => void;
   showDrawer: boolean;
   setShowDrawer: React.Dispatch<React.SetStateAction<boolean>>;
   showRejectModal: boolean;
   setShowRejectModal: React.Dispatch<React.SetStateAction<boolean>>;
+  currentStatus?: string;
 }
 
 const DataRequestOpenVoteTable: FC<DataRequestOpenVoteTableProps> = ({
@@ -25,9 +28,12 @@ const DataRequestOpenVoteTable: FC<DataRequestOpenVoteTableProps> = ({
   setShowDrawer,
   showRejectModal,
   setShowRejectModal,
+  currentStatus,
 }) => {
   const { Title } = Typography;
   const intl = useIntl();
+
+  const [requestVote, setRequestVote] = useState<API.VoteItem[]>([]);
   const { confirm } = Modal;
   const showDeleteConfirm = () => {
     confirm({
@@ -58,7 +64,7 @@ const DataRequestOpenVoteTable: FC<DataRequestOpenVoteTableProps> = ({
     });
   };
 
-  const handleClickRow = (x: API.FundingVoteItem) => {
+  const handleClickRow = (x: API.VoteItem) => {
     setCurRequestOpenVote(x);
     setShowDrawer(true);
   };
@@ -74,16 +80,33 @@ const DataRequestOpenVoteTable: FC<DataRequestOpenVoteTableProps> = ({
     setShowRejectModal(newOpen);
   };
 
+  const handleGetRequestVote = async () => {
+    const res = await getVote({ voteType: VOTE_TYPE.REQUEST_TYPE });
+    if (!currentStatus) {
+      setRequestVote(res);
+    } else {
+      const newRes = res.filter((item) => item.status === currentStatus);
+      if (newRes) {
+        setRequestVote(newRes);
+        return;
+      }
+    }
+  };
+
+  useEffect(() => {
+    handleGetRequestVote();
+  }, [curRequestOpenVote, currentStatus]);
+
   return (
     <div className="wrapp-table">
       <Table
         columns={configColumns(handleSetCurFundingVote, showDeleteConfirm)}
-        dataSource={topicVoteData}
+        dataSource={requestVote}
         pagination={{
           showQuickJumper: true,
           defaultCurrent: 1,
           defaultPageSize: 10,
-          total: topicVoteData.length,
+          total: requestVote.length,
         }}
         onRow={(record) => {
           return {
@@ -199,7 +222,7 @@ const DataRequestOpenVoteTable: FC<DataRequestOpenVoteTableProps> = ({
           level={4}
           style={{ padding: '16px 0', borderBottom: '1px dash #E0E0E0', textAlign: 'center' }}
         >
-          {curRequestOpenVote?.voteTitle}
+          {curRequestOpenVote?.voteName}
         </Title>
         <div
           style={{
@@ -271,18 +294,21 @@ const DataRequestOpenVoteTable: FC<DataRequestOpenVoteTableProps> = ({
                     height: '20px',
                   }}
                 />
-                <span>{curRequestOpenVote?.community}</span>
+                <span>
+                  community
+                  {/* {curRequestOpenVote?.community} */}
+                </span>
               </Tag>
             </div>
           </div>
           <div style={{ display: 'flex' }}>
             <div style={{ width: '108px', fontSize: '14px', fontWeight: 400, color: '#616161' }}>
               {intl.formatMessage({
-                id: 'pages.vote.topicVote.endDate',
-                defaultMessage: 'End Date',
+                id: 'pages.table.columns.requestDate',
+                defaultMessage: 'RequestDate',
               })}
             </div>
-            <div>{FormatBirthday(curRequestOpenVote?.requestDate ?? '')}</div>
+            <div>{FormatBirthday(curRequestOpenVote?.requsetDate ?? '')}</div>
           </div>
           <div style={{ display: 'flex' }}>
             <div style={{ width: '108px', fontSize: '14px', fontWeight: 400, color: '#616161' }}>
@@ -291,7 +317,7 @@ const DataRequestOpenVoteTable: FC<DataRequestOpenVoteTableProps> = ({
                 defaultMessage: 'Content',
               })}
             </div>
-            <div style={{ maxWidth: '332px' }}>{curRequestOpenVote?.content}</div>
+            <div style={{ maxWidth: '332px' }}>{curRequestOpenVote?.voteContent}</div>
           </div>
         </div>
       </Drawer>
@@ -301,40 +327,12 @@ const DataRequestOpenVoteTable: FC<DataRequestOpenVoteTableProps> = ({
 
 export default DataRequestOpenVoteTable;
 
-const topicVoteData: API.RequestOpenVoteItem[] = [
-  {
-    voteTitle: 'SEOL MUSIC AWARDS x FANDOM',
-    requestDate: '2023-02-02T21:03:16.044967+07:00',
-    community: 'Lisa',
-    status: 'Approved',
-    content: 'Content SEOL MUSIC AWARDS x FANDOM',
-  },
-  {
-    voteTitle: 'SEOL MUSIC AWARDS x FANDOM',
-    requestDate: '2023-02-02T21:03:16.044967+07:00',
-    community: 'Jenny',
-    status: 'Waiting Approve',
-    content: 'Content SEOL MUSIC AWARDS x FANDOM',
-  },
-  {
-    voteTitle: 'SEOL MUSIC AWARDS x FANDOM',
-    requestDate: '2023-02-02T21:03:16.044967+07:00',
-    community: 'Jiso',
-    status: 'Rejected',
-    content: 'Content SEOL MUSIC AWARDS x FANDOM',
-  },
-  {
-    voteTitle: 'SEOL MUSIC AWARDS x FANDOM',
-    requestDate: '2023-02-02T21:03:16.044967+07:00',
-    community: 'Rose',
-    status: 'Approved',
-    content: 'Content SEOL MUSIC AWARDS x FANDOM',
-  },
-  {
-    voteTitle: 'SEOL MUSIC AWARDS x FANDOM',
-    requestDate: '2023-02-02T21:03:16.044967+07:00',
-    community: 'Hihi',
-    status: 'Approved',
-    content: 'Content SEOL MUSIC AWARDS x FANDOM',
-  },
-];
+// const topicVoteData: API.RequestOpenVoteItem[] = [
+//   {
+//     voteTitle: 'SEOL MUSIC AWARDS x FANDOM',
+//     requestDate: '2023-02-02T21:03:16.044967+07:00',
+//     community: 'Lisa',
+//     status: 'Approved',
+//     content: 'Content SEOL MUSIC AWARDS x FANDOM',
+//   },
+// ];
