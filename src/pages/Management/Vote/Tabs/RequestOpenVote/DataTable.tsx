@@ -10,13 +10,14 @@ import { FC, useEffect, useState } from 'react';
 import { configColumns } from './columns';
 
 interface DataRequestOpenVoteTableProps {
-  curRequestOpenVote?: API.RequestOpenVoteItem;
-  setCurRequestOpenVote: React.Dispatch<React.SetStateAction<API.RequestOpenVoteItem | undefined>>;
-  handleSetCurFundingVote: (x: API.RequestOpenVoteItem) => void;
+  curRequestOpenVote?: API.VoteItem;
+  setCurRequestOpenVote: React.Dispatch<React.SetStateAction<API.VoteItem | undefined>>;
+  handleSetCurFundingVote: (x: API.VoteItem) => void;
   showDrawer: boolean;
   setShowDrawer: React.Dispatch<React.SetStateAction<boolean>>;
   showRejectModal: boolean;
   setShowRejectModal: React.Dispatch<React.SetStateAction<boolean>>;
+  currentStatus?: string;
 }
 
 const DataRequestOpenVoteTable: FC<DataRequestOpenVoteTableProps> = ({
@@ -27,11 +28,12 @@ const DataRequestOpenVoteTable: FC<DataRequestOpenVoteTableProps> = ({
   setShowDrawer,
   showRejectModal,
   setShowRejectModal,
+  currentStatus,
 }) => {
   const { Title } = Typography;
   const intl = useIntl();
 
-  const [requestVote, setRequestVote] = useState<API.RequestOpenVoteItem[]>([]);
+  const [requestVote, setRequestVote] = useState<API.VoteItem[]>([]);
   const { confirm } = Modal;
   const showDeleteConfirm = () => {
     confirm({
@@ -62,7 +64,7 @@ const DataRequestOpenVoteTable: FC<DataRequestOpenVoteTableProps> = ({
     });
   };
 
-  const handleClickRow = (x: API.FundingVoteItem) => {
+  const handleClickRow = (x: API.VoteItem) => {
     setCurRequestOpenVote(x);
     setShowDrawer(true);
   };
@@ -80,12 +82,20 @@ const DataRequestOpenVoteTable: FC<DataRequestOpenVoteTableProps> = ({
 
   const handleGetRequestVote = async () => {
     const res = await getVote({ voteType: VOTE_TYPE.REQUEST_TYPE });
-    setRequestVote(res);
+    if (!currentStatus) {
+      setRequestVote(res);
+    } else {
+      const newRes = res.filter((item) => item.status === currentStatus);
+      if (newRes) {
+        setRequestVote(newRes);
+        return;
+      }
+    }
   };
 
   useEffect(() => {
     handleGetRequestVote();
-  }, [curRequestOpenVote]);
+  }, [curRequestOpenVote, currentStatus]);
 
   return (
     <div className="wrapp-table">
@@ -212,7 +222,7 @@ const DataRequestOpenVoteTable: FC<DataRequestOpenVoteTableProps> = ({
           level={4}
           style={{ padding: '16px 0', borderBottom: '1px dash #E0E0E0', textAlign: 'center' }}
         >
-          {curRequestOpenVote?.voteTitle}
+          {curRequestOpenVote?.voteName}
         </Title>
         <div
           style={{
@@ -284,18 +294,21 @@ const DataRequestOpenVoteTable: FC<DataRequestOpenVoteTableProps> = ({
                     height: '20px',
                   }}
                 />
-                <span>{curRequestOpenVote?.community}</span>
+                <span>
+                  community
+                  {/* {curRequestOpenVote?.community} */}
+                </span>
               </Tag>
             </div>
           </div>
           <div style={{ display: 'flex' }}>
             <div style={{ width: '108px', fontSize: '14px', fontWeight: 400, color: '#616161' }}>
               {intl.formatMessage({
-                id: 'pages.vote.topicVote.endDate',
-                defaultMessage: 'End Date',
+                id: 'pages.table.columns.requestDate',
+                defaultMessage: 'RequestDate',
               })}
             </div>
-            <div>{FormatBirthday(curRequestOpenVote?.requestDate ?? '')}</div>
+            <div>{FormatBirthday(curRequestOpenVote?.requsetDate ?? '')}</div>
           </div>
           <div style={{ display: 'flex' }}>
             <div style={{ width: '108px', fontSize: '14px', fontWeight: 400, color: '#616161' }}>
@@ -304,7 +317,7 @@ const DataRequestOpenVoteTable: FC<DataRequestOpenVoteTableProps> = ({
                 defaultMessage: 'Content',
               })}
             </div>
-            <div style={{ maxWidth: '332px' }}>{curRequestOpenVote?.content}</div>
+            <div style={{ maxWidth: '332px' }}>{curRequestOpenVote?.voteContent}</div>
           </div>
         </div>
       </Drawer>

@@ -6,10 +6,10 @@ import { Button } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 
 export const configColumns = (
-  handleSetCurFundungVote: (x: API.RequestOpenVoteItem) => void,
+  handleSetCurFundungVote: (x: API.VoteItem) => void,
   showDeleteConfirm: () => void,
-): ColumnsType<API.RequestOpenVoteItem> => {
-  const handleClickEdit = (x: API.RequestOpenVoteItem) => {
+): ColumnsType<API.VoteItem> => {
+  const handleClickEdit = (x: API.VoteItem) => {
     handleSetCurFundungVote(x);
   };
 

@@ -12,12 +12,13 @@ import { FC, useEffect, useState } from 'react';
 import { configColumns } from './columns';
 
 interface DataFundingVoteTableProps {
-  curFundingVote?: API.FundingVoteItem;
-  setCurFundingVote: React.Dispatch<React.SetStateAction<API.FundingVoteItem | undefined>>;
+  curFundingVote?: API.VoteItem;
+  setCurFundingVote: React.Dispatch<React.SetStateAction<API.VoteItem | undefined>>;
   setShowModalForm: React.Dispatch<React.SetStateAction<boolean>>;
-  handleSetCurFundingVote: (x: API.FundingVoteItem) => void;
+  handleSetCurFundingVote: (x: API.VoteItem) => void;
   showDrawer: boolean;
   setShowDrawer: React.Dispatch<React.SetStateAction<boolean>>;
+  currentStatus?: string;
 }
 
 const DataFundingVoteTable: FC<DataFundingVoteTableProps> = ({
@@ -27,11 +28,12 @@ const DataFundingVoteTable: FC<DataFundingVoteTableProps> = ({
   handleSetCurFundingVote,
   showDrawer,
   setShowDrawer,
+  currentStatus,
 }) => {
   const { Title } = Typography;
   const intl = useIntl();
 
-  const [fundingVote, setFundingVote] = useState<API.FundingVoteItem[]>([]);
+  const [fundingVote, setFundingVote] = useState<API.VoteItem[]>([]);
   const { confirm } = Modal;
   const showDeleteConfirm = () => {
     confirm({
@@ -61,19 +63,27 @@ const DataFundingVoteTable: FC<DataFundingVoteTableProps> = ({
       },
     });
   };
-  const handleClickRow = (x: API.FundingVoteItem) => {
+  const handleClickRow = (x: API.VoteItem) => {
     setCurFundingVote(x);
     setShowDrawer(true);
   };
 
   const handleGetFundingVote = async () => {
     const res = await getVote({ voteType: VOTE_TYPE.FUNDING_TYPE });
-    setFundingVote(res);
+    if (!currentStatus) {
+      setFundingVote(res);
+    } else {
+      const newRes = res.filter((item) => item.status === currentStatus);
+      if (newRes) {
+        setFundingVote(newRes);
+        return;
+      }
+    }
   };
 
   useEffect(() => {
     handleGetFundingVote();
-  }, [curFundingVote]);
+  }, [curFundingVote, currentStatus]);
 
   return (
     <div className="wrapp-table">
@@ -126,7 +136,7 @@ const DataFundingVoteTable: FC<DataFundingVoteTableProps> = ({
           level={4}
           style={{ padding: '16px 0', borderBottom: '1px dash #E0E0E0', textAlign: 'center' }}
         >
-          {curFundingVote?.voteTitle}
+          {curFundingVote?.voteName}
         </Title>
         <div
           style={{
@@ -231,7 +241,7 @@ const DataFundingVoteTable: FC<DataFundingVoteTableProps> = ({
                   height: '16px',
                 }}
               />
-              <span>{FormatNumber(curFundingVote?.goal ?? 0)}</span>
+              <span>{FormatNumber(curFundingVote?.goalPoint ?? 0)}</span>
             </div>
           </div>
           <div style={{ display: 'flex' }}>
@@ -278,7 +288,7 @@ const DataFundingVoteTable: FC<DataFundingVoteTableProps> = ({
                 defaultMessage: 'Content',
               })}
             </div>
-            <div style={{ maxWidth: '332px' }}>{curFundingVote?.content}</div>
+            <div style={{ maxWidth: '332px' }}>{curFundingVote?.voteContent}</div>
           </div>
         </div>
       </Drawer>

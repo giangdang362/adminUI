@@ -10,7 +10,7 @@ const { Title } = Typography;
 const IdolsManagement = () => {
   const intl = useIntl();
   const [curIdol, setCurIdol] = useState<API.IdolItem>({});
-  const [render, setRender] = useState<boolean>(false);
+  const [reload, setReload] = useState<boolean>(false);
   const [currentEsalisday, setCurrentEsalisday] = useState<SelectType>();
   const [currentType, setCurrentType] = useState<number>();
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -107,14 +107,14 @@ const IdolsManagement = () => {
         handleSetCurIdol={handleSetCurIdol}
         currentType={currentType}
         curIdol={curIdol}
-        render={render}
-        setRender={setRender}
+        reload={reload}
+        setReload={setReload}
       />
       <CreateUpdateForm
         showModal={showModal}
         setShowModal={setShowModal}
         curItem={curIdol}
-        setRender={setRender}
+        setReload={setReload}
         setCurIdol={setCurIdol}
       />
     </div>

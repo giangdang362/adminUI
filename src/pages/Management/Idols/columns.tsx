@@ -8,11 +8,11 @@ import { ColumnsType } from 'antd/es/table';
 export const configColumns = (
   handleSetCurIdol: (x: API.IdolItem) => void,
   curIdol: API.IdolItem,
-  handleRender: () => void,
+  handleReload: () => void,
 ): ColumnsType<API.IdolItem> => {
   const handleClickEdit = (x: API.IdolItem) => {
     handleSetCurIdol(x);
-    handleRender();
+    handleReload();
   };
   const intl = useIntl();
   const { confirm } = Modal;
@@ -39,6 +39,7 @@ export const configColumns = (
       onOk: async () => {
         try {
           await deleteIdol(curIdol?.id ?? '');
+          handleReload();
         } catch (error) {
           console.error('Lỗi xóa idol:', error);
         }

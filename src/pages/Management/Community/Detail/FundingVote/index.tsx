@@ -7,7 +7,7 @@ import DataFundingVoteTable from './DataTable';
 
 const FundingVoteDetail = () => {
   const intl = useIntl();
-  const [curFundingVote, setCurFundingVote] = useState<API.FundingVoteItem>();
+  const [curFundingVote, setCurFundingVote] = useState<API.VoteItem>();
 
   const [showModalForm, setShowModalForm] = useState<boolean>(false);
   const [showDrawer, setShowDrawer] = useState<boolean>(false);
@@ -24,7 +24,7 @@ const FundingVoteDetail = () => {
     setCurrentIdol(value);
   };
 
-  const handleSetCurFundingVote = (x: API.FundingVoteItem) => {
+  const handleSetCurFundingVote = (x: API.VoteItem) => {
     setCurFundingVote(x);
     setShowModalForm(true);
   };

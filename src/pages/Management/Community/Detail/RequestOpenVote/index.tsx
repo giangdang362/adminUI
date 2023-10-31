@@ -7,7 +7,7 @@ import DataRequestOpenVoteTable from './DataTable';
 
 const RequestOpenVoteDetail = () => {
   const intl = useIntl();
-  const [curRequestOpenVote, setCurRequestOpenVote] = useState<API.RequestOpenVoteItem>();
+  const [curRequestOpenVote, setCurRequestOpenVote] = useState<API.VoteItem>();
 
   const [showModalForm, setShowModalForm] = useState<boolean>(false);
   const [showDrawer, setShowDrawer] = useState<boolean>(false);
@@ -23,7 +23,7 @@ const RequestOpenVoteDetail = () => {
   const handleCommunityChange = (value: SelectType) => {
     setCurrentCommunity(value);
   };
-  const handleSetCurRequestOpenVote = (x: API.RequestOpenVoteItem) => {
+  const handleSetCurRequestOpenVote = (x: API.VoteItem) => {
     setCurRequestOpenVote(x);
     setShowModalForm(true);
   };

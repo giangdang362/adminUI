@@ -15,36 +15,16 @@ import { FC, useEffect, useState } from 'react';
 import RankingResultModal from './RankingResultModal';
 import { configColumns } from './columns';
 
-const contentDummy = `Special Vote OPEN!
-ポップなダンス曲はもちろんのこと、エモいバラード曲まで歌えちゃうボーカルアイドル！ 
-秋にふさわしい訴求力の高い音色を持つボーカルアイドルに投票してください！ 
-優勝アーティストには日本・東京最大の韓流の聖地「新大久保」駅のメイン通りを飾る機会が与えられます💖 
-
-⭐優勝アーティストの広告は日本・東京最大のコリアンタウン「JR新大久保駅」のビジョンで7日間上映される予定です。 
-⭐広告の上映スケジュールは変動する可能性があります。 
-
------------------------------------------------------------------ 
-신나는 댄스곡은 물론, 감성젖은 목소리로 소울풀 발라드까지 섭렵 가능한 보컬 아이돌! 
-가을에 걸맞는 호소력 짙은 음색을 가진 보컬 아이돌에게 투표해 주세요! 
-투표 1위 아티스트에게는 일본 도쿄 최대의 한류 중심지, 「신오쿠보」역 메인 거리의 비젼 광고 리워드가 주어집니다!💖 
-
-⭐우승 아티스트 광고는 일본 도쿄 최대의 코리안타운 "JR신오쿠보역" 비젼에서 7일간 게재됩니다. 
-⭐광고 게재 일정은 변동될 수 있습니다. 
-
------------------------------------------------------------------ 
-We've chosen the list of the idols who are famous of their talented vocal! 
-Please vote to the most soulful vocalist idol who goes well with autumn season! 
-The winner of the vote will be promoted on the main street's digital vision in "Shin-Okubo", which is one of the hottest town for K-POP fans in Tokyo, Japanry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`;
-
 interface DataTopicVoteTableProps {
-  handleSetCurTopicVote: (x: API.TopicVoteItem) => void;
-  curTopicVote?: API.TopicVoteItem;
-  setCurTopicVote: React.Dispatch<React.SetStateAction<API.TopicVoteItem | undefined>>;
+  handleSetCurTopicVote: (x: API.VoteItem) => void;
+  curTopicVote?: API.VoteItem;
+  setCurTopicVote: React.Dispatch<React.SetStateAction<API.VoteItem | undefined>>;
   setShowModalForm: React.Dispatch<React.SetStateAction<boolean>>;
   showDrawer: boolean;
   setShowDrawer: React.Dispatch<React.SetStateAction<boolean>>;
   showRankingResult: boolean;
   setShowRankingResult: React.Dispatch<React.SetStateAction<boolean>>;
+  currentStatus?: string;
 }
 
 const DataTopicVoteTable: FC<DataTopicVoteTableProps> = ({
@@ -56,11 +36,12 @@ const DataTopicVoteTable: FC<DataTopicVoteTableProps> = ({
   setCurTopicVote,
   showRankingResult,
   setShowRankingResult,
+  currentStatus,
 }) => {
   const { Title } = Typography;
   const intl = useIntl();
 
-  const [topicVote, setTopicVote] = useState<API.TopicVoteItem[]>([]);
+  const [topicVote, setTopicVote] = useState<API.VoteItem[]>([]);
   const { confirm } = Modal;
   const showDeleteConfirm = () => {
     confirm({
@@ -90,18 +71,26 @@ const DataTopicVoteTable: FC<DataTopicVoteTableProps> = ({
       },
     });
   };
-  const handleClickRow = (x: API.TopicVoteItem) => {
+  const handleClickRow = (x: API.VoteItem) => {
     setCurTopicVote(x);
     setShowDrawer(true);
   };
 
   const handleGetTopicVote = async () => {
     const res = await getVote({ voteType: VOTE_TYPE.TOPIC_TYPE });
-    setTopicVote(res);
+    if (!currentStatus) {
+      setTopicVote(res);
+    } else {
+      const newRes = res.filter((item) => item.status === currentStatus);
+      if (newRes) {
+        setTopicVote(newRes);
+        return;
+      }
+    }
   };
   useEffect(() => {
     handleGetTopicVote();
-  }, [curTopicVote]);
+  }, [curTopicVote, currentStatus]);
 
   return (
     <div className="wrapp-table">
@@ -173,7 +162,7 @@ const DataTopicVoteTable: FC<DataTopicVoteTableProps> = ({
           level={4}
           style={{ padding: '16px 0', borderBottom: '1px dash #E0E0E0', textAlign: 'center' }}
         >
-          {curTopicVote?.topicName}
+          {curTopicVote?.voteName}
         </Title>
         <div
           style={{
@@ -247,10 +236,10 @@ const DataTopicVoteTable: FC<DataTopicVoteTableProps> = ({
                 maxWidth: '332px',
               }}
             >
-              {curTopicVote?.idolVote?.map((item, index) => (
+              {curTopicVote?.idolsName?.map((item, index) => (
                 <Tag key={index} style={{ display: 'flex', gap: '4px', padding: '4px 10px' }}>
                   <img src={idolAvatar} alt="idolAvatar" width={20} height={20} />
-                  <div>{item.idolName}</div>
+                  <div>{item}</div>
                 </Tag>
               ))}
             </div>
@@ -262,7 +251,7 @@ const DataTopicVoteTable: FC<DataTopicVoteTableProps> = ({
                 defaultMessage: 'Content',
               })}
             </div>
-            <div style={{ maxWidth: '332px' }}>{curTopicVote?.content}</div>
+            <div style={{ maxWidth: '332px' }}>{curTopicVote?.voteContent}</div>
           </div>
         </div>
       </Drawer>
