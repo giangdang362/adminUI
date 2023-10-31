@@ -28,3 +28,17 @@ export const setStorageUser = (t: API.UserStorage) => {
 export const removeStorageUser = () => {
   localStorage.removeItem(LocalStorageKey.USER);
 };
+
+export const getSessionStorageUser = (): API.UserStorage | undefined => {
+  const data = sessionStorage.getItem(LocalStorageKey.USER);
+  const user = parseJson<API.UserStorage>(data);
+  return user;
+};
+
+export const setSessionStorageUser = (t: API.UserStorage) => {
+  sessionStorage.setItem(LocalStorageKey.USER, JSON.stringify(t));
+};
+
+export const removeSessionStorageUser = () => {
+  sessionStorage.removeItem(LocalStorageKey.USER);
+};

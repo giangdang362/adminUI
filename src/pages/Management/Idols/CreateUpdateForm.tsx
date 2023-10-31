@@ -23,7 +23,7 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({
   showModal,
   setShowModal,
   curItem,
-  setReload: setRender,
+  setReload,
   setCurIdol,
 }) => {
   const intl = useIntl();
@@ -35,7 +35,7 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({
     setShowModal(false);
     form?.resetFields();
     setCurIdol({});
-    setRender((pre) => !pre);
+    setReload((pre) => !pre);
   };
 
   console.log('curIdol', curItem);

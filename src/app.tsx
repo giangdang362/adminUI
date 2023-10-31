@@ -4,6 +4,8 @@ import type { RequestConfig, RunTimeLayoutConfig } from '@umijs/max';
 import { Link, history } from '@umijs/max';
 import { ConfigProvider } from 'antd';
 import { errorConfig } from './requestErrorConfig';
+import { getSessionStorageUser, getStorageUser } from './utils/auth';
+
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
 
@@ -11,14 +13,18 @@ const loginPath = '/user/login';
  * @see  https://umijs.org/zh-CN/plugins/plugin-initial-state
  * */
 export async function getInitialState(): Promise<{ currentUser?: API.User }> {
+  const storageUser = getStorageUser()
+  const sessionStorageUser = getSessionStorageUser()
+  const currentUser = sessionStorageUser || storageUser
   return {
-    currentUser: undefined,
+    currentUser,
   };
 }
 
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
 export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) => {
   console.log('🚀 ~ file: app.tsx:24 ~ initialState:', initialState);
+
   return {
     actionsRender: () => [<Question key="doc" />, <SelectLang key="SelectLang" />],
     avatarProps: {
@@ -61,11 +67,11 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
     ],
     links: isDev
       ? [
-          <Link key="openapi" to="/umi/plugin/openapi" target="_blank">
-            <LinkOutlined />
-            <span>OpenAPI 文档</span>
-          </Link>,
-        ]
+        <a key="openapi" href="http://10.10.31.53:8686/index.html" target="_blank">
+          <LinkOutlined />
+          <span>OpenAPI</span>
+        </a>,
+      ]
       : [],
     menuHeaderRender: undefined,
     // 自定义 403 页面
