@@ -23,6 +23,8 @@ const DataIdolsTable: FC<DataIdolsTableProps> = ({
 }) => {
   const [idolData, setIdolData] = useState<API.IdolItem[]>([]);
 
+  console.log('idolData', idolData);
+
   const handleReload = () => {
     setReload((pre) => !pre);
   };

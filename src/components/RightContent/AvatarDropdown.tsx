@@ -1,6 +1,6 @@
 // import { outLogin } from '@/services/ant-design-pro/api';
 import { removeSessionStorageUser, removeStorageUser, removeToken } from '@/utils/auth';
-import { LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
+import { LogoutOutlined } from '@ant-design/icons';
 import { useEmotionCss } from '@ant-design/use-emotion-css';
 import { history, useModel } from '@umijs/max';
 import { Spin } from 'antd';
@@ -11,7 +11,6 @@ import { flushSync } from 'react-dom';
 import HeaderDropdown from '../HeaderDropdown';
 
 export type GlobalHeaderRightProps = {
-  menu?: boolean;
   children?: React.ReactNode;
 };
 
@@ -21,7 +20,7 @@ export const AvatarName = () => {
   return <span className="anticon">{currentUser?.userName}</span>;
 };
 
-export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu, children }) => {
+export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ children }) => {
   /**
    * 退出登录，并且将当前的 url 保存
    */
@@ -99,23 +98,23 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu, childre
   }
 
   const menuItems = [
-    ...(menu
-      ? [
-          {
-            key: 'center',
-            icon: <UserOutlined />,
-            label: '个人中心',
-          },
-          {
-            key: 'settings',
-            icon: <SettingOutlined />,
-            label: '个人设置',
-          },
-          {
-            type: 'divider' as const,
-          },
-        ]
-      : []),
+    // ...(menu
+    //   ? [
+    //     {
+    //       key: 'center',
+    //       icon: <UserOutlined />,
+    //       label: '个人中心',
+    //     },
+    //     {
+    //       key: 'settings',
+    //       icon: <SettingOutlined />,
+    //       label: '个人设置',
+    //     },
+    //     {
+    //       type: 'divider' as const,
+    //     },
+    //   ]
+    //   : []),
     {
       key: 'logout',
       icon: <LogoutOutlined />,
