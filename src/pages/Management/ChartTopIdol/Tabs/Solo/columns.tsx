@@ -4,7 +4,7 @@ import { Progress } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import styled from 'styled-components';
 
-export const columns = (): ColumnsType<API.SoloType> => {
+export const columns = (): ColumnsType<API.IdolItem> => {
   const intl = useIntl();
   return [
     {
@@ -40,7 +40,7 @@ export const columns = (): ColumnsType<API.SoloType> => {
               height: '20px',
             }}
           />
-          <span>{original.soloName}</span>
+          <span>{original.idolName}</span>
         </div>
       ),
     },
@@ -61,9 +61,7 @@ export const columns = (): ColumnsType<API.SoloType> => {
       dataIndex: 'percent',
       key: 'percent',
       render: (_, original) => (
-        <div>
-          {original.percent?.length ? <Progress percent={Number(original.percent)} /> : ' - '}
-        </div>
+        <div>{original.percent ? <Progress percent={Number(original.percent)} /> : ' - '}</div>
       ),
       width: '20%',
     },

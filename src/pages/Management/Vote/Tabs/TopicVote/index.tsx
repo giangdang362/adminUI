@@ -103,10 +103,11 @@ const TopicVote = () => {
         showModal={showModalForm}
         setShowModal={setShowModalForm}
         curItem={curTopicVote}
+        setReload={setReload}
+        setCurTopicVote={setCurTopicVote}
       />
     </div>
   );
 };
 
 export default TopicVote;
-

@@ -1,3 +1,5 @@
+// @ts-ignore
+/* eslint-disable */
 declare namespace API {
   type FundingVoteItem = {
     voteTitle?: string;

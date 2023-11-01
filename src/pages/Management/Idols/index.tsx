@@ -135,6 +135,6 @@ export type SelectType = {
 // ];
 
 export const typeSelect: SelectType[] = [
-  { label: 'Solo', value: 2 },
-  { label: 'Group', value: 1 },
+  { label: 'Solo', value: 1 },
+  { label: 'Group', value: 2 },
 ];

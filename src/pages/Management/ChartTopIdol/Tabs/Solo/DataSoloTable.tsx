@@ -1,19 +1,30 @@
+import { IDOL_TYPE } from '@/constants/idolType';
+import { getIdols } from '@/services/management/idols';
 import { Table } from 'antd';
+import { useEffect, useState } from 'react';
 import '../../../styles/styleTable.css';
 import FooterTable from '../FooterTable';
 import { columns } from './columns';
 
 const DataSoloTable = () => {
+  const [idolSoloData, setIdolSoloData] = useState<API.IdolItem[]>([]);
+  const handleGetIdolsSolo = async () => {
+    const res = await getIdols({ idolType: IDOL_TYPE.SOLO_TYPE });
+    setIdolSoloData(res);
+  };
+  useEffect(() => {
+    handleGetIdolsSolo();
+  }, []);
   return (
     <div className="wrapp-table">
       <Table
         columns={columns()}
-        dataSource={soloData}
+        dataSource={idolSoloData}
         pagination={{
           showQuickJumper: true,
           defaultCurrent: 1,
           defaultPageSize: 10,
-          total: soloData.length,
+          total: idolSoloData.length,
         }}
         footer={() => <FooterTable dateValue="2023-10-02T21:03:16.044967+07:00" />}
       />
@@ -21,115 +32,13 @@ const DataSoloTable = () => {
   );
 };
 
-const soloData: API.SoloType[] = [
-  {
-    id: '001',
-    soloName: 'Rose',
-    vote: '2,234',
-    percent: '50.25',
-  },
-  {
-    id: '002',
-    soloName: 'Lisa',
-    vote: '1,234',
-    percent: '10.5',
-  },
-  {
-    id: '003',
-    soloName: 'Jiso',
-    vote: '123',
-    percent: '10.5',
-  },
-  {
-    id: '004',
-    soloName: 'Jenny',
-    vote: '3,456',
-    percent: '20.55',
-  },
-  {
-    id: '005',
-    soloName: 'JK',
-    vote: '123',
-    percent: '',
-  },
-  {
-    id: '006',
-    soloName: 'AEY',
-    vote: '3,456',
-    percent: '',
-  },
-  {
-    id: '001',
-    soloName: 'Rose',
-    vote: '2,234',
-    percent: '50.25',
-  },
-  {
-    id: '002',
-    soloName: 'Lisa',
-    vote: '1,234',
-    percent: '10.5',
-  },
-  {
-    id: '003',
-    soloName: 'Jiso',
-    vote: '123',
-    percent: '10.5',
-  },
-  {
-    id: '004',
-    soloName: 'Jenny',
-    vote: '3,456',
-    percent: '20.55',
-  },
-  {
-    id: '005',
-    soloName: 'JK',
-    vote: '123',
-    percent: '',
-  },
-  {
-    id: '006',
-    soloName: 'AEY',
-    vote: '3,456',
-    percent: '',
-  },
-  {
-    id: '001',
-    soloName: 'Rose',
-    vote: '2,234',
-    percent: '50.25',
-  },
-  {
-    id: '002',
-    soloName: 'Lisa',
-    vote: '1,234',
-    percent: '10.5',
-  },
-  {
-    id: '003',
-    soloName: 'Jiso',
-    vote: '123',
-    percent: '10.5',
-  },
-  {
-    id: '004',
-    soloName: 'Jenny',
-    vote: '3,456',
-    percent: '20.55',
-  },
-  {
-    id: '005',
-    soloName: 'JK',
-    vote: '123',
-    percent: '',
-  },
-  {
-    id: '006',
-    soloName: 'AEY',
-    vote: '3,456',
-    percent: '',
-  },
-];
+// const soloData: API.SoloType[] = [
+//   {
+//     id: '001',
+//     soloName: 'Rose',
+//     vote: '2,234',
+//     percent: '50.25',
+//   },
+// ];
 
 export default DataSoloTable;
