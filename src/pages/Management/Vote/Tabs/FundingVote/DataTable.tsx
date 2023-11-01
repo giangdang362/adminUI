@@ -2,7 +2,7 @@ import banner from '@/../public/images/bannerVote.png';
 import idolAvatar from '@/../public/images/idol-avatar.png';
 import pointLogo from '@/../public/images/point-logo.png';
 import { VOTE_TYPE } from '@/constants/voteType';
-import { getVote } from '@/services/management/vote';
+import { deleteVote, getVote } from '@/services/management/vote';
 import { FormatNumber } from '@/utils/common';
 import { FormatBirthday } from '@/utils/datetime';
 import { DeleteOutlined, EditOutlined, ExclamationCircleFilled } from '@ant-design/icons';
@@ -15,27 +15,33 @@ interface DataFundingVoteTableProps {
   curFundingVote?: API.VoteItem;
   setCurFundingVote: React.Dispatch<React.SetStateAction<API.VoteItem | undefined>>;
   setShowModalForm: React.Dispatch<React.SetStateAction<boolean>>;
-  handleSetCurFundingVote: (x: API.VoteItem) => void;
   showDrawer: boolean;
   setShowDrawer: React.Dispatch<React.SetStateAction<boolean>>;
   currentStatus?: string;
+  reload?: boolean;
+  setReload: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const DataFundingVoteTable: FC<DataFundingVoteTableProps> = ({
   curFundingVote,
   setCurFundingVote,
   setShowModalForm,
-  handleSetCurFundingVote,
   showDrawer,
   setShowDrawer,
   currentStatus,
+  reload,
+  setReload,
 }) => {
   const { Title } = Typography;
   const intl = useIntl();
 
   const [fundingVote, setFundingVote] = useState<API.VoteItem[]>([]);
+
+  const handleReload = () => {
+    setReload((pre) => !pre);
+  };
   const { confirm } = Modal;
-  const showDeleteConfirm = () => {
+  const showDeleteConfirm = (id: number) => {
     confirm({
       title: `${intl.formatMessage({
         id: 'pages.vote.fundingVote.delete',
@@ -55,8 +61,14 @@ const DataFundingVoteTable: FC<DataFundingVoteTableProps> = ({
         id: 'pages.button.cancel',
         defaultMessage: 'Cancel',
       })}`,
-      onOk() {
-        console.log('Deleted');
+      onOk: async () => {
+        try {
+          await deleteVote(id);
+          handleReload();
+          setShowDrawer(false);
+        } catch (error) {
+          console.error('Lỗi xóa idol:', error);
+        }
       },
       onCancel() {
         console.log('Cancel');
@@ -83,12 +95,12 @@ const DataFundingVoteTable: FC<DataFundingVoteTableProps> = ({
 
   useEffect(() => {
     handleGetFundingVote();
-  }, [curFundingVote, currentStatus]);
+  }, [curFundingVote, currentStatus, reload]);
 
   return (
     <div className="wrapp-table">
       <Table
-        columns={configColumns(handleSetCurFundingVote, showDeleteConfirm)}
+        columns={configColumns(showDeleteConfirm, setShowModalForm, setCurFundingVote)}
         dataSource={fundingVote}
         pagination={{
           showQuickJumper: true,
@@ -113,7 +125,7 @@ const DataFundingVoteTable: FC<DataFundingVoteTableProps> = ({
               type="default"
               onClick={(e) => {
                 e.stopPropagation();
-                showDeleteConfirm();
+                showDeleteConfirm(curFundingVote?.voteId ?? -1);
               }}
             >
               <DeleteOutlined style={{ color: 'red' }} />

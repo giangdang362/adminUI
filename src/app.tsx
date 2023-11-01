@@ -1,7 +1,7 @@
 import { AvatarDropdown, AvatarName, Question, SelectLang } from '@/components';
 import { LinkOutlined } from '@ant-design/icons';
 import type { RequestConfig, RunTimeLayoutConfig } from '@umijs/max';
-import { Link, history } from '@umijs/max';
+import { history } from '@umijs/max';
 import { ConfigProvider } from 'antd';
 import { errorConfig } from './requestErrorConfig';
 import { getSessionStorageUser, getStorageUser } from './utils/auth';
@@ -13,9 +13,9 @@ const loginPath = '/user/login';
  * @see  https://umijs.org/zh-CN/plugins/plugin-initial-state
  * */
 export async function getInitialState(): Promise<{ currentUser?: API.User }> {
-  const storageUser = getStorageUser()
-  const sessionStorageUser = getSessionStorageUser()
-  const currentUser = sessionStorageUser || storageUser
+  const storageUser = getStorageUser();
+  const sessionStorageUser = getSessionStorageUser();
+  const currentUser = sessionStorageUser || storageUser;
   return {
     currentUser,
   };
@@ -67,11 +67,11 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
     ],
     links: isDev
       ? [
-        <a key="openapi" href="http://10.10.31.53:8686/index.html" target="_blank">
-          <LinkOutlined />
-          <span>OpenAPI</span>
-        </a>,
-      ]
+          <a key="openapi" href="http://10.10.31.53:8686/index.html" target="_blank">
+            <LinkOutlined />
+            <span>OpenAPI</span>
+          </a>,
+        ]
       : [],
     menuHeaderRender: undefined,
     // 自定义 403 页面

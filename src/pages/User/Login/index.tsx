@@ -86,8 +86,8 @@ const Login: React.FC = () => {
           accessToken: user?.jwtToken,
           refreshToken: user?.refreshToken,
         });
-        setSessionStorageUser(user)
-        if (values?.remember) setStorageUser(user)
+        setSessionStorageUser(user);
+        if (values?.remember) setStorageUser(user);
         const defaultLoginSuccessMessage = intl.formatMessage({
           id: 'pages.login.success',
           defaultMessage: 'Login successfull!',
@@ -154,7 +154,7 @@ const Login: React.FC = () => {
                     id: 'pages.login.email.placeholder',
                     defaultMessage: 'admin or user',
                   })}
-                  initialValue='giangdn@ltsgroup.tech'
+                  initialValue="giangdn@ltsgroup.tech"
                   rules={[
                     {
                       required: true,
@@ -174,7 +174,7 @@ const Login: React.FC = () => {
                     size: 'large',
                     prefix: <LockOutlined />,
                   }}
-                  initialValue='k57cauet'
+                  initialValue="k57cauet"
                   placeholder={intl.formatMessage({
                     id: 'pages.login.password.placeholder',
                     defaultMessage: 'admin/user',

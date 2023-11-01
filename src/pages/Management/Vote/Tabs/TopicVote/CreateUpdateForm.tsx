@@ -26,12 +26,12 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
   const handleSubmit = (formItem: API.VoteItem) => {};
 
   useEffect(() => {
-    form.setFieldValue('topicName', curItem?.topicName);
+    form.setFieldValue('topicName', curItem?.voteName);
     form.setFieldValue('startDate', curItem?.startDate);
     form.setFieldValue('endDate', curItem?.endDate);
     form.setFieldValue('idolVote', curItem?.idolVote);
     form.setFieldValue('status', curItem?.status);
-    form.setFieldValue('content', curItem?.content);
+    form.setFieldValue('content', curItem?.voteContent);
   }, [curItem]);
 
   return (
@@ -105,7 +105,7 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
               id: 'pages.vote.topicVote.form.placeholderSelectIdol',
               defaultMessage: 'Select idol',
             })}`}
-            options={curItem?.idolVote}
+            options={curItem?.idolsName}
             rules={[formItemRule.required()]}
             mode="tags"
           />

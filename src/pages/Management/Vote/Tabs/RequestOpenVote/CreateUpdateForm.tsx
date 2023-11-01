@@ -25,11 +25,11 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
   const handleSubmit = (formItem: API.VoteItem) => {};
 
   useEffect(() => {
-    form.setFieldValue('voteTitle', curItem?.voteTitle);
-    form.setFieldValue('requestDate', curItem?.requestDate);
+    form.setFieldValue('voteName', curItem?.voteName);
+    form.setFieldValue('requsetDate', curItem?.requsetDate);
     form.setFieldValue('community', curItem?.community);
     form.setFieldValue('status', curItem?.status);
-    form.setFieldValue('content', curItem?.content);
+    form.setFieldValue('voteContent', curItem?.voteContent);
   }, [curItem]);
 
   return (
@@ -71,16 +71,16 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
             id: 'pages.vote.fundingVote.form.voteTitle',
             defaultMessage: 'Vote Title',
           })}`}
-          name={'voteTitle'}
+          name={'voteName'}
           placeholder={''}
           rules={[formItemRule.required()]}
         />
         <ProFormDatePicker
           label={`${intl.formatMessage({
             id: 'pages.vote.request.form.date',
-            defaultMessage: 'RequestDate',
+            defaultMessage: 'requsetDate',
           })}`}
-          name="requestDate"
+          name="requsetDate"
           placeholder={`${intl.formatMessage({
             id: 'pages.idols.form.placeholderBirth',
             defaultMessage: 'Select date',
@@ -104,7 +104,7 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
             id: 'pages.vote.topicVote.form.content',
             defaultMessage: 'Content',
           })}`}
-          name="content"
+          name="voteContent"
           placeholder={`${intl.formatMessage({
             id: 'pages.vote.topicVote.form.placeholderContent',
             defaultMessage: 'Note',

@@ -1,32 +1,48 @@
+import { putUser } from '@/services/management/user';
 import { formItemRule } from '@/utils/ruleForm';
 import { ProFormDatePicker, ProFormSelect, ProFormText } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
-import { Form, Input, Modal } from 'antd';
+import { Form, Input, Modal, message } from 'antd';
 import { FC, useEffect } from 'react';
 
 interface UpdateFormProps {
   showModal: boolean;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-  curItem?: API.UserItem;
+  curItem?: API.User;
+  setReload: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const UpdateForm: FC<UpdateFormProps> = ({ showModal, curItem, setShowModal }) => {
+const UpdateForm: FC<UpdateFormProps> = ({ showModal, curItem, setShowModal, setReload }) => {
   const intl = useIntl();
   const [form] = Form.useForm();
   const handleCloseModal = () => {
     setShowModal(false);
     form?.resetFields();
+    setReload((pre) => !pre);
   };
-  const handleSubmit = (formItem: API.UserItem) => {};
+
+  const handleSave = async (formItem: API.User) => {
+    const payload: API.UserPayload = {
+      email: formItem.userEmail,
+      password: formItem.password,
+    };
+    await putUser(curItem?.id ?? -1, payload)
+      .then(() => {
+        message.success('Update Success');
+      })
+      .then(() => {
+        handleCloseModal();
+      });
+  };
 
   useEffect(() => {
     form.setFieldValue('id', curItem?.id);
     form.setFieldValue('userName', curItem?.userName);
     form.setFieldValue('lastLoginDate', curItem?.lastLoginDate);
-    form.setFieldValue('point', curItem?.point);
-    form.setFieldValue('idolFollow', curItem?.idolFollow);
-    form.setFieldValue('status', curItem?.status === 1 ? 'Actived' : 'Not Activated');
-    form.setFieldValue('email', curItem?.email);
+    form.setFieldValue('point', curItem?.honeyPoint);
+    form.setFieldValue('idolFollow', curItem?.idolFollows);
+    form.setFieldValue('status', curItem?.isActive ? 'Actived' : 'Not Activated');
+    form.setFieldValue('userEmail', curItem?.userEmail);
     form.setFieldValue('password', curItem?.password);
   }, [curItem]);
 
@@ -46,12 +62,13 @@ const UpdateForm: FC<UpdateFormProps> = ({ showModal, curItem, setShowModal }) =
         id: 'pages.button.cancel',
         defaultMessage: 'Cancel',
       })}`}
+      onOk={() => form.submit()}
     >
       <Form
         form={form}
         layout="vertical"
         name="roleForm"
-        onFinish={handleSubmit}
+        onFinish={handleSave}
         style={{ padding: '12px 0px' }}
       >
         <ProFormText
@@ -60,7 +77,7 @@ const UpdateForm: FC<UpdateFormProps> = ({ showModal, curItem, setShowModal }) =
             defaultMessage: 'User Name',
           })}`}
           placeholder=""
-          name="userName"
+          name="userEmail"
         />
         <div style={{ display: 'flex', gap: '15px' }}>
           <ProFormDatePicker
@@ -86,7 +103,7 @@ const UpdateForm: FC<UpdateFormProps> = ({ showModal, curItem, setShowModal }) =
             defaultMessage: 'Email',
           })}`}
           placeholder=""
-          name="email"
+          name="userEmail"
           disabled
         />
         <ProFormText.Password
@@ -108,8 +125,8 @@ const UpdateForm: FC<UpdateFormProps> = ({ showModal, curItem, setShowModal }) =
               id: 'pages.idols.form.placeholderType',
               defaultMessage: 'Select type',
             })}`}
-            options={curItem?.idolFollow?.map((item) => item.idolName)}
-            rules={[formItemRule.required()]}
+            options={curItem.idolFollows?.map((item) => item.idolName ?? '')}
+            // rules={[formItemRule.required()]}
             mode="tags"
           />
         )}

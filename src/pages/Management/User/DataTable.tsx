@@ -5,24 +5,30 @@ import { configColumns } from './columns';
 
 interface DataUserTableProps {
   handleSetCurUser: (x: API.User) => void;
+  reload?: boolean;
+  setReload: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const DataUserTable: FC<DataUserTableProps> = ({ handleSetCurUser }) => {
+const DataUserTable: FC<DataUserTableProps> = ({ handleSetCurUser, reload, setReload }) => {
   const [userData, setUserData] = useState<API.User[]>([]);
+
+  const handleReload = () => {
+    setReload((pre) => !pre);
+  };
   const handleGetUsers = async () => {
     const res = await getUsers();
-    console.log(res);
+    // console.log(res);
 
     setUserData(res);
   };
 
   useEffect(() => {
     handleGetUsers();
-  }, []);
+  }, [reload]);
 
   return (
     <div>
-      <Table columns={configColumns(handleSetCurUser)} dataSource={userData} />
+      <Table columns={configColumns(handleSetCurUser, handleReload)} dataSource={userData} />
     </div>
   );
 };

@@ -11,8 +11,8 @@ export async function getVote(params: ParamsGetVote): Promise<API.VoteItem[]> {
   });
 }
 
-export async function deleteVote(id: string) {
-  return request(`/Idols/${id}`, {
+export async function deleteVote(id: number) {
+  return request(`/Votes/${id}`, {
     method: 'DELETE',
   });
 }

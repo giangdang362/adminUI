@@ -3,13 +3,19 @@ declare namespace API {
     id?: number;
     userName?: string;
     userEmail?: string;
-    avatarUrl?: string;
+    avatarFileName?: string;
     honeyPoint?: number;
-    isActive?: true;
+    isActive?: number;
     startDate?: string;
     lastLoginDate?: string;
     idolFollows?: API.IdolItem[];
     jwtToken?: string;
     refreshToken?: string;
+    password?: string;
+  };
+
+  type UserPayload = {
+    email?: string;
+    password?: string;
   };
 }

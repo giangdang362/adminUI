@@ -1,7 +1,7 @@
 import idolAvatar from '@/../public/images/idol-avatar.png';
 import banner from '@/../public/images/openVoteBanner.png';
 import { VOTE_TYPE } from '@/constants/voteType';
-import { getVote } from '@/services/management/vote';
+import { deleteVote, getVote } from '@/services/management/vote';
 import { FormatBirthday } from '@/utils/datetime';
 import { DeleteOutlined, ExclamationCircleFilled, InfoCircleOutlined } from '@ant-design/icons';
 import { useIntl } from '@umijs/max';
@@ -12,30 +12,38 @@ import { configColumns } from './columns';
 interface DataRequestOpenVoteTableProps {
   curRequestOpenVote?: API.VoteItem;
   setCurRequestOpenVote: React.Dispatch<React.SetStateAction<API.VoteItem | undefined>>;
-  handleSetCurFundingVote: (x: API.VoteItem) => void;
+  setShowModalForm: React.Dispatch<React.SetStateAction<boolean>>;
   showDrawer: boolean;
   setShowDrawer: React.Dispatch<React.SetStateAction<boolean>>;
   showRejectModal: boolean;
   setShowRejectModal: React.Dispatch<React.SetStateAction<boolean>>;
   currentStatus?: string;
+  reload?: boolean;
+  setReload: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const DataRequestOpenVoteTable: FC<DataRequestOpenVoteTableProps> = ({
   curRequestOpenVote,
   setCurRequestOpenVote,
-  handleSetCurFundingVote,
+  setShowModalForm,
   showDrawer,
   setShowDrawer,
   showRejectModal,
   setShowRejectModal,
   currentStatus,
+  reload,
+  setReload,
 }) => {
   const { Title } = Typography;
   const intl = useIntl();
 
   const [requestVote, setRequestVote] = useState<API.VoteItem[]>([]);
+
+  const handleReload = () => {
+    setReload((pre) => !pre);
+  };
   const { confirm } = Modal;
-  const showDeleteConfirm = () => {
+  const showDeleteConfirm = (id: number) => {
     confirm({
       title: `${intl.formatMessage({
         id: 'pages.vote.request.delete',
@@ -55,8 +63,14 @@ const DataRequestOpenVoteTable: FC<DataRequestOpenVoteTableProps> = ({
         id: 'pages.button.cancel',
         defaultMessage: 'Cancel',
       })}`,
-      onOk() {
-        console.log('Deleted');
+      onOk: async () => {
+        try {
+          await deleteVote(id);
+          handleReload();
+          setShowDrawer(false);
+        } catch (error) {
+          console.error('Lỗi xóa idol:', error);
+        }
       },
       onCancel() {
         console.log('Cancel');
@@ -81,7 +95,7 @@ const DataRequestOpenVoteTable: FC<DataRequestOpenVoteTableProps> = ({
   };
 
   const handleGetRequestVote = async () => {
-    const res = await getVote({ voteType: VOTE_TYPE.REQUEST_TYPE });
+    const res = await getVote({ voteType: VOTE_TYPE.REQUEST_OPEN_TYPE });
     if (!currentStatus) {
       setRequestVote(res);
     } else {
@@ -95,12 +109,12 @@ const DataRequestOpenVoteTable: FC<DataRequestOpenVoteTableProps> = ({
 
   useEffect(() => {
     handleGetRequestVote();
-  }, [curRequestOpenVote, currentStatus]);
+  }, [curRequestOpenVote, currentStatus, reload]);
 
   return (
     <div className="wrapp-table">
       <Table
-        columns={configColumns(handleSetCurFundingVote, showDeleteConfirm)}
+        columns={configColumns(showDeleteConfirm, setShowModalForm, setCurRequestOpenVote)}
         dataSource={requestVote}
         pagination={{
           showQuickJumper: true,
@@ -125,7 +139,7 @@ const DataRequestOpenVoteTable: FC<DataRequestOpenVoteTableProps> = ({
               type="default"
               onClick={(e) => {
                 e.stopPropagation();
-                showDeleteConfirm();
+                showDeleteConfirm(curRequestOpenVote?.voteId ?? -1);
               }}
             >
               <DeleteOutlined style={{ color: 'red' }} />

@@ -15,5 +15,6 @@ declare namespace API {
     idolsName?: string[];
     idolIds?: number[];
     requsetDate?: string;
+    community?: string;
   };
 }
