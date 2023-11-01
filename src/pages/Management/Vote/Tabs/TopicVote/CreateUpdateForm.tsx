@@ -1,4 +1,5 @@
-import { formItemRule } from '@/utils/ruleForm';
+import { VOTE_TYPE } from '@/constants/voteType';
+import { postVote, putVote } from '@/services/management/vote';
 import {
   ProFormDateRangePicker,
   ProFormSelect,
@@ -7,37 +8,77 @@ import {
   ProFormUploadButton,
 } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
-import { Form, Modal } from 'antd';
+import { Form, Modal, message } from 'antd';
 import { FC, useEffect } from 'react';
 
 interface CreateUpdateFormProps {
   showModal: boolean;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   curItem?: API.VoteItem;
+  setReload: React.Dispatch<React.SetStateAction<boolean>>;
+  setCurTopicVote: React.Dispatch<React.SetStateAction<API.VoteItem | undefined>>;
 }
 
-const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setShowModal }) => {
+const CreateUpdateForm: FC<CreateUpdateFormProps> = ({
+  showModal,
+  curItem,
+  setShowModal,
+  setReload,
+  setCurTopicVote,
+}) => {
   const intl = useIntl();
   const [form] = Form.useForm();
   const handleCloseModal = () => {
     setShowModal(false);
     form?.resetFields();
+    setCurTopicVote({});
+    setReload((pre) => !pre);
   };
-  const handleSubmit = (formItem: API.VoteItem) => {};
+
+  const handleSave = (formItem: API.VoteItem) => {
+    const payload: API.VotePayload = {
+      voteName: formItem.voteName,
+      voteTypeId: VOTE_TYPE.TOPIC_TYPE,
+      startDate: formItem.startDate ?? '2023-11-01T07:44:06.776Z',
+      endDate: formItem.endDate ?? '2023-11-01T07:44:06.776Z',
+      bannerFileName: formItem.bannerUrl ?? '',
+      voteContent: formItem.voteContent ?? '',
+      goalPoint: formItem.goalPoint ?? 0,
+      reward: formItem.reward ?? '',
+      idolIds: formItem.idolIds ?? [],
+    };
+    if (!curItem?.voteId) {
+      postVote(payload)
+        .then(() => {
+          message.success('Create success');
+        })
+        .then(() => {
+          handleCloseModal();
+        });
+    } else {
+      putVote({ ...payload, voteId: curItem.voteId })
+        .then(() => {
+          message.success('Update success');
+        })
+        .then(() => {
+          handleCloseModal();
+        });
+    }
+  };
 
   useEffect(() => {
-    form.setFieldValue('topicName', curItem?.voteName);
-    form.setFieldValue('startDate', curItem?.startDate);
-    form.setFieldValue('endDate', curItem?.endDate);
+    form.setFieldValue('voteName', curItem?.voteName);
+    form.setFieldValue('startDate', curItem?.startDate ?? '');
+    form.setFieldValue('endDate', curItem?.endDate ?? '');
     form.setFieldValue('idolVote', curItem?.idolVote);
     form.setFieldValue('status', curItem?.status);
-    form.setFieldValue('content', curItem?.voteContent);
+    form.setFieldValue('voteContent', curItem?.voteContent);
   }, [curItem]);
 
   return (
     <Modal
       title={
-        !curItem
+        !curItem?.voteId
           ? `${intl.formatMessage({
               id: 'pages.vote.topicVote.form.titleAdd',
               defaultMessage: 'Add Topic Vote',
@@ -57,12 +98,13 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
         id: 'pages.button.cancel',
         defaultMessage: 'Cancel',
       })}`}
+      onOk={() => form.submit()}
     >
       <Form
         form={form}
         layout="vertical"
         name="roleForm"
-        onFinish={handleSubmit}
+        onFinish={handleSave}
         style={{
           padding: '12px 0',
         }}
@@ -72,9 +114,9 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
             id: 'pages.vote.topicVote.form.topicName',
             defaultMessage: 'Topic Name',
           })}`}
-          name={'topicName'}
+          name={'voteName'}
           placeholder={''}
-          rules={[formItemRule.required()]}
+          // rules={[formItemRule.required()]}
         />
         <ProFormDateRangePicker
           name={'rangeDate'}
@@ -92,7 +134,7 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
             id: 'pages.vote.topicVote.form.date',
             defaultMessage: 'Start Date/ End Date',
           })}`}
-          rules={[formItemRule.required()]}
+          // rules={[formItemRule.required()]}
         />
         {curItem && (
           <ProFormSelect
@@ -106,7 +148,7 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
               defaultMessage: 'Select idol',
             })}`}
             options={curItem?.idolsName}
-            rules={[formItemRule.required()]}
+            // rules={[formItemRule.required()]}
             mode="tags"
           />
         )}
@@ -120,19 +162,19 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
             defaultMessage: 'Upload',
           })}`}
           name={'banner'}
-          rules={[formItemRule.required()]}
+          // rules={[formItemRule.required()]}
         />
         <ProFormTextArea
           label={`${intl.formatMessage({
             id: 'pages.vote.topicVote.form.content',
             defaultMessage: 'Content',
           })}`}
-          name="content"
+          name="voteContent"
           placeholder={`${intl.formatMessage({
             id: 'pages.vote.topicVote.form.placeholderContent',
             defaultMessage: 'Note',
           })}`}
-          rules={[formItemRule.required()]}
+          // rules={[formItemRule.required()]}
         />
       </Form>
     </Modal>

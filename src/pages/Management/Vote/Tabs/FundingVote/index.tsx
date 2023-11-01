@@ -110,6 +110,8 @@ const FundingVote = () => {
         showModal={showModalForm}
         setShowModal={setShowModalForm}
         curItem={curFundingVote}
+        setReload={setReload}
+        setCurFundingVote={setCurFundingVote}
       />
     </div>
   );

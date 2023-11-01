@@ -3,7 +3,7 @@ import { useIntl } from '@umijs/max';
 import { Progress } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 
-export const columns = (): ColumnsType<API.GroupType> => {
+export const columns = (): ColumnsType<API.IdolItem> => {
   const intl = useIntl();
   return [
     {
@@ -39,7 +39,7 @@ export const columns = (): ColumnsType<API.GroupType> => {
               height: '20px',
             }}
           />
-          <span>{original.groupName}</span>
+          <span>{original.idolName}</span>
         </div>
       ),
     },
@@ -60,9 +60,7 @@ export const columns = (): ColumnsType<API.GroupType> => {
       dataIndex: 'percent',
       key: 'percent',
       render: (_, original) => (
-        <div>
-          {original.percent?.length ? <Progress percent={Number(original.percent)} /> : ' - '}
-        </div>
+        <div>{original.percent ? <Progress percent={Number(original.percent)} /> : ' - '}</div>
       ),
       width: '20%',
     },

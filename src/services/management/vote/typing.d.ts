@@ -1,3 +1,6 @@
+// @ts-ignore
+/* eslint-disable */
+
 declare namespace API {
   type VoteItem = {
     voteId?: number;
@@ -16,5 +19,17 @@ declare namespace API {
     idolIds?: number[];
     requsetDate?: string;
     community?: string;
+  };
+
+  type VotePayload = {
+    voteName?: string;
+    voteTypeId?: number;
+    startDate?: string;
+    endDate?: string;
+    bannerFileName?: string;
+    voteContent?: string;
+    goalPoint?: number;
+    reward?: string;
+    idolIds?: number[];
   };
 }

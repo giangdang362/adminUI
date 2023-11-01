@@ -5,6 +5,24 @@ import { useState } from 'react';
 import CreateUpdateForm from './CreateUpdateForm';
 import DataRequestOpenVoteTable from './DataTable';
 
+type SelectType = {
+  label: string;
+  value: string;
+};
+
+export const listSelectStatus: SelectType[] = [
+  { label: 'Approved', value: 'Approved' },
+  { label: 'Waiting Approve', value: 'WaitingApprove' },
+  { label: 'Rejected', value: 'Rejected' },
+];
+
+export const listIdol: SelectType[] = [
+  { label: 'Lisa', value: 'Lisa' },
+  { label: 'Jenny', value: 'Jenny' },
+  { label: 'Rose', value: 'Rose' },
+  { label: 'Jiso', value: 'Jiso' },
+];
+
 const RequestOpenVote = () => {
   const intl = useIntl();
   const [curRequestOpenVote, setCurRequestOpenVote] = useState<API.VoteItem>();
@@ -111,27 +129,11 @@ const RequestOpenVote = () => {
         showModal={showModalForm}
         setShowModal={setShowModalForm}
         curItem={curRequestOpenVote}
+        setReload={setReload}
+        setCurRequestOpenVote={setCurRequestOpenVote}
       />
     </div>
   );
 };
 
 export default RequestOpenVote;
-
-type SelectType = {
-  label: string;
-  value: string;
-};
-
-export const listSelectStatus: SelectType[] = [
-  { label: 'Approved', value: 'Approved' },
-  { label: 'Waiting Approve', value: 'WaitingApprove' },
-  { label: 'Rejected', value: 'Rejected' },
-];
-
-export const listIdol: SelectType[] = [
-  { label: 'Lisa', value: 'Lisa' },
-  { label: 'Jenny', value: 'Jenny' },
-  { label: 'Rose', value: 'Rose' },
-  { label: 'Jiso', value: 'Jiso' },
-];

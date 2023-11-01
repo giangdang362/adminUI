@@ -1,4 +1,5 @@
-import { formItemRule } from '@/utils/ruleForm';
+import { VOTE_TYPE } from '@/constants/voteType';
+import { postVote, putVote } from '@/services/management/vote';
 import {
   ProFormDatePicker,
   ProFormText,
@@ -6,23 +7,62 @@ import {
   ProFormUploadButton,
 } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
-import { Form, Modal } from 'antd';
+import { Form, Modal, message } from 'antd';
 import { FC, useEffect } from 'react';
 
 interface CreateUpdateFormProps {
   showModal: boolean;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   curItem?: API.VoteItem;
+  setReload: React.Dispatch<React.SetStateAction<boolean>>;
+  setCurRequestOpenVote: React.Dispatch<React.SetStateAction<API.VoteItem | undefined>>;
 }
 
-const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setShowModal }) => {
+const CreateUpdateForm: FC<CreateUpdateFormProps> = ({
+  showModal,
+  curItem,
+  setShowModal,
+  setReload,
+  setCurRequestOpenVote,
+}) => {
   const intl = useIntl();
   const [form] = Form.useForm();
   const handleCloseModal = () => {
     setShowModal(false);
     form?.resetFields();
+    setCurRequestOpenVote({});
+    setReload((pre) => !pre);
   };
-  const handleSubmit = (formItem: API.VoteItem) => {};
+  const handleSave = (formItem: API.VoteItem) => {
+    const payload: API.VotePayload = {
+      voteName: formItem.voteName,
+      voteTypeId: VOTE_TYPE.REQUEST_OPEN_TYPE,
+      startDate: formItem.startDate ?? '2023-11-01T07:44:06.776Z',
+      endDate: formItem.endDate ?? '2023-11-01T07:44:06.776Z',
+      bannerFileName: formItem.bannerUrl ?? '',
+      voteContent: formItem.voteContent ?? '',
+      goalPoint: formItem.goalPoint ?? 0,
+      reward: formItem.reward ?? '',
+      idolIds: formItem.idolIds ?? [],
+    };
+    if (!curItem?.voteId) {
+      postVote(payload)
+        .then(() => {
+          message.success('Create success');
+        })
+        .then(() => {
+          handleCloseModal();
+        });
+    } else {
+      putVote({ ...payload, voteId: curItem.voteId })
+        .then(() => {
+          message.success('Update success');
+        })
+        .then(() => {
+          handleCloseModal();
+        });
+    }
+  };
 
   useEffect(() => {
     form.setFieldValue('voteName', curItem?.voteName);
@@ -35,7 +75,7 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
   return (
     <Modal
       title={
-        !curItem
+        !curItem?.voteId
           ? `${intl.formatMessage({
               id: 'pages.vote.request.form.titleAdd',
               defaultMessage: 'Add Request Open Vote',
@@ -55,12 +95,13 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
         id: 'pages.button.cancel',
         defaultMessage: 'Cancel',
       })}`}
+      onOk={() => form.submit()}
     >
       <Form
         form={form}
         layout="vertical"
         name="roleForm"
-        onFinish={handleSubmit}
+        onFinish={handleSave}
         style={{
           padding: '12px 0',
         }}
@@ -73,7 +114,7 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
           })}`}
           name={'voteName'}
           placeholder={''}
-          rules={[formItemRule.required()]}
+          // rules={[formItemRule.required()]}
         />
         <ProFormDatePicker
           label={`${intl.formatMessage({
@@ -85,7 +126,7 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
             id: 'pages.idols.form.placeholderBirth',
             defaultMessage: 'Select date',
           })}`}
-          rules={[formItemRule.required()]}
+          // rules={[formItemRule.required()]}
         />
         <ProFormUploadButton
           label={`${intl.formatMessage({
@@ -97,7 +138,7 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
             defaultMessage: 'Upload',
           })}`}
           name={'banner'}
-          rules={[formItemRule.required()]}
+          // rules={[formItemRule.required()]}
         />
         <ProFormTextArea
           label={`${intl.formatMessage({
@@ -109,7 +150,7 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
             id: 'pages.vote.topicVote.form.placeholderContent',
             defaultMessage: 'Note',
           })}`}
-          rules={[formItemRule.required()]}
+          // rules={[formItemRule.required()]}
         />
       </Form>
     </Modal>

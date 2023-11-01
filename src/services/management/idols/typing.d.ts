@@ -4,10 +4,11 @@ declare namespace API {
     idolName?: string;
     anniversaryDay?: string;
     members?: IdolItem[];
-    idolType?: string;
+    idolTypeId?: number;
     avatarUrl?: string;
     bannerUrl?: string;
     groupId?: number;
+    percent?: number;
   };
 
   type IdolPayload = {

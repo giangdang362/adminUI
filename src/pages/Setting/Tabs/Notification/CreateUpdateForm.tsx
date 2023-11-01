@@ -19,7 +19,6 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
   };
   const handleSubmit = (formItem: API.NotificationItem) => {
     console.log(formItem);
-    
   };
 
   useEffect(() => {

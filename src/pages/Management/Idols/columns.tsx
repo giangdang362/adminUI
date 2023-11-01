@@ -141,7 +141,9 @@ export const configColumns = (
       dataIndex: 'idolType',
       key: 'idolType',
       render: (_, original) => {
-        if (original.idolType === 'Solo')
+        console.log('id', original.idolTypeId);
+
+        if (original.idolTypeId === 1)
           return (
             <Tag style={{ borderColor: '#6940DA', color: '#6940DA', backgroundColor: '#E9E2F9' }}>
               {intl.formatMessage({

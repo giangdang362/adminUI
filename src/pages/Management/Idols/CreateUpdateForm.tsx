@@ -38,14 +38,10 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({
     setReload((pre) => !pre);
   };
 
-  console.log('curIdol', curItem);
-
   const handleSave = async (formItem: API.IdolItem) => {
-    console.log('formItem.idolType', formItem.idolType);
-
     setLoading(true);
     const payload: API.IdolPayload = {
-      idolTypeId: formItem.idolType === 'Solo' ? 1 : 2,
+      idolTypeId: formItem.idolTypeId,
       avatarFileName: formItem.avatarUrl ?? '',
       bannerFileName: formItem.bannerUrl ?? '',
       idolName: formItem.idolName,
@@ -72,7 +68,7 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({
   };
 
   useEffect(() => {
-    form.setFieldValue('idolType', curItem?.idolType);
+    form.setFieldValue('idolTypeId', curItem?.idolTypeId === 1 ? 'Solo' : 'Group');
     form.setFieldValue('idolName', curItem?.idolName);
     form.setFieldValue('anniversaryDay', curItem?.anniversaryDay);
   }, [curItem]);
@@ -118,7 +114,7 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({
             id: 'pages.idols.form.type',
             defaultMessage: 'Type',
           })}`}
-          name={'idolType'}
+          name={'idolTypeId'}
           placeholder={`${intl.formatMessage({
             id: 'pages.button.placeholderType',
             defaultMessage: 'Select type',
