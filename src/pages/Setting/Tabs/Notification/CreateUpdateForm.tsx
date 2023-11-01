@@ -17,7 +17,10 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({ showModal, curItem, setSh
     setShowModal(false);
     form?.resetFields();
   };
-  const handleSubmit = (formItem: API.NotificationItem) => {};
+  const handleSubmit = (formItem: API.NotificationItem) => {
+    console.log(formItem);
+    
+  };
 
   useEffect(() => {
     form.setFieldValue('updatedDate', curItem?.updatedDate);

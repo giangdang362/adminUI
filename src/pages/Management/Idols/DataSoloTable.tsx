@@ -18,8 +18,8 @@ const DataIdolsTable: FC<DataIdolsTableProps> = ({
   handleSetCurIdol,
   currentType,
   curIdol,
-  reload: reload,
-  setReload: setReload,
+  reload,
+  setReload,
 }) => {
   const [idolData, setIdolData] = useState<API.IdolItem[]>([]);
 

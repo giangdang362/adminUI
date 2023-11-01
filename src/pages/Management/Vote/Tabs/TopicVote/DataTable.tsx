@@ -1,7 +1,7 @@
 import banner from '@/../public/images/bannerVote.png';
 import idolAvatar from '@/../public/images/idol-avatar.png';
 import { VOTE_TYPE } from '@/constants/voteType';
-import { getVote } from '@/services/management/vote';
+import { deleteVote, getVote } from '@/services/management/vote';
 import { FormatBirthday } from '@/utils/datetime';
 import {
   DeleteOutlined,
@@ -16,7 +16,6 @@ import RankingResultModal from './RankingResultModal';
 import { configColumns } from './columns';
 
 interface DataTopicVoteTableProps {
-  handleSetCurTopicVote: (x: API.VoteItem) => void;
   curTopicVote?: API.VoteItem;
   setCurTopicVote: React.Dispatch<React.SetStateAction<API.VoteItem | undefined>>;
   setShowModalForm: React.Dispatch<React.SetStateAction<boolean>>;
@@ -25,10 +24,11 @@ interface DataTopicVoteTableProps {
   showRankingResult: boolean;
   setShowRankingResult: React.Dispatch<React.SetStateAction<boolean>>;
   currentStatus?: string;
+  reload?: boolean;
+  setReload: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const DataTopicVoteTable: FC<DataTopicVoteTableProps> = ({
-  handleSetCurTopicVote,
   showDrawer,
   setShowDrawer,
   setShowModalForm,
@@ -37,13 +37,19 @@ const DataTopicVoteTable: FC<DataTopicVoteTableProps> = ({
   showRankingResult,
   setShowRankingResult,
   currentStatus,
+  reload,
+  setReload,
 }) => {
   const { Title } = Typography;
   const intl = useIntl();
 
   const [topicVote, setTopicVote] = useState<API.VoteItem[]>([]);
+
+  const handleReload = () => {
+    setReload((pre) => !pre);
+  };
   const { confirm } = Modal;
-  const showDeleteConfirm = () => {
+  const showDeleteConfirm = (id: number) => {
     confirm({
       title: `${intl.formatMessage({
         id: 'pages.vote.topicVote.delete',
@@ -63,8 +69,14 @@ const DataTopicVoteTable: FC<DataTopicVoteTableProps> = ({
         id: 'pages.button.cancel',
         defaultMessage: 'Cancel',
       })}`,
-      onOk() {
-        console.log('Deleted');
+      onOk: async () => {
+        try {
+          await deleteVote(id);
+          handleReload();
+          setShowDrawer(false);
+        } catch (error) {
+          console.error('Lỗi xóa idol:', error);
+        }
       },
       onCancel() {
         console.log('Cancel');
@@ -90,12 +102,12 @@ const DataTopicVoteTable: FC<DataTopicVoteTableProps> = ({
   };
   useEffect(() => {
     handleGetTopicVote();
-  }, [curTopicVote, currentStatus]);
+  }, [curTopicVote, currentStatus, reload]);
 
   return (
     <div className="wrapp-table">
       <Table
-        columns={configColumns(handleSetCurTopicVote, showDeleteConfirm)}
+        columns={configColumns(showDeleteConfirm, setShowModalForm, setCurTopicVote)}
         dataSource={topicVote}
         pagination={{
           showQuickJumper: true,
@@ -120,7 +132,7 @@ const DataTopicVoteTable: FC<DataTopicVoteTableProps> = ({
               type="default"
               onClick={(e) => {
                 e.stopPropagation();
-                showDeleteConfirm();
+                showDeleteConfirm(curTopicVote?.voteId ?? -1);
               }}
             >
               <DeleteOutlined style={{ color: 'red' }} />

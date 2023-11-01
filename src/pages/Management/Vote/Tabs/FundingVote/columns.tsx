@@ -5,16 +5,18 @@ import { Button, Tag } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 
 export const configColumns = (
-  handleSetCurFundingVote: (x: API.VoteItem) => void,
-  showDeleteConfirm: () => void,
+  showDeleteConfirm: (id: number) => void,
+  setShowModalForm: React.Dispatch<React.SetStateAction<boolean>>,
+  setCurFundingVote: React.Dispatch<React.SetStateAction<API.VoteItem | undefined>>,
 ): ColumnsType<API.VoteItem> => {
   const handleClickEdit = (x: API.VoteItem) => {
-    handleSetCurFundingVote(x);
+    setCurFundingVote(x);
+    setShowModalForm(true);
   };
 
-  const handleDelete = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+  const handleDelete = (e: React.MouseEvent<HTMLElement, MouseEvent>, x: API.VoteItem) => {
     e.stopPropagation();
-    showDeleteConfirm();
+    showDeleteConfirm(x.voteId ?? -1);
   };
 
   const intl = useIntl();
@@ -129,7 +131,10 @@ export const configColumns = (
           >
             <EditOutlined />
           </Button>
-          <Button style={{ padding: '2px 6px', border: 'none' }} onClick={(e) => handleDelete(e)}>
+          <Button
+            style={{ padding: '2px 6px', border: 'none' }}
+            onClick={(e) => handleDelete(e, original)}
+          >
             <DeleteOutlined />
           </Button>
         </div>

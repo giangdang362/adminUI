@@ -5,9 +5,13 @@ import { Button, Tag, Tooltip } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import pointIcon from '../../../../public/images/point-icon.png';
 
-export const configColumns = (handleSetCurUser: (x: API.User) => void): ColumnsType<API.User> => {
+export const configColumns = (
+  handleSetCurUser: (x: API.User) => void,
+  handleReload: () => void,
+): ColumnsType<API.User> => {
   const handleClickEdit = (x: API.User) => {
     handleSetCurUser(x);
+    handleReload();
   };
 
   const intl = useIntl();

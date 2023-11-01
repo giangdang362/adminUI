@@ -11,6 +11,7 @@ const UserManagement = () => {
   const intl = useIntl();
   const [curUser, setCurUser] = useState<API.User>();
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [reload, setReload] = useState<boolean>(false);
   const handleSetCurUser = (x: API.User) => {
     setCurUser(x);
     setShowModal(true);
@@ -35,8 +36,13 @@ const UserManagement = () => {
         })}`}
         prefix={<SearchOutlined />}
       />
-      <DataUserTable handleSetCurUser={handleSetCurUser} />
-      <UpdateForm showModal={showModal} setShowModal={setShowModal} curItem={curUser} />
+      <DataUserTable handleSetCurUser={handleSetCurUser} reload={reload} setReload={setReload} />
+      <UpdateForm
+        showModal={showModal}
+        setShowModal={setShowModal}
+        curItem={curUser}
+        setReload={setReload}
+      />
     </div>
   );
 };

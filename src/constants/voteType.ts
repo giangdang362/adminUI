@@ -1,5 +1,5 @@
 export const VOTE_TYPE = {
-  FUNDING_TYPE: 1,
-  TOPIC_TYPE: 2,
-  REQUEST_TYPE: 3,
+  TOPIC_TYPE: 1,
+  FUNDING_TYPE: 2,
+  REQUEST_OPEN_TYPE: 3,
 };

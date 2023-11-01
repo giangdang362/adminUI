@@ -8,7 +8,7 @@ import DataRequestOpenVoteTable from './DataTable';
 const RequestOpenVote = () => {
   const intl = useIntl();
   const [curRequestOpenVote, setCurRequestOpenVote] = useState<API.VoteItem>();
-
+  const [reload, setReload] = useState<boolean>(false);
   const [showModalForm, setShowModalForm] = useState<boolean>(false);
   const [showDrawer, setShowDrawer] = useState<boolean>(false);
   const [showRejectModal, setShowRejectModal] = useState<boolean>(false);
@@ -23,10 +23,7 @@ const RequestOpenVote = () => {
   const handleCommunityChange = (value: SelectType) => {
     setCurrentCommunity(value);
   };
-  const handleSetCurRequestOpenVote = (x: API.VoteItem) => {
-    setCurRequestOpenVote(x);
-    setShowModalForm(true);
-  };
+
   return (
     <div>
       <div
@@ -101,12 +98,14 @@ const RequestOpenVote = () => {
       <DataRequestOpenVoteTable
         curRequestOpenVote={curRequestOpenVote}
         setCurRequestOpenVote={setCurRequestOpenVote}
-        handleSetCurFundingVote={handleSetCurRequestOpenVote}
         showDrawer={showDrawer}
         setShowDrawer={setShowDrawer}
+        setShowModalForm={setShowModalForm}
         showRejectModal={showRejectModal}
         setShowRejectModal={setShowRejectModal}
         currentStatus={currentStatus}
+        reload={reload}
+        setReload={setReload}
       />
       <CreateUpdateForm
         showModal={showModalForm}

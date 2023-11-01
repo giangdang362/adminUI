@@ -8,7 +8,7 @@ import DataFundingVoteTable from './DataTable';
 const FundingVote = () => {
   const intl = useIntl();
   const [curFundingVote, setCurFundingVote] = useState<API.VoteItem>();
-
+  const [reload, setReload] = useState<boolean>(false);
   const [showModalForm, setShowModalForm] = useState<boolean>(false);
   const [showDrawer, setShowDrawer] = useState<boolean>(false);
   const [showRankingResult, setShowRankingResult] = useState<boolean>(false);
@@ -24,10 +24,6 @@ const FundingVote = () => {
     setCurrentIdol(value);
   };
 
-  const handleSetCurFundingVote = (x: API.VoteItem) => {
-    setCurFundingVote(x);
-    setShowModalForm(true);
-  };
   return (
     <div>
       <div
@@ -104,10 +100,11 @@ const FundingVote = () => {
         curFundingVote={curFundingVote}
         setCurFundingVote={setCurFundingVote}
         setShowModalForm={setShowModalForm}
-        handleSetCurFundingVote={handleSetCurFundingVote}
         showDrawer={showDrawer}
         setShowDrawer={setShowDrawer}
         currentStatus={currentStatus}
+        reload={reload}
+        setReload={setReload}
       />
       <CreateUpdateForm
         showModal={showModalForm}
