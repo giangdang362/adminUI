@@ -41,9 +41,18 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({
   console.log('curIdol', curItem);
 
   const handleSave = async (formItem: API.IdolItem) => {
+    console.log('formItem.idolType', formItem.idolType);
+
     setLoading(true);
+    const payload: API.IdolPayload = {
+      idolTypeId: formItem.idolType === 'Solo' ? 1 : 2,
+      avatarFileName: formItem.avatarUrl ?? '',
+      bannerFileName: formItem.bannerUrl ?? '',
+      idolName: formItem.idolName,
+      anniversaryDay: formItem.anniversaryDay,
+    };
     if (!curItem?.id) {
-      postIdol(formItem)
+      postIdol(payload)
         .then(() => {
           message.success('Create success');
         })
@@ -51,7 +60,7 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({
           handleCloseModal();
         });
     } else {
-      putIdol({ ...formItem, id: curItem.id })
+      putIdol({ ...payload, id: curItem.id })
         .then(() => {
           message.success('Update success');
         })
@@ -63,8 +72,9 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({
   };
 
   useEffect(() => {
-    form.setFieldValue('idolType', curItem?.idolType ? 'Group' : 'Solo');
+    form.setFieldValue('idolType', curItem?.idolType);
     form.setFieldValue('idolName', curItem?.idolName);
+    form.setFieldValue('anniversaryDay', curItem?.anniversaryDay);
   }, [curItem]);
 
   return (
@@ -108,7 +118,7 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({
             id: 'pages.idols.form.type',
             defaultMessage: 'Type',
           })}`}
-          name={'type'}
+          name={'idolType'}
           placeholder={`${intl.formatMessage({
             id: 'pages.button.placeholderType',
             defaultMessage: 'Select type',
@@ -126,7 +136,7 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({
             id: 'pages.button.titleUpload',
             defaultMessage: 'Upload',
           })}`}
-          name={'avatar'}
+          name={'avatarFileName'}
           // rules={[formItemRule.required()]}
         />
         <ProFormUploadButton
@@ -138,7 +148,7 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({
             id: 'pages.button.titleUpload',
             defaultMessage: 'Upload',
           })}`}
-          name={'banner'}
+          name={'bannerFileName'}
           // rules={[formItemRule.required()]}
         />
         <ProFormText
@@ -148,10 +158,10 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({
           })}`}
           placeholder={''}
           name={'idolName'}
-          rules={[formItemRule.required()]}
+          // rules={[formItemRule.required()]}
         />
         <ProFormDatePicker
-          name={'birthday'}
+          name={'anniversaryDay'}
           placeholder={`${intl.formatMessage({
             id: 'pages.idols.form.placeholderBirth',
             defaultMessage: 'Select date',
@@ -160,7 +170,7 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({
             id: 'pages.idols.form.birthday',
             defaultMessage: 'Birthday/Estalisday',
           })}`}
-          rules={[formItemRule.required()]}
+          // rules={[formItemRule.required()]}
         />
         {curItem && (
           <ProFormSelect
@@ -168,7 +178,7 @@ const CreateUpdateForm: FC<CreateUpdateFormProps> = ({
             name={'members'}
             placeholder={'Select member'}
             options={typeSelect}
-            rules={[formItemRule.required()]}
+            // rules={[formItemRule.required()]}
             mode="tags"
           />
         )}

@@ -20,13 +20,13 @@ export async function deleteIdol(id: string) {
 export async function postIdol(payload: API.IdolItem) {
   return request('/Idols', {
     method: 'POST',
-    params: payload,
+    data: payload,
   });
 }
 
 export async function putIdol(payload: API.IdolItem) {
   return request(`/Idols/${payload.id}`, {
     method: 'PUT',
-    body: payload,
+    data: payload,
   });
 }

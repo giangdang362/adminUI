@@ -9,4 +9,12 @@ declare namespace API {
     bannerUrl?: string;
     groupId?: number;
   };
+
+  type IdolPayload = {
+    idolTypeId?: number;
+    avatarFileName?: string;
+    bannerFileName?: string;
+    idolName?: string;
+    anniversaryDay?: string;
+  };
 }
